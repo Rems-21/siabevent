@@ -1,0 +1,604 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+
+.scroll-animate {
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-animate.animate-in {
+    opacity: 1;
+}
+
+.animate-fade-up {
+    transform: translateY(50px);
+}
+
+.animate-fade-up.animate-in {
+    transform: translateY(0);
+}
+
+.animate-fade-down {
+    transform: translateY(-50px);
+}
+
+.animate-fade-down.animate-in {
+    transform: translateY(0);
+}
+
+.animate-fade-left {
+    transform: translateX(-50px);
+}
+
+.animate-fade-left.animate-in {
+    transform: translateX(0);
+}
+
+.animate-fade-right {
+    transform: translateX(50px);
+}
+
+.animate-fade-right.animate-in {
+    transform: translateX(0);
+}
+
+.animate-scale {
+    transform: scale(0.8);
+}
+
+.animate-scale.animate-in {
+    transform: scale(1);
+}
+
+.animate-rotate {
+    transform: rotate(-10deg) scale(0.9);
+}
+
+.animate-rotate.animate-in {
+    transform: rotate(0deg) scale(1);
+}
+
+.scroll-animate {
+    transition-delay: var(--animation-delay, 0ms);
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slide-rotate {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px) rotate(-45deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+@keyframes zoom-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes flip-in {
+    0% {
+        opacity: 0;
+        transform: rotateY(-90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateY(0deg);
+    }
+}
+
+/* Header styles are now in header.css */
+
+/* ============================================
+   BANNER SECTION
+   ============================================ */
+
+.apropos-banner {
+    background: #244F8B;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.banner-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+@media (max-width: 768px) {
+    .apropos-banner {
+        padding: 60px 20px;
+    }
+
+    .banner-title {
+        font-size: 32px;
+        letter-spacing: 2px;
+    }
+}
+
+/* ============================================
+   CONTENT SECTION
+   ============================================ */
+
+.apropos-content {
+    padding: 80px 40px;
+    background: #ffffff;
+}
+
+.content-section {
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1AA45A;
+    margin-bottom: 30px;
+    line-height: 1.3;
+}
+
+.content-text {
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.8;
+}
+
+.content-text p {
+    margin-bottom: 20px;
+}
+
+.content-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Objectives List */
+.objectives-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.objectives-list li {
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    padding-left: 35px;
+    position: relative;
+}
+
+.objectives-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #1AA45A;
+    font-size: 24px;
+    font-weight: 700;
+    top: -2px;
+}
+
+/* Thématiques */
+.thematiques-intro {
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.thematiques-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.thematique-card {
+    background: #1AA45A;
+    border-radius: 12px;
+    padding: 30px;
+    border: 2px solid #1AA45A;
+    transition: all 0.3s ease;
+}
+
+.thematique-card:hover {
+    border-color: #1AA45A;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(26, 164, 90, 0.3);
+    background: #158a4d;
+}
+
+.thematique-icon {
+    margin-bottom: 20px;
+}
+
+.thematique-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.thematique-text {
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.thematiques-acteurs {
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.8;
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #244F8B;
+}
+
+/* Cible Section */
+.cible-text {
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.cible-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.cible-category {
+    background: #1AA45A;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.cible-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(26, 164, 90, 0.4);
+    background: #158a4d;
+}
+
+.category-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .apropos-content {
+        padding: 60px 30px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .content-text {
+        font-size: 16px;
+    }
+
+    .objectives-list li {
+        font-size: 16px;
+    }
+
+    .thematiques-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .apropos-content {
+        padding: 50px 20px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .content-text {
+        font-size: 15px;
+    }
+
+    .objectives-list li {
+        font-size: 15px;
+        padding-left: 30px;
+    }
+
+    .thematique-card {
+        padding: 25px 20px;
+    }
+
+    .thematique-title {
+        font-size: 20px;
+    }
+
+    .thematique-text {
+        font-size: 15px;
+    }
+
+    .thematiques-acteurs {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .cible-text {
+        font-size: 16px;
+    }
+
+    .cible-categories {
+        grid-template-columns: 1fr;
+    }
+
+    .category-title {
+        font-size: 18px;
+    }
+}
+
+/* ============================================
+   FOOTER SECTION
+   ============================================ */
+
+.footer-section {
+    background: #244F8B;
+    color: #ffffff;
+    position: relative;
+    margin-top: 80px;
+}
+
+.flags-row {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.flag-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.flag-icon:hover {
+    transform: scale(1.2);
+    border-color: #1AA45A;
+}
+
+.footer-main {
+    padding: 60px 40px;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    filter: none;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.social-icon:hover {
+    background: #1AA45A;
+    transform: translateY(-3px);
+    color: #ffffff;
+}
+
+.footer-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+}
+
+.footer-location .location-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.footer-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1AA45A;
+    display: inline-block;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #1AA45A;
+    padding-left: 5px;
+}
+
+.footer-contacts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.footer-contacts li {
+    margin-bottom: 12px;
+}
+
+.footer-contacts a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-contacts a:hover {
+    color: #1AA45A;
+}
+
+.footer-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+    color: #1AA45A;
+}
+
+.footer-copyright {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 1024px) {
+    .footer-main {
+        padding: 50px 30px;
+    }
+
+    .footer-logo-img {
+        height: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-main {
+        padding: 40px 20px;
+    }
+
+    .footer-logo-img {
+        height: 60px;
+    }
+
+    .footer-tagline {
+        font-size: 13px;
+    }
+
+    .footer-heading {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links a,
+    .footer-contacts a {
+        font-size: 15px;
+    }
+
+    .footer-copyright {
+        padding: 15px 20px;
+    }
+
+    .copyright-text {
+        font-size: 12px;
+    }
+}

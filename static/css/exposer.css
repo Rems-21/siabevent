@@ -1,0 +1,606 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.exposer-hero {
+    position: relative;
+    background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 80px;
+    overflow: hidden;
+}
+
+.exposer-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect fill="rgba(255,255,255,0.05)" width="50" height="50"/></svg>');
+    background-size: 50px 50px;
+    opacity: 0.3;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(26, 164, 90, 0.3) 0%, transparent 50%);
+}
+
+.exposer-hero .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: #ffffff;
+    color: #244F8B;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    color: #1AA45A;
+}
+
+/* ============================================
+   STANDS SECTION
+   ============================================ */
+
+.stands-section {
+    padding: 80px 20px;
+    background: #f8f9fa;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 800;
+    color: #244F8B;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 500;
+}
+
+.stands-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Nouveau design des cartes stands */
+.stand-card-new {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 0;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stand-card-new:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Section informations centrales */
+.stand-info-section {
+    flex: 1;
+    padding: 30px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stand-title-new {
+    font-size: 20px;
+    font-weight: 700;
+    color: #244F8B;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stand-size-badge {
+    background: #244F8B;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.stand-details {
+    margin-bottom: 20px;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.detail-item strong {
+    color: #333;
+    font-weight: 700;
+}
+
+.btn-reserve-new {
+    align-self: flex-start;
+    padding: 12px 35px;
+    background: #244F8B;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.btn-reserve-new:hover {
+    background: #1AA45A;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(36, 79, 139, 0.3);
+}
+
+/* Section avantages à droite */
+.stand-advantages-section {
+    flex: 0 0 350px;
+    padding: 30px;
+    background: #f8f9fa;
+    border-left: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.advantages-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #244F8B;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.advantages-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 auto 0;
+}
+
+.advantages-list li {
+    padding: 8px 0 8px 30px;
+    position: relative;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.advantages-list li:last-child {
+    border-bottom: none;
+}
+
+.advantages-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+    background: #1AA45A;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.stand-price-new {
+    margin-top: 30px;
+    padding: 20px;
+    background: #244F8B;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.price-label {
+    color: white;
+    font-size: 24px;
+    font-weight: 800;
+    display: block;
+}
+
+/* ============================================
+   TYPOLOGIE SECTION
+   ============================================ */
+
+.typologie-section {
+    padding: 80px 20px;
+    background: #ffffff;
+}
+
+.typology-main-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.typology-content {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.typology-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.typology-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.typology-icon-circle {
+    flex: 0 0 50px;
+    width: 50px;
+    height: 50px;
+    background: #244F8B;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    position: relative;
+}
+
+.typology-icon-circle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 2px;
+    height: 30px;
+    background: #244F8B;
+    opacity: 0.3;
+}
+
+.typology-item:last-child .typology-icon-circle::after {
+    display: none;
+}
+
+.typology-text {
+    flex: 1;
+}
+
+.typology-text h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.typology-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555555;
+    margin: 0;
+}
+
+.typology-diagram {
+    flex: 0 0 400px;
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.diagram-header {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.diagram-box {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    border: 2px solid #244F8B;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.diagram-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #244F8B;
+    line-height: 1.4;
+}
+
+.diagram-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+
+.cta-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.cta-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 45px;
+    background: white;
+    color: #244F8B;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cta:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    color: #1AA45A;
+}
+
+/* ============================================
+   SCROLL TO TOP
+   ============================================ */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(180deg, #1a3a6b 0%, #244F8B 100%);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(36, 79, 139, 0.3);
+    color: transparent;
+    font-size: 0;
+}
+
+.scroll-to-top::before {
+    content: '';
+    width: 45px;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.scroll-to-top::after {
+    content: '▲';
+    color: #333333;
+    font-size: 20px;
+    position: absolute;
+    z-index: 1;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(36, 79, 139, 0.4);
+}
+
+.scroll-to-top.show {
+    display: flex;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .stand-card-new {
+        flex-direction: column;
+    }
+
+    .stand-info-section {
+        flex: 1;
+        padding: 25px;
+    }
+
+    .stand-advantages-section {
+        flex: 1;
+        padding: 25px;
+        border-left: none;
+        border-top: 1px solid #e0e0e0;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .stand-info-section {
+        padding: 20px;
+    }
+
+    .stand-title-new {
+        font-size: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .stand-advantages-section {
+        padding: 20px;
+    }
+
+    .advantages-title {
+        font-size: 16px;
+    }
+
+    .price-label {
+        font-size: 20px;
+    }
+
+    .typology-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .typology-diagram {
+        flex: 1;
+        max-width: 100%;
+    }
+    
+    .diagram-box {
+        height: 300px;
+    }
+
+    .cta-content h2 {
+        font-size: 28px;
+    }
+
+    .cta-content p {
+        font-size: 16px;
+    }
+}
+

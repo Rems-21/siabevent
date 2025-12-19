@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIAB - À propos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/apropos.css' %}">
+</head>
+<body>
+    <!-- Header -->
+        {% include 'includes/header.html' %}
+
+    <!-- Banner Section -->
+    <section class="apropos-banner">
+        <h1 class="banner-title">À propos du SIAB</h1>
+    </section>
+
+    <!-- Main Content -->
+    <section class="apropos-content">
+        <div class="container">
+            <!-- Introduction Section -->
+            <div class="content-section">
+                <h2 class="section-title">De nouvelles perspectives pour l'investissement, l'immobilier et l'énergie</h2>
+                <div class="content-text">
+                    <p>
+                        Chaque jour, les discussions autour de l'impact des acquisitions de biens immobiliers en Afrique s'intensifient, la question de la recherche de financement ne s'en écarte pas, révélant initiatives et bonnes pratiques portées par des entrepreneurs et acteurs publics engagés dans la recherche de solutions cherchant à garantir les acquisitions.
+                    </p>
+                    <p>
+                        L'accélération du cadre règlementaire, la demande croissante de l'industrie et des acteurs publics pour des solutions concrètes ainsi que l'accentuation de l'innovation dans le secteur des énergies renouvelables rendent impérieuse la réunion des divers intervenants et parties prenantes au Salon de l'Investissement, de l'Immobilier et des Énergies pour l'Afrique. Positionné à Bruxelles, cet événement offre une proximité stratégique en Belgique et pour les visiteurs, créant ainsi des opportunités de business inédites pour les participants.
+                    </p>
+                    <p>
+                        Elle offre l'avantage d'être une ville accueillante et ouverte. Elle se distingue par sa position stratégique, facilitant l'accès à de grandes métropoles régionales et internationales. Que vous veniez de Lyon, Lille, Bordeaux, ou de n'importe quel coin du globe, elle est facile d'accès et superbement desservie par un réseau complet de transports. Profitez d'une connectivité optimale, que ce soit par ses réseaux routiers performants ou ses liaisons ferroviaires efficaces.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Objectifs Section -->
+            <div class="content-section">
+                <h2 class="section-title">Objectifs du SIAB</h2>
+                <ul class="objectives-list">
+                    <li>Faciliter et garantir les transactions d'achats des biens immobiliers dans les pays d'origine</li>
+                    <li>Favoriser l'investissement dans les pays cible</li>
+                    <li>Stimuler l'innovation et l'inclusion financière</li>
+                    <li>Contribuer à l'investissement dans les énergies renouvelables en pleine expansion</li>
+                    <li>Promouvoir le développement durable à travers des solutions éco-responsables</li>
+                    <li>Créer des synergies, nouer des partenariats aussi contribuer au développement économique et social, durable et inclusif</li>
+                </ul>
+            </div>
+
+            <!-- Thématiques Section -->
+            <div class="content-section">
+                <h2 class="section-title">Thématiques</h2>
+                <p class="thematiques-intro">
+                    Le SIAB met en avant plusieurs secteurs essentiels au développement économique de l'Afrique, notamment :
+                </p>
+                <div class="thematiques-grid">
+                    <div class="thematique-card">
+                        <div class="thematique-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#244F8B" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="thematique-title">Finances et Investissements</h3>
+                        <p class="thematique-text">
+                            Gestion de patrimoine, planification financière, recherche de financement, banques, investisseurs, experts financiers.
+                        </p>
+                    </div>
+                    <div class="thematique-card">
+                        <div class="thematique-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#244F8B" viewBox="0 0 24 24">
+                                <path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="thematique-title">Immobilier</h3>
+                        <p class="thematique-text">
+                            Construction, maisons à vendre, immobilier de luxe, projets immobiliers à venir, transactions immobilières, conseils immobiliers.
+                        </p>
+                    </div>
+                    <div class="thematique-card">
+                        <div class="thematique-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#244F8B" viewBox="0 0 24 24">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="thematique-title">Énergies</h3>
+                        <p class="thematique-text">
+                            Énergies renouvelables, experts en énergies, fournisseurs d'énergies.
+                        </p>
+                    </div>
+                </div>
+                <p class="thematiques-acteurs">
+                    Des acteurs majeurs des secteurs de la construction, des énergies et des finances seront présents, incluant des promoteurs, constructeurs, architectes, aménageurs, fournisseurs d'énergies, bailleurs sociaux, assureurs, banques, agences de notation, et diffuseurs de données financières.
+                </p>
+            </div>
+
+            <!-- Cible Section -->
+            <div class="content-section">
+                <h2 class="section-title">La Cible du SIAB</h2>
+                <p class="cible-text">
+                    Ce salon, dédié à la diaspora africaine résidante en Belgique ainsi qu'aux investisseurs, professionnels de l'immobilier, de l'investissement et des énergies accueillera les représentants des pays suivants : Côte d'Ivoire, Sénégal, Cameroun, Guinée, Mali, Burkina-Faso, Benin, Maroc, Togo, Congo, Centrafrique, Tunisie, Algérie, etc.. représentant à eux seuls un potentiel de plus de 2 millions de clients intéressés par des investissements sur le continent africain dans différents domaine et en particulier la construction et les énergies renouvelables. Il est prouvé que cette population garde une attache particulière à leurs pays d'origine, et désirent rentrer un jour, voir investir dans leurs pays pour avoir des revenus supplémentaires.
+                </p>
+                <div class="cible-categories">
+                    <div class="cible-category">
+                        <h3 class="category-title">Des investisseurs</h3>
+                    </div>
+                    <div class="cible-category">
+                        <h3 class="category-title">Des professionnels de l'immobilier</h3>
+                    </div>
+                    <div class="cible-category">
+                        <h3 class="category-title">Des professionnels des énergies</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Footer Section -->
+    {% include 'includes/footer.html' %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/apropos.js' %}"></script>
+    <script src="{% static 'js/scroll-animations.js' %}"></script>
+</body>
+</html>

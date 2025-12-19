@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.titre }} - SIAB 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/actualites.css' %}">
+    <style>
+        body {
+            background: #f8f9fa;
+        }
+        
+        .article-detail-wrapper {
+            background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+            padding: 60px 0 40px;
+            margin-bottom: 40px;
+        }
+        
+        .article-detail-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb-nav {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+        
+        .breadcrumb-nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb-nav a:hover {
+            color: #ffffff;
+        }
+        
+        .breadcrumb-nav span {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 10px;
+        }
+        
+        .article-card-wrapper {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: -100px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .article-detail-header {
+            padding: 50px 50px 30px;
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+        }
+        
+        .article-detail-title {
+            font-size: 42px;
+            font-weight: 800;
+            color: #244F8B;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+        
+        .article-detail-meta {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            padding: 20px 0;
+            border-top: 2px solid #e9ecef;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .meta-item i {
+            color: #1AA45A;
+            font-size: 18px;
+        }
+        
+        .article-image-container {
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+        }
+        
+        .article-detail-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .article-image-container:hover .article-detail-image {
+            transform: scale(1.05);
+        }
+        
+        .article-detail-body {
+            padding: 50px;
+        }
+        
+        .article-detail-resume {
+            font-size: 22px;
+            color: #2c3e50;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #e1f5fe 100%);
+            border-left: 5px solid #1AA45A;
+            border-radius: 12px;
+            font-weight: 500;
+            font-style: italic;
+            box-shadow: 0 4px 15px rgba(26, 164, 90, 0.1);
+        }
+        
+        .article-detail-content {
+            font-size: 18px;
+            line-height: 2;
+            color: #2c3e50;
+            margin-bottom: 50px;
+        }
+        
+        .article-detail-content p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        
+        .article-detail-content p:first-letter {
+            font-size: 72px;
+            line-height: 60px;
+            float: left;
+            font-weight: 700;
+            margin-right: 8px;
+            margin-top: 5px;
+            color: #244F8B;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 30px 50px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: #244F8B;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(36, 79, 139, 0.3);
+        }
+        
+        .back-button:hover {
+            background: #1AA45A;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 164, 90, 0.4);
+        }
+        
+        .share-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .share-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #666;
+            margin: 0;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .share-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        .share-btn.facebook { background: #3b5998; }
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.linkedin { background: #0077b5; }
+        .share-btn.whatsapp { background: #25d366; }
+        
+        .related-articles {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        .related-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #244F8B;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .article-detail-wrapper {
+                padding: 40px 0 20px;
+            }
+            
+            .article-card-wrapper {
+                margin-top: -50px;
+                border-radius: 15px;
+            }
+            
+            .article-detail-header {
+                padding: 30px 20px 20px;
+            }
+            
+            .article-detail-title {
+                font-size: 28px;
+            }
+            
+            .article-detail-meta {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .article-image-container {
+                height: 300px;
+            }
+            
+            .article-detail-body {
+                padding: 30px 20px;
+            }
+            
+            .article-detail-resume {
+                font-size: 18px;
+                padding: 20px;
+            }
+            
+            .article-detail-content {
+                font-size: 16px;
+                line-height: 1.8;
+            }
+            
+            .article-detail-content p:first-letter {
+                font-size: 48px;
+                line-height: 40px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .share-section {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    {% include 'includes/header.html' %}
+
+    <!-- Scroll to Top -->
+    <div class="scroll-to-top"></div>
+
+    <!-- Article Detail Wrapper -->
+    <div class="article-detail-wrapper">
+        <div class="article-detail-container">
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb-nav">
+                <a href="{% url 'index' %}">
+                    <i class="fas fa-home"></i> Accueil
+                </a>
+                <span>/</span>
+                <a href="{% url 'actualites' %}">Actualités</a>
+                <span>/</span>
+                <span style="color: #ffffff;">{{ article.titre|truncatewords:5 }}</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Article Card -->
+    <div class="article-detail-container">
+        <div class="article-card-wrapper">
+            <!-- Article Header -->
+            <div class="article-detail-header">
+                <h1 class="article-detail-title">{{ article.titre }}</h1>
+                <div class="article-detail-meta">
+                    <div class="meta-item">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>{{ article.date_creation|date:"d F Y" }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>Lecture : 5 min</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-tag"></i>
+                        <span>SIAB 2026</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Article Image -->
+            {% if article.image %}
+            <div class="article-image-container">
+                <img src="{{ article.image.url }}" alt="{{ article.titre }}" class="article-detail-image">
+            </div>
+            {% endif %}
+            
+            <!-- Article Body -->
+            <div class="article-detail-body">
+                <!-- Article Resume -->
+                <div class="article-detail-resume">
+                    <i class="fas fa-quote-left" style="color: #1AA45A; font-size: 24px; margin-right: 10px;"></i>
+                    {{ article.resume }}
+                    <i class="fas fa-quote-right" style="color: #1AA45A; font-size: 24px; margin-left: 10px;"></i>
+                </div>
+                
+                <!-- Article Content -->
+                <div class="article-detail-content">
+                    {{ article.contenu|linebreaks }}
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="{% url 'actualites' %}" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour aux actualités
+                </a>
+                
+                <div class="share-section">
+                    <span class="share-title">Partager :</span>
+                    <div class="share-buttons">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-btn facebook" title="Partager sur Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.titre }}" target="_blank" class="share-btn twitter" title="Partager sur Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ article.titre }}" target="_blank" class="share-btn linkedin" title="Partager sur LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://wa.me/?text={{ article.titre }}%20{{ request.build_absolute_uri }}" target="_blank" class="share-btn whatsapp" title="Partager sur WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/scroll-animations.js' %}"></script>
+</body>
+</html>
+

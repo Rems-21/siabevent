@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIAB - Salon de l'Investissement, de l'Immobilier et des Énergies pour l'Afrique</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/acceuil.css' %}">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Video Background -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="{% static 'video/acceuil.mp4' %}" type="video/mp4">
+        </video>
+
+        <!-- Overlay -->
+        <div class="hero-overlay"></div>
+
+        <!-- Header -->
+        {% include 'includes/header.html' %}
+
+        <!-- Main Content -->
+        <div class="hero-content">
+            <p class="hero-subtitle">L'événement dédié à la diaspora africaine en Belgique.</p>
+            <h1 class="hero-title">Salon de l'Immobilier Africain De Bruxelles</h1>
+        </div>
+
+        <!-- Bottom Sections -->
+        <div class="hero-bottom">
+            <!-- Sponsor Country -->
+            <div class="sponsor-box">
+                <img src="https://flagcdn.com/w80/bf.png" alt="Burkina Faso" class="sponsor-flag">
+                <div class="sponsor-text">
+                    <p class="sponsor-label">Pays Parrain SIAB 2026</p>
+                    <p class="sponsor-country">BURKINA FASO</p>
+                </div>
+            </div>
+
+            <!-- Partner Logo -->
+            <div class="partner-box">
+                <div class="partner-logo-text">
+                    <span class="fac">FAC</span> IMMOBILIER
+                </div>
+                <p class="partner-label">PARTENAIRE OFFICIEL</p>
+                <p class="partner-region">L'Afrique centrale</p>
+            </div>
+        </div>
+
+        <!-- Scroll to Top -->
+        <div class="scroll-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            ↑
+        </div>
+    </section>
+
+    <!-- Event Info Section -->
+    <section class="event-info-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Main Title - Centered -->
+                    <h2 class="event-title text-center mb-5">Le Rendez-vous annuel</h2>
+                </div>
+            </div>
+            
+            <!-- Dates - Centered -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-12">
+                    <div class="d-flex gap-2 align-items-center justify-content-center flex-wrap dates-container">
+                        <div class="date-box day-1">25</div>
+                        <div class="date-box day-2">26</div>
+                        <div class="date-box day-3">27</div>
+                        <div class="date-month">Juin 2026</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Location Icon - Centered -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-12 text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="search-location" class="location-icon" x="0" y="0" enable-background="new 0 0 64 64" version="1.1" viewBox="0 0 64 64">
+                        <defs>
+                            <clipPath id="leftHalf">
+                                <rect x="0" y="0" width="32" height="64"/>
+                            </clipPath>
+                            <clipPath id="rightHalf">
+                                <rect x="32" y="0" width="32" height="64"/>
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#leftHalf)">
+                            <path fill="#244F8B" d="M57.44,6.21C53.31,2.21,47.88,0,42.13,0h-0.21c-5.85,0.05-11.32,2.36-15.41,6.51c-4.1,4.14-6.32,9.61-6.25,15.41c0.05,5.79,2.38,11.22,6.56,15.28c4.11,4.01,9.54,6.22,15.3,6.22h0.21h0c5.84-0.05,11.31-2.36,15.4-6.51c4.1-4.14,6.33-9.62,6.26-15.41C63.93,15.7,61.61,10.27,57.44,6.21z M54.46,33.7l-0.06,0.07c-3.27,3.27-7.64,5.07-12.3,5.07c-3.83,0-7.44-1.22-10.46-3.53c-0.59-0.41-1.14-0.92-1.6-1.35c-2.99-2.91-4.82-6.78-5.15-10.9l-0.05-1.19c-0.03-4.59,1.73-8.91,4.95-12.17c0.38-0.38,0.71-0.69,1.04-0.95c3.1-2.69,7.11-4.17,11.28-4.17c4.58,0,8.88,1.73,12.11,4.87c3.29,3.21,5.12,7.5,5.17,12.09C59.44,26.13,57.68,30.45,54.46,33.7z"></path>
+                            <path fill="#244F8B" d="M42.13,14.33c-2.11,0-3.83,1.71-3.83,3.81c0,2.09,1.72,3.8,3.83,3.8c2.11,0,3.82-1.7,3.82-3.8C45.95,16.03,44.23,14.33,42.13,14.33z"></path>
+                            <path fill="#244F8B" d="M42.13,9.64c-3.1,0-5.87,1.59-7.41,4.25c-1.55,2.66-1.55,5.84,0,8.49l7.16,12.3l0.09,0.11h0.35l7.22-12.42c1.55-2.66,1.55-5.84,0-8.49C47.98,11.23,45.21,9.64,42.13,9.64z M42.13,23.71c-3.1,0-5.63-2.5-5.63-5.57c0-3.08,2.52-5.58,5.63-5.58c3.1,0,5.62,2.5,5.62,5.58C47.74,21.21,45.22,23.71,42.13,23.71z"></path>
+                        </g>
+                        <g clip-path="url(#rightHalf)">
+                            <path fill="#D5373A" d="M57.44,6.21C53.31,2.21,47.88,0,42.13,0h-0.21c-5.85,0.05-11.32,2.36-15.41,6.51c-4.1,4.14-6.32,9.61-6.25,15.41c0.05,5.79,2.38,11.22,6.56,15.28c4.11,4.01,9.54,6.22,15.3,6.22h0.21h0c5.84-0.05,11.31-2.36,15.4-6.51c4.1-4.14,6.33-9.62,6.26-15.41C63.93,15.7,61.61,10.27,57.44,6.21z M54.46,33.7l-0.06,0.07c-3.27,3.27-7.64,5.07-12.3,5.07c-3.83,0-7.44-1.22-10.46-3.53c-0.59-0.41-1.14-0.92-1.6-1.35c-2.99-2.91-4.82-6.78-5.15-10.9l-0.05-1.19c-0.03-4.59,1.73-8.91,4.95-12.17c0.38-0.38,0.71-0.69,1.04-0.95c3.1-2.69,7.11-4.17,11.28-4.17c4.58,0,8.88,1.73,12.11,4.87c3.29,3.21,5.12,7.5,5.17,12.09C59.44,26.13,57.68,30.45,54.46,33.7z"></path>
+                            <path fill="#D5373A" d="M42.13,14.33c-2.11,0-3.83,1.71-3.83,3.81c0,2.09,1.72,3.8,3.83,3.8c2.11,0,3.82-1.7,3.82-3.8C45.95,16.03,44.23,14.33,42.13,14.33z"></path>
+                            <path fill="#D5373A" d="M42.13,9.64c-3.1,0-5.87,1.59-7.41,4.25c-1.55,2.66-1.55,5.84,0,8.49l7.16,12.3l0.09,0.11h0.35l7.22-12.42c1.55-2.66,1.55-5.84,0-8.49C47.98,11.23,45.21,9.64,42.13,9.64z M42.13,23.71c-3.1,0-5.63-2.5-5.63-5.57c0-3.08,2.52-5.58,5.63-5.58c3.1,0,5.62,2.5,5.62,5.58C47.74,21.21,45.22,23.71,42.13,23.71z"></path>
+                        </g>
+                        <path fill="#2d2d2d" d="M19.99 40.57c-.35-.35-.82-.54-1.32-.54-.2 0-.39.03-.59.09-.27.1-.52.26-.74.47L.55 57.57c-.34.34-.54.82-.54 1.31 0 .49.2.95.56 1.31l3.37 3.28c.17.15.33.27.48.33C4.69 63.93 4.98 64 5.26 64c.5 0 .96-.2 1.32-.55l16.79-16.98c.72-.73.7-1.91-.04-2.64L19.99 40.57zM25.98 38.69c-.12-.1-.23-.2-.34-.31-.15-.15-.29-.3-.43-.46-.11-.12-.47-.5-.47-.5l-2.78 2.77 1.77 1.71 2.77-2.74-.16-.15C26.23 38.91 26.11 38.8 25.98 38.69z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Location Box - Centered -->
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <div class="location-box">
+                        <div class="location-city">Bruxelles, BELGIQUE</div>
+                        <div class="location-address">Adresse à Bruxelles, Belgique</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Programme and Cibles Row -->
+            <div class="row">
+                <!-- Programme Column -->
+                <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+                    <h3 class="section-title">Programme</h3>
+                    <div class="section-separator mb-3"></div>
+                    <div class="content-box">
+                        <div class="content-list">
+                            <div class="content-item">Expositions - Panels</div>
+                            <div class="content-item">Rencontres BtoB & BtoC - Forums</div>
+                            <div class="content-item">Démonstrations - Pitchs & Masterclass</div>
+                            <div class="content-item">Cérémonie de clôture & Remise des trophées de participation</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cibles Column -->
+                <div class="col-lg-6 col-md-12">
+                    <h3 class="section-title">Cibles</h3>
+                    <div class="section-separator mb-3"></div>
+                    <div class="content-box">
+                        <div class="content-list">
+                            <div class="content-item">Investisseurs & Professionnels de l'Immobilier, des Énergies - Financiers - Conseils</div>
+                            <div class="content-item">Secteurs publics & Institutionnel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Footer with Dots Pattern -->
+            <div class="event-footer">
+                <div class="dots-pattern"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown & Stats Section -->
+    <section class="countdown-section">
+        <div class="countdown-background"></div>
+        <div class="countdown-overlay"></div>
+        <div class="countdown-container">
+            <!-- Grid Container for all elements -->
+            <div class="countdown-grid">
+                <!-- Main Headline -->
+                <h2 class="countdown-headline">Ne manquez aucune des opportunités qu'offre cet événement !</h2>
+                
+                <!-- Statistics Boxes -->
+                <div class="stat-box">
+                    <div class="stat-number" data-target="30">+0</div>
+                    <div class="stat-label">Exposants</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="6000">+0</div>
+                    <div class="stat-label">Visiteurs</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="10">+0</div>
+                    <div class="stat-label">Pays Africains</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-target="12">+0</div>
+                    <div class="stat-label">Prises de Parole</div>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-timer">
+                    <div class="countdown-box days">
+                        <div class="countdown-number" id="days">118</div>
+                        <div class="countdown-label">Jours</div>
+                    </div>
+                    <div class="countdown-box hours">
+                        <div class="countdown-number" id="hours">03</div>
+                        <div class="countdown-label">Heures</div>
+                    </div>
+                    <div class="countdown-box minutes">
+                        <div class="countdown-number" id="minutes">11</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-box seconds">
+                        <div class="countdown-number" id="seconds">19</div>
+                        <div class="countdown-label">Secondes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert Panels Section -->
+    <section class="expert-panels-section">
+        <div class="expert-panels-container">
+            <h2 class="expert-panels-title">Assistez à des panels d'experts sur :</h2>
+            
+            <div class="expert-cards">
+                <!-- Card 1: Real Estate -->
+                <div class="expert-card">
+                    <div class="expert-card-background" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800');"></div>
+                    <div class="expert-card-overlay"></div>
+                    <div class="expert-card-content">
+                        <div class="expert-icon expert-icon-red">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 21h6v-6H3v6z"></path>
+                                <path d="M9 21h6v-10H9v10z"></path>
+                                <path d="M15 21h6v-8h-6v8z"></path>
+                                <path d="M3 15h6V9H3v6z"></path>
+                                <path d="M9 11h6V5H9v6z"></path>
+                                <path d="M15 13h6V7h-6v6z"></path>
+                                <path d="M5 12h2"></path>
+                                <path d="M11 8h2"></path>
+                                <path d="M17 10h2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="expert-card-title">L'Immobilier en Afrique</h3>
+                    </div>
+                </div>
+
+                <!-- Card 2: Renewable Energy -->
+                <div class="expert-card">
+                    <div class="expert-card-background" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800');"></div>
+                    <div class="expert-card-overlay"></div>
+                    <div class="expert-card-content">
+                        <div class="expert-icon expert-icon-green">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2v4m0 12v4"></path>
+                                <path d="M2 12h4m12 0h4"></path>
+                                <path d="M12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"></path>
+                                <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+                                <path d="M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
+                                <path d="M6.34 6.34l2.83 2.83m5.66 5.66l2.83 2.83m0-11.32l-2.83 2.83m-5.66 5.66l-2.83 2.83"></path>
+                            </svg>
+                        </div>
+                        <h3 class="expert-card-title">Les Énergies Renouvelables</h3>
+                    </div>
+                </div>
+
+                <!-- Card 3: Strategic Investment -->
+                <div class="expert-card">
+                    <div class="expert-card-background" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800');"></div>
+                    <div class="expert-card-overlay"></div>
+                    <div class="expert-card-content">
+                        <div class="expert-icon expert-icon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 6v12"></path>
+                                <path d="M8 10h8"></path>
+                                <path d="M8 14h8"></path>
+                                <path d="M10 8h4v8h-4z"></path>
+                                <path d="M12 4v2"></path>
+                                <path d="M12 18v2"></path>
+                            </svg>
+                        </div>
+                        <h3 class="expert-card-title">L'Investissement Stratégique</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Participation Section -->
+    <section class="participation-section">
+        <div class="participation-background"></div>
+        <div class="participation-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="participation-title text-center">
+                        <span class="title-line-1">Participez au SIAB en choisissant</span>
+                        <span class="title-line-2">votre option</span>
+                    </h2>
+                </div>
+            </div>
+            
+            <div class="participation-cards">
+                <!-- Top Row - 3 Cards -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="participation-card">
+                            <h3 class="card-title">Devenir Sponsor</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="participation-card">
+                            <h3 class="card-title">Réserver mon Stand</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="participation-card">
+                            <h3 class="card-title">Obtenir mon Badge Visiteur</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom Row - 2 Cards Centered -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="participation-card">
+                            <h3 class="card-title">Obtenir mon Badge Presse</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                        <div class="participation-card">
+                            <h3 class="card-title">Devenir Paneliste</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners & Exhibitors Section -->
+    <section class="partners-exhibitors-section">
+        <div class="container">
+            <!-- Partners Section -->
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="section-header text-center mb-5">NOS PARTENAIRES SIAB POUR L'ÉDITION 2026</h2>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div id="partnersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-wrap="true">
+                        <div class="carousel-inner partners-carousel-inner">
+                            <!-- Slide 1: Showing logos 1-5 -->
+                            <div class="carousel-item active">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">CIEC</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">EXOCOM</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">SIIMMOA</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FENACOPIG</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FAC</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 2: Showing logos 2-6 (shifted by 1) -->
+                            <div class="carousel-item">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">EXOCOM</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">SIIMMOA</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FENACOPIG</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FAC</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">CIEC</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 3: Showing logos 3-7 (shifted by 2) -->
+                            <div class="carousel-item">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">SIIMMOA</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FENACOPIG</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FAC</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">CIEC</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">EXOCOM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 4: Showing logos 4-8 (shifted by 3) -->
+                            <div class="carousel-item">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FENACOPIG</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FAC</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">CIEC</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">EXOCOM</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">SIIMMOA</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 5: Showing logos 5-9 (shifted by 4) -->
+                            <div class="carousel-item">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FAC</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">CIEC</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">EXOCOM</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">SIIMMOA</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="partner-logo-box">
+                                            <div class="partner-logo-placeholder">FENACOPIG</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#partnersCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#partnersCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#partnersCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#partnersCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#partnersCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#partnersCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#partnersCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exhibitors Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h2 class="section-header text-center mb-5">EXPOSANTS 2026</h2>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center exhibitors-grid">
+                <!-- First Row -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">FOX COMMUNICATION</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">FAC IMMOBILIER</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">APHSA</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">EL SHADAI</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">RayPlus Group</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">ACCL</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">MDD IMMOBILIER</div>
+                    </div>
+                </div>
+                
+                <!-- Second Row -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">groupe AKC</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">BIS</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">Enguitraci</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">SAKO AUTO</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="exhibitor-logo-box">
+                        <div class="exhibitor-logo-placeholder">KALABOU</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Banner Section -->
+    <section class="contact-banner-section">
+        <div class="contact-banner-background"></div>
+        <div class="contact-banner-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="contact-banner-title">Associez votre image au SIAB 2026</h2>
+                    <a href="#" class="contact-btn">CONTACTEZ-NOUS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Representatives Section -->
+    <section class="representatives-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="representatives-title text-center mb-5">Nos Représentants par Pays</h2>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div id="representativesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-wrap="true">
+                        <div class="carousel-inner">
+                            <!-- Slide 1: Showing cards 1-5 -->
+                            <div class="carousel-item active">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. DIALLO MOHAMED</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sl.png" alt="Sierra Leone" class="country-flag">
+                                                    <span>Sierra Leone</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/gn.png" alt="Guinée-B" class="country-flag">
+                                                    <span>Guinée-B</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUSMANE SENE</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sn.png" alt="Sénégal" class="country-flag">
+                                                    <span>Sénégal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUEDRAOGO SOM</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bf.png" alt="Burkina Faso" class="country-flag">
+                                                    <span>Burkina Faso</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. SOSSOU BERTRAND</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. ADJIBADE ALAIN</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 2: Showing cards 2-6 (shifted by 1) -->
+                            <div class="carousel-item">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUSMANE SENE</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sn.png" alt="Sénégal" class="country-flag">
+                                                    <span>Sénégal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUEDRAOGO SOM</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bf.png" alt="Burkina Faso" class="country-flag">
+                                                    <span>Burkina Faso</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. SOSSOU BERTRAND</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. ADJIBADE ALAIN</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. DIALLO MOHAMED</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sl.png" alt="Sierra Leone" class="country-flag">
+                                                    <span>Sierra Leone</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/gn.png" alt="Guinée-B" class="country-flag">
+                                                    <span>Guinée-B</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 3: Showing cards 3-7 (shifted by 2) -->
+                            <div class="carousel-item">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUEDRAOGO SOM</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bf.png" alt="Burkina Faso" class="country-flag">
+                                                    <span>Burkina Faso</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. SOSSOU BERTRAND</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. ADJIBADE ALAIN</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. DIALLO MOHAMED</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sl.png" alt="Sierra Leone" class="country-flag">
+                                                    <span>Sierra Leone</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/gn.png" alt="Guinée-B" class="country-flag">
+                                                    <span>Guinée-B</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUSMANE SENE</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sn.png" alt="Sénégal" class="country-flag">
+                                                    <span>Sénégal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 4: Showing cards 4-8 (shifted by 3) -->
+                            <div class="carousel-item">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. SOSSOU BERTRAND</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. ADJIBADE ALAIN</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. DIALLO MOHAMED</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sl.png" alt="Sierra Leone" class="country-flag">
+                                                    <span>Sierra Leone</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/gn.png" alt="Guinée-B" class="country-flag">
+                                                    <span>Guinée-B</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUSMANE SENE</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sn.png" alt="Sénégal" class="country-flag">
+                                                    <span>Sénégal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUEDRAOGO SOM</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bf.png" alt="Burkina Faso" class="country-flag">
+                                                    <span>Burkina Faso</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 5: Showing cards 5-9 (shifted by 4) -->
+                            <div class="carousel-item">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. ADJIBADE ALAIN</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. DIALLO MOHAMED</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sl.png" alt="Sierra Leone" class="country-flag">
+                                                    <span>Sierra Leone</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/gn.png" alt="Guinée-B" class="country-flag">
+                                                    <span>Guinée-B</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUSMANE SENE</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/sn.png" alt="Sénégal" class="country-flag">
+                                                    <span>Sénégal</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. OUEDRAOGO SOM</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bf.png" alt="Burkina Faso" class="country-flag">
+                                                    <span>Burkina Faso</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                        <div class="representative-card">
+                                            <div class="representative-photo">
+                                                <div class="photo-placeholder">Photo</div>
+                                            </div>
+                                            <h3 class="representative-name">M. SOSSOU BERTRAND</h3>
+                                            <p class="representative-title">Représentant SIAB</p>
+                                            <div class="representative-countries">
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/bj.png" alt="Bénin" class="country-flag">
+                                                    <span>Bénin</span>
+                                                </div>
+                                                <div class="country-item">
+                                                    <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="country-flag">
+                                                    <span>Togo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev representative-prev" type="button" data-bs-target="#representativesCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next representative-next" type="button" data-bs-target="#representativesCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    {% include 'includes/footer.html' %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/acceuil.js' %}"></script>
+    <script src="{% static 'js/scroll-animations.js' %}"></script>
+</body>
+</html>

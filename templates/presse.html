@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accréditation Presse - SIAB 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/presse.css' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <section class="presse-section-modern">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="presse-form-modern" data-aos="fade-up">
+                        <div class="form-header-modern">
+                            <div class="presse-icon-large">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <h1 class="form-title-modern">Trouvez le Contenu qui va faire le Buzz</h1>
+                            <p class="form-description-modern">
+                                Capturez du contenu d'information et immortalisez ce moment unique qui va réunir 
+                                les professionnels de l'investissement, l'immobilier et de l'énergie.
+                            </p>
+                        </div>
+
+                        {% if messages %}
+                            <div class="messages-container">
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <form action="{% url 'submit_badge_presse' %}" method="POST" class="form-content-modern">
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="prenom">
+                                            <i class="fas fa-user"></i>
+                                            Prénom <span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="form-control-modern" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="nom">
+                                            <i class="fas fa-user"></i>
+                                            Nom <span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="form-control-modern" id="nom" name="nom" placeholder="Votre nom" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label for="nom_media">
+                                    <i class="fas fa-newspaper"></i>
+                                    Nom du média <span class="required">*</span>
+                                </label>
+                                <input type="text" class="form-control-modern" id="nom_media" name="nom_media" placeholder="Ex: Le Monde, RFI, France 24..." required>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="type_media">
+                                            <i class="fas fa-tv"></i>
+                                            Type de média <span class="required">*</span>
+                                        </label>
+                                        <select class="form-control-modern" id="type_media" name="type_media" required>
+                                            <option value="">Sélectionnez le type</option>
+                                            <option value="presse_ecrite">Presse écrite</option>
+                                            <option value="presse_en_ligne">Presse en ligne</option>
+                                            <option value="media_tv">Média TV</option>
+                                            <option value="radio">Radio</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="pays_origine_media">
+                                            <i class="fas fa-globe"></i>
+                                            Pays d'origine du média <span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="form-control-modern" id="pays_origine_media" name="pays_origine_media" placeholder="Ex: France, Côte d'Ivoire..." required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="code_pays">
+                                            <i class="fas fa-phone-alt"></i>
+                                            Code Pays <span class="required">*</span>
+                                        </label>
+                                        <select class="form-control-modern" id="code_pays" name="code_pays" required>
+                                            <option value="">Sélectionnez...</option>
+                                            <option value="Côte d'Ivoire 🇨🇮 (+225)">Côte d'Ivoire 🇨🇮 (+225)</option>
+                                            <option value="France 🇫🇷 (+33)">France 🇫🇷 (+33)</option>
+                                            <option value="Belgique 🇧🇪 (+32)">Belgique 🇧🇪 (+32)</option>
+                                            <option value="Canada 🇨🇦 (+1)">Canada 🇨🇦 (+1)</option>
+                                            <option value="Bénin 🇧🇯 (+229)">Bénin 🇧🇯 (+229)</option>
+                                            <option value="Burkina Faso 🇧🇫 (+226)">Burkina Faso 🇧🇫 (+226)</option>
+                                            <option value="Mali 🇲🇱 (+223)">Mali 🇲🇱 (+223)</option>
+                                            <option value="Sénégal 🇸🇳 (+221)">Sénégal 🇸🇳 (+221)</option>
+                                            <option value="Togo 🇹🇬 (+228)">Togo 🇹🇬 (+228)</option>
+                                            <option value="Niger 🇳🇪 (+227)">Niger 🇳🇪 (+227)</option>
+                                            <option value="Guinée 🇬🇳 (+224)">Guinée 🇬🇳 (+224)</option>
+                                            <option value="Cameroun 🇨🇲 (+237)">Cameroun 🇨🇲 (+237)</option>
+                                            <option value="Congo 🇨🇬 (+242)">Congo 🇨🇬 (+242)</option>
+                                            <option value="RDC 🇨🇩 (+243)">RDC 🇨🇩 (+243)</option>
+                                            <option value="Gabon 🇬🇦 (+241)">Gabon 🇬🇦 (+241)</option>
+                                            <option value="Maroc 🇲🇦 (+212)">Maroc 🇲🇦 (+212)</option>
+                                            <option value="Tunisie 🇹🇳 (+216)">Tunisie 🇹🇳 (+216)</option>
+                                            <option value="Algérie 🇩🇿 (+213)">Algérie 🇩🇿 (+213)</option>
+                                        </select>
+                                        <small class="form-text">Veuillez choisir l'indicatif de votre pays.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="telephone">
+                                            <i class="fas fa-phone"></i>
+                                            Téléphone <span class="required">*</span>
+                                        </label>
+                                        <input type="tel" class="form-control-modern" id="telephone" name="telephone" placeholder="XX XX XX XX XX" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i>
+                                    Email <span class="required">*</span>
+                                </label>
+                                <input type="email" class="form-control-modern" id="email" name="email" placeholder="exemple@email.com" required>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label for="message">
+                                    <i class="fas fa-comment-dots"></i>
+                                    Votre message
+                                </label>
+                                <textarea class="form-control-modern" id="message" name="message" rows="3" placeholder="Informations complémentaires..."></textarea>
+                            </div>
+
+                            <input type="hidden" id="emails_collaborateurs" name="emails_collaborateurs" value="">
+
+                            <button type="submit" class="btn-submit-modern">
+                                <i class="fas fa-paper-plane"></i>
+                                Envoyer ma demande
+                            </button>
+                        </form>
+
+                        <div class="collaborateurs-section">
+                            <h3 class="collaborateurs-title">
+                                <i class="fas fa-users"></i>
+                                Rassemblez les emails de vos collaborateurs
+                            </h3>
+                            <p class="collaborateurs-subtitle">Soyez tous au courant de nos offres exclusives pour le SIAB</p>
+                            
+                            <div id="emails-container"></div>
+                            
+                            <div class="add-email-section">
+                                <input type="email" class="form-control-modern" id="new-email" placeholder="email@collaborateur.com">
+                                <button type="button" class="btn-add-email" onclick="addEmail()">
+                                    <i class="fas fa-plus"></i> Ajouter un email
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-footer-modern">
+                            <p><i class="fas fa-info-circle"></i> Un badge vous sera délivré dès votre arrivée</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        // Gestion des emails collaborateurs
+        let collaborateursEmails = [];
+
+        function addEmail() {
+            const emailInput = document.getElementById('new-email');
+            const email = emailInput.value.trim();
+            
+            if (email && validateEmail(email)) {
+                if (!collaborateursEmails.includes(email)) {
+                    collaborateursEmails.push(email);
+                    updateEmailsList();
+                    emailInput.value = '';
+                } else {
+                    alert('Cet email est déjà dans la liste');
+                }
+            } else {
+                alert('Veuillez entrer un email valide');
+            }
+        }
+
+        function removeEmail(email) {
+            collaborateursEmails = collaborateursEmails.filter(e => e !== email);
+            updateEmailsList();
+        }
+
+        function updateEmailsList() {
+            const container = document.getElementById('emails-container');
+            container.innerHTML = '';
+            
+            collaborateursEmails.forEach(email => {
+                const emailItem = document.createElement('div');
+                emailItem.className = 'email-item';
+                emailItem.innerHTML = `
+                    <span><i class="fas fa-envelope"></i> ${email}</span>
+                    <button type="button" class="btn-remove-email" onclick="removeEmail('${email}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                container.appendChild(emailItem);
+            });
+            
+            // Mettre à jour le champ caché
+            document.getElementById('emails_collaborateurs').value = collaborateursEmails.join('\n');
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Permettre d'ajouter avec Enter
+        document.getElementById('new-email').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addEmail();
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,583 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+
+.scroll-animate {
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-animate.animate-in {
+    opacity: 1;
+}
+
+.animate-fade-up {
+    transform: translateY(50px);
+}
+
+.animate-fade-up.animate-in {
+    transform: translateY(0);
+}
+
+.animate-fade-down {
+    transform: translateY(-50px);
+}
+
+.animate-fade-down.animate-in {
+    transform: translateY(0);
+}
+
+.animate-fade-left {
+    transform: translateX(-50px);
+}
+
+.animate-fade-left.animate-in {
+    transform: translateX(0);
+}
+
+.animate-fade-right {
+    transform: translateX(50px);
+}
+
+.animate-fade-right.animate-in {
+    transform: translateX(0);
+}
+
+.animate-scale {
+    transform: scale(0.8);
+}
+
+.animate-scale.animate-in {
+    transform: scale(1);
+}
+
+.animate-rotate {
+    transform: rotate(-10deg) scale(0.9);
+}
+
+.animate-rotate.animate-in {
+    transform: rotate(0deg) scale(1);
+}
+
+.scroll-animate {
+    transition-delay: var(--animation-delay, 0ms);
+}
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slide-rotate {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px) rotate(-45deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+@keyframes zoom-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes flip-in {
+    0% {
+        opacity: 0;
+        transform: rotateY(-90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateY(0deg);
+    }
+}
+
+/* Header styles are now in header.css */
+
+/* ============================================
+   SCROLL TO TOP
+   ============================================ */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(180deg, #1a3a6b 0%, #244F8B 100%);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(36, 79, 139, 0.3);
+    color: transparent;
+    font-size: 0;
+}
+
+.scroll-to-top::before {
+    content: '';
+    width: 45px;
+    height: 45px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.scroll-to-top::after {
+    content: '▲';
+    color: #333333;
+    font-size: 20px;
+    position: absolute;
+    z-index: 1;
+    font-weight: bold;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(36, 79, 139, 0.4);
+}
+
+.scroll-to-top.show {
+    display: flex;
+}
+
+/* ============================================
+   LOGISTIQUE HEADER
+   ============================================ */
+
+.logistique-header {
+    background: #244F8B;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.logistique-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .logistique-header {
+        padding: 50px 20px;
+    }
+
+    .logistique-title {
+        font-size: 36px;
+    }
+}
+
+/* ============================================
+   LOGISTIQUE CONTENT
+   ============================================ */
+
+.logistique-content {
+    padding: 80px 40px 40px;
+    background: #ffffff;
+}
+
+.logistique-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logistique-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
+
+.title-part-black {
+    color: #000000;
+}
+
+.title-part-blue {
+    color: #244F8B;
+}
+
+.title-part-green {
+    color: #1AA45A;
+}
+
+.title-part-light-green {
+    color: #7CB342;
+}
+
+.title-part-blue {
+    color: #244F8B;
+}
+
+.asterisk {
+    color: #ff9800;
+    font-size: 28px;
+}
+
+.card-text {
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.email-link {
+    color: #d1373a;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.email-link:hover {
+    color: #b02e31;
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .logistique-content {
+        padding: 60px 30px;
+    }
+
+    .logistique-card {
+        padding: 35px 30px;
+    }
+
+    .card-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logistique-content {
+        padding: 50px 20px;
+    }
+
+    .logistique-card {
+        padding: 30px 25px;
+    }
+
+    .card-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .card-text {
+        font-size: 15px;
+    }
+}
+
+/* ============================================
+   DISCLAIMER SECTION
+   ============================================ */
+
+.disclaimer-box {
+    border: 2px solid #d1373a;
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-top: 40px;
+    margin-bottom: 0;
+    background: #ffffff;
+}
+
+.disclaimer-text {
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.8;
+    margin: 0;
+    font-style: italic;
+}
+
+.asterisk-red {
+    color: #d1373a;
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.disclaimer-text strong {
+    font-weight: 700;
+    color: #333333;
+}
+
+@media (max-width: 768px) {
+    .disclaimer-box {
+        padding: 20px 25px;
+        margin-top: 40px;
+    }
+
+    .disclaimer-text {
+        font-size: 14px;
+    }
+}
+
+/* ============================================
+   FOOTER SECTION
+   ============================================ */
+
+.footer-section {
+    background: #244F8B;
+    color: #ffffff;
+    position: relative;
+    margin-top: 40px;
+}
+
+.flags-row {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.flag-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.flag-icon:hover {
+    transform: scale(1.2);
+    border-color: #1AA45A;
+}
+
+.footer-main {
+    padding: 60px 40px;
+}
+
+.footer-logo {
+    margin-bottom: 20px;
+}
+
+.footer-logo-img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    filter: none;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.social-icon:hover {
+    background: #1AA45A;
+    transform: translateY(-3px);
+    color: #ffffff;
+}
+
+.footer-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+}
+
+.footer-location .location-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.footer-heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #1AA45A;
+    display: inline-block;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #1AA45A;
+    padding-left: 5px;
+}
+
+.footer-contacts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.footer-contacts li {
+    margin-bottom: 12px;
+}
+
+.footer-contacts a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-contacts a:hover {
+    color: #1AA45A;
+}
+
+.footer-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+    color: #1AA45A;
+}
+
+.footer-copyright {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 1024px) {
+    .footer-main {
+        padding: 50px 30px;
+    }
+
+    .footer-logo-img {
+        height: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-main {
+        padding: 40px 20px;
+    }
+
+    .footer-logo-img {
+        height: 60px;
+    }
+
+    .footer-tagline {
+        font-size: 13px;
+    }
+
+    .footer-heading {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .footer-links a,
+    .footer-contacts a {
+        font-size: 15px;
+    }
+
+    .footer-copyright {
+        padding: 15px 20px;
+    }
+
+    .copyright-text {
+        font-size: 12px;
+    }
+}
+

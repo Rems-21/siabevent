@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposer - SIAB 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/exposer.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    {% include 'includes/header.html' %}
+
+    <!-- Scroll to Top -->
+    <div class="scroll-to-top"></div>
+
+    <!-- Hero Section -->
+    <section class="exposer-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1 class="hero-title" data-aos="fade-down">Réservez votre stand pour l'exposition</h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Participer au Salon de l'Investissement, de l'Immobilier et des Énergies pour l'Afrique offre des opportunités précieuses pour diversifier et enrichir votre réseau. Gagnez des clients, donnez de la visibilité à votre entreprise, vos projets et vos solutions !
+            </p>
+            <a href="#stands" class="btn-hero" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-store"></i> Consultez tous les tarifs
+            </a>
+        </div>
+    </section>
+
+    <!-- Stands Section -->
+    <section class="stands-section" id="stands">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Nos offres de stands</h2>
+            <p class="section-subtitle" data-aos="fade-up">Location de stand pour le SIAB 2026</p>
+
+            <div class="stands-list">
+                <!-- Stand 6m² -->
+                <div class="stand-card-new" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stand-info-section">
+                        <h3 class="stand-title-new">
+                            STAND avec cloisons métalliques <span class="stand-size-badge">6m²</span>
+                        </h3>
+                        
+                        <div class="stand-details">
+                            <p class="detail-item">
+                                <strong>Dimension d'un panneau:</strong> H 2,5 M / L 3 M / P 2M
+                            </p>
+                            <p class="detail-item">
+                                <strong>Mobilier fourni:</strong> 1 Table et 4 Chaises, 1 Corbeille, 1 Enseigne drapeau de 600 x 200mm - Impression recto/verso au nom de l'exposant
+                            </p>
+                        </div>
+                        
+                        <a href="{% url 'reservation' %}" class="btn-reserve-new">
+                            RESERVEZ!
+                        </a>
+                    </div>
+                    
+                    <div class="stand-advantages-section">
+                        <h4 class="advantages-title">Avantages</h4>
+                        <ul class="advantages-list">
+                            <li>Montage, Installation et démontage du stand</li>
+                            <li>1 Enseigne drapeau de 600 x 200mm Impression recto/verso au nom de l'exposant</li>
+                            <li>4 Chaises et 1 Table</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stand 9m² -->
+                <div class="stand-card-new" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stand-info-section">
+                        <h3 class="stand-title-new">
+                            STAND avec cloisons métalliques <span class="stand-size-badge">9m²</span>
+                        </h3>
+                        
+                        <div class="stand-details">
+                            <p class="detail-item">
+                                <strong>Dimension d'un panneau:</strong> H 2,5 M / L 3 M / P 3M
+                            </p>
+                            <p class="detail-item">
+                                <strong>Mobilier fourni:</strong> 1 Table et 4 Chaises, 1 Corbeille, 1 Enseigne drapeau de 600 x 200mm - Impression recto/verso au nom de l'exposant
+                            </p>
+                        </div>
+                        
+                        <a href="{% url 'reservation' %}" class="btn-reserve-new">
+                            RESERVEZ!
+                        </a>
+                    </div>
+                    
+                    <div class="stand-advantages-section">
+                        <h4 class="advantages-title">Avantages</h4>
+                        <ul class="advantages-list">
+                            <li>Rencontres VIP</li>
+                            <li>Insertion de votre logo dans tous les livrets et dépliants</li>
+                            <li>Montage, Installation et démontage du stand avec moquette</li>
+                            <li>1 Enseigne drapeau de 600 x 200mm Impression recto/verso</li>
+                            <li>4 Chaises et 1 Table + 1 Corbeille</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stand 12m² -->
+                <div class="stand-card-new" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stand-info-section">
+                        <h3 class="stand-title-new">
+                            STAND avec cloisons métalliques <span class="stand-size-badge">12m²</span>
+                        </h3>
+                        
+                        <div class="stand-details">
+                            <p class="detail-item">
+                                <strong>Dimension d'un panneau:</strong> H 2,5 M / L 4 M / P 3M
+                            </p>
+                            <p class="detail-item">
+                                <strong>Mobilier fourni:</strong> 1 Table et 6 Chaises, 1 Corbeille, 1 Enseigne drapeau de 600 x 200mm - Impression recto/verso au nom de l'exposant
+                            </p>
+                        </div>
+                        
+                        <a href="{% url 'reservation' %}" class="btn-reserve-new">
+                            RESERVEZ!
+                        </a>
+                    </div>
+                    
+                    <div class="stand-advantages-section">
+                        <h4 class="advantages-title">Avantages</h4>
+                        <ul class="advantages-list">
+                            <li>Participation aux plénières</li>
+                            <li>Rencontres VIP organisées</li>
+                            <li>Pose kakemono</li>
+                            <li>Insertion de votre visuel dans tous les livrets et dépliants</li>
+                            <li>1 Enseigne drapeau de 600 x 200mm - Impression recto/verso</li>
+                            <li>6 Chaises et 1 Table + 1 Tabouret haut blanc + 1 Présentoir (flyers) + 1 Corbeille</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stand 18m² -->
+                <div class="stand-card-new" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stand-info-section">
+                        <h3 class="stand-title-new">
+                            STAND avec cloisons métalliques <span class="stand-size-badge">18m²</span>
+                        </h3>
+                        
+                        <div class="stand-details">
+                            <p class="detail-item">
+                                <strong>Dimension d'un panneau:</strong> H 2,5 M / L 6 M / P 3M
+                            </p>
+                            <p class="detail-item">
+                                <strong>Mobilier fourni:</strong> 2 Tables et 8 Chaises, 1 Corbeille, 1 Enseigne drapeau de 600 x 200mm - Impression recto/verso au nom de l'exposant
+                            </p>
+                        </div>
+                        
+                        <a href="{% url 'reservation' %}" class="btn-reserve-new">
+                            RESERVEZ!
+                        </a>
+                    </div>
+                    
+                    <div class="stand-advantages-section">
+                        <h4 class="advantages-title">Avantages</h4>
+                        <ul class="advantages-list">
+                            <li>Participation aux plénières</li>
+                            <li>Rencontres VIP + Pose kakémono</li>
+                            <li>Logo sur fond de scène + Bannière sur le site web</li>
+                            <li>Campagne média digitale</li>
+                            <li>Interviews exclusives + Séances photo professionnelles</li>
+                            <li>Passage vidéo 30' à l'ouverture des conférences et ateliers</li>
+                            <li>Insertion de votre visuel dans tous les livrets et dépliants</li>
+                            <li>Accès à l'espace B to B</li>
+                            <li>Montage, Installation et démontage</li>
+                            <li>1 Tabouret haut blanc + 8 Chaises et 2 Tables + 1 Corbeille</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typologie Section -->
+    <section class="typologie-section">
+        <div class="container">
+            <h2 class="typology-main-title" data-aos="fade-up">TYPOLOGIE DES STANDS INTÉRIEURS</h2>
+            
+            <div class="typology-content" data-aos="fade-up" data-aos-delay="100">
+                <div class="typology-list">
+                    <div class="typology-item">
+                        <div class="typology-icon-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="typology-text">
+                            <h3>ARCHITECTURE</h3>
+                            <p>Nous proposons des stands modulaires de panneaux /module assemblé offrant une multitude de configuration. Quelques gestes suffisent pour transformer un stand en ilot en un stand en angle et, en y rajoutant un panneau,un stand en angle devient un stand en rangée.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="typology-item">
+                        <div class="typology-icon-circle">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="typology-text">
+                            <h3>SIGNALÉTIQUE</h3>
+                            <p>Une enseigne drapeau recto/verso lisant le nom de l'exposant</p>
+                        </div>
+                    </div>
+                    
+                    <div class="typology-item">
+                        <div class="typology-icon-circle">
+                            <i class="fas fa-pause"></i>
+                        </div>
+                        <div class="typology-text">
+                            <h3>MOBILIER</h3>
+                            <p>Un ensemble de discussion comprenant une à deux tables et quatre à huit chaises par module de 6 m², 9 m², 12 m² ou 18 m².</p>
+                        </div>
+                    </div>
+                    
+                    <div class="typology-item">
+                        <div class="typology-icon-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="typology-text">
+                            <h3>NETTOYAGE DU STAND</h3>
+                            <p>Quotidien avant l'ouverture du salon</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="typology-diagram">
+                    <div class="diagram-header">Exemple de stand de 9m²</div>
+                    <div class="diagram-box">
+                        <div class="diagram-label">A29<br>Exposant</div>
+                        <img src="{% static 'images/stand-schema.png' %}" alt="Schéma stand 9m²" onerror="this.style.display='none'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2>Prêt à rejoindre le SIAB 2026 ?</h2>
+                <p>Réservez votre stand dès maintenant et profitez d'une visibilité exceptionnelle auprès de milliers de visiteurs et décideurs africains.</p>
+                <a href="{% url 'reservation' %}" class="btn-cta">
+                    <i class="fas fa-rocket"></i> Réserver maintenant
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{% static 'js/scroll-animations.js' %}"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Presse Confirmé - SIAB 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/presse.css' %}">
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <section class="success-section">
+        <div class="container">
+            <div class="success-card">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1 class="success-title">Demande enregistrée avec succès !</h1>
+                <p class="success-message">
+                    Merci pour votre demande de badge presse pour le SIAB 2026. 
+                    Votre accréditation a été enregistrée et sera vérifiée par notre équipe.
+                </p>
+                <div class="success-info">
+                    <div class="info-item">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Votre demande est confirmée</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-id-card"></i>
+                        <p>Badge à retirer sur place dès votre arrivée</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>Email de confirmation envoyé</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <p>SIAB 2026 : 15 - 17 Mai 2026 à Abidjan</p>
+                    </div>
+                </div>
+                <div class="success-actions">
+                    <a href="{% url 'index' %}" class="btn btn-primary">
+                        <i class="fas fa-home"></i> Retour à l'accueil
+                    </a>
+                    <a href="{% url 'actualites' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-newspaper"></i> Voir les actualités
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

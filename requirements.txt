@@ -1,0 +1,8 @@
+Django==4.2.7
+python-dotenv==1.0.0
+Pillow==10.1.0
+stripe==7.9.0
+psycopg2-binary==2.9.9  # Pour PostgreSQL en production
+gunicorn==21.2.0  # Serveur WSGI pour production
+whitenoise==6.6.0  # Pour servir les fichiers statiques (optionnel mais recommandé)
+

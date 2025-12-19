@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités - SIAB 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/actualites.css' %}">
+</head>
+<body>
+    <!-- Header -->
+        {% include 'includes/header.html' %}
+
+    <!-- Scroll to Top -->
+    <div class="scroll-to-top"></div>
+
+    <!-- Actualités Header -->
+    <section class="actualites-header">
+        <div class="container">
+            <h1 class="actualites-title">Actualités</h1>
+            <p class="actualites-subtitle">Restez informé des dernières nouvelles du SIAB 2026</p>
+        </div>
+    </section>
+
+    <!-- Actualités Content -->
+    <section class="actualites-content">
+        <div class="container">
+            <div id="articles-container" class="articles-grid">
+                <!-- Les articles seront chargés dynamiquement via PHP -->
+                <div class="loading-message">Chargement des actualités...</div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Footer Section -->
+    {% include 'includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/actualites.js' %}"></script>
+    <script src="{% static 'js/scroll-animations.js' %}"></script>
+</body>
+</html>
+

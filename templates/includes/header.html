@@ -1,0 +1,39 @@
+{% load static %}
+<header class="header">
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="{% static 'images/logo.png' %}" alt="SIABLogo" class="logo">
+    </div>
+
+    <!-- Hamburger Menu Button -->
+    <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </button>
+
+    <!-- Navigation -->
+        <nav class="nav-menu collapse navbar-collapse" id="navbarNav">
+            <a href="{% url 'index' %}" class="nav-link">Accueil</a>
+            <a href="{% url 'participer' %}" class="nav-link">Participer</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="activitesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Activités</a>
+                <ul class="dropdown-menu" aria-labelledby="activitesDropdown">
+                    <li><a class="dropdown-item" href="{% url 'tombola' %}">Tombola</a></li>
+                    <li><a class="dropdown-item" href="{% url 'pitch' %}">Pitch</a></li>
+                </ul>
+            </div>
+            <a href="{% url 'actualites' %}" class="nav-link">Actualités</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="infosUtilesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Infos utiles</a>
+                <ul class="dropdown-menu" aria-labelledby="infosUtilesDropdown">
+                    <li><a class="dropdown-item" href="{% url 'apropos' %}">À propos</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logistique' %}">Logistique</a></li>
+                    <li><a class="dropdown-item" href="{% url 'contacts' %}">Contacts</a></li>
+                </ul>
+            </div>
+        </nav>
+</header>
+

@@ -1,0 +1,191 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devenir Panéliste - SIAB 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/paneliste.css' %}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <section class="paneliste-section-modern">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="paneliste-form-modern" data-aos="fade-up">
+                        <div class="form-header-modern">
+                            <div class="paneliste-icon-large">
+                                <i class="fas fa-microphone-alt"></i>
+                            </div>
+                            <h1 class="form-title-modern">Partagez votre Expertise au SIAB 2026</h1>
+                            <p class="form-description-modern">
+                                Une tribune stratégique pour valoriser vos idées, renforcer votre influence 
+                                et contribuer activement aux grandes réflexions sur le développement de l'Afrique.
+                            </p>
+                        </div>
+
+                        {% if messages %}
+                            <div class="messages-container">
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <form action="{% url 'submit_paneliste' %}" method="POST" enctype="multipart/form-data" class="form-content-modern">
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="nom">
+                                            <i class="fas fa-user"></i>
+                                            Nom <span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="form-control-modern" id="nom" name="nom" placeholder="Votre nom" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="prenom">
+                                            <i class="fas fa-user"></i>
+                                            Prénom <span class="required">*</span>
+                                        </label>
+                                        <input type="text" class="form-control-modern" id="prenom" name="prenom" placeholder="Votre prénom" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="pays_origine">
+                                            <i class="fas fa-globe-africa"></i>
+                                            Pays d'origine <span class="required">*</span>
+                                        </label>
+                                        <select class="form-control-modern" id="pays_origine" name="pays_origine" required>
+                                            <option value="">Sélectionnez votre pays</option>
+                                            <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
+                                            <option value="Bénin">🇧🇯 Bénin</option>
+                                            <option value="Burkina Faso">🇧🇫 Burkina Faso</option>
+                                            <option value="Mali">🇲🇱 Mali</option>
+                                            <option value="Sénégal">🇸🇳 Sénégal</option>
+                                            <option value="Togo">🇹🇬 Togo</option>
+                                            <option value="Niger">🇳🇪 Niger</option>
+                                            <option value="Guinée">🇬🇳 Guinée</option>
+                                            <option value="Cameroun">🇨🇲 Cameroun</option>
+                                            <option value="Congo">🇨🇬 Congo</option>
+                                            <option value="RDC">🇨🇩 RDC</option>
+                                            <option value="Gabon">🇬🇦 Gabon</option>
+                                            <option value="France">🇫🇷 France</option>
+                                            <option value="Belgique">🇧🇪 Belgique</option>
+                                            <option value="Canada">🇨🇦 Canada</option>
+                                            <option value="États-Unis">🇺🇸 États-Unis</option>
+                                            <option value="Autre">🌍 Autre pays</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label for="telephone">
+                                            <i class="fas fa-phone"></i>
+                                            Téléphone (avec indicatif) <span class="required">*</span>
+                                        </label>
+                                        <input type="tel" class="form-control-modern" id="telephone" name="telephone" placeholder="+225 XX XX XX XX XX" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i>
+                                    Email <span class="required">*</span>
+                                </label>
+                                <input type="email" class="form-control-modern" id="email" name="email" placeholder="exemple@email.com" required>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label for="cv_fichier">
+                                    <i class="fas fa-file-pdf"></i>
+                                    CV / Biographie <span class="required">*</span>
+                                </label>
+                                <input type="file" class="form-control-modern file-input" id="cv_fichier" name="cv_fichier" accept=".pdf,.doc,.docx" required>
+                                <small class="form-text">Formats acceptés : PDF, Word (max. 5 MB)</small>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label for="theme">
+                                    <i class="fas fa-lightbulb"></i>
+                                    Thème que vous souhaitez aborder <span class="required">*</span>
+                                </label>
+                                <input type="text" class="form-control-modern" id="theme" name="theme" placeholder="Ex: Investissement immobilier en Afrique" required>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label for="message">
+                                    <i class="fas fa-comment-dots"></i>
+                                    Message complémentaire <span class="required">*</span>
+                                </label>
+                                <textarea class="form-control-modern" id="message" name="message" rows="4" placeholder="Parlez-nous de votre expertise, vos réalisations et pourquoi vous souhaitez intervenir au SIAB..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit-modern">
+                                <i class="fas fa-paper-plane"></i>
+                                Envoyer ma candidature
+                            </button>
+                        </form>
+
+                        <div class="form-footer-modern">
+                            <p><i class="fas fa-shield-alt"></i> Vos données sont sécurisées et confidentielles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        // Afficher le nom du fichier sélectionné
+        document.getElementById('cv_fichier').addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const fileName = this.files[0].name;
+                const fileSize = (this.files[0].size / 1024 / 1024).toFixed(2);
+                
+                if (fileSize > 5) {
+                    alert('Le fichier est trop volumineux. Taille maximum : 5 MB');
+                    this.value = '';
+                } else {
+                    console.log('Fichier sélectionné: ' + fileName);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
