@@ -67,8 +67,8 @@ def create_tombola_checkout(request):
                 'quantity': nombre_tickets,
             }],
             mode='payment',
-            success_url=request.build_absolute_uri('/tombola-success.html') + f'?session_id={{CHECKOUT_SESSION_ID}}&participation_id={participation.id}',
-            cancel_url=request.build_absolute_uri('/tombola.html') + '?cancelled=true',
+            success_url=request.build_absolute_uri('/tombola-success') + f'?session_id={{CHECKOUT_SESSION_ID}}&participation_id={participation.id}',
+            cancel_url=request.build_absolute_uri('/tombola') + '?cancelled=true',
             customer_email=email,
             metadata={
                 'participation_id': participation.id,

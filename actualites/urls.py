@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     # Page publique des actualités
-    path('actualites.html', views.actualites_page, name='actualites'),
+    path('actualites', views.actualites_page, name='actualites'),
     
     # Page de détail d'un article
     path('article/<int:article_id>/', views.article_detail, name='article_detail'),

@@ -36,11 +36,11 @@ urlpatterns = [
     path('', include('organisations.urls')),
     
     # Pages statiques
-    path('participer.html', TemplateView.as_view(template_name='participer.html'), name='participer'),
-    path('exposer.html', TemplateView.as_view(template_name='exposer.html'), name='exposer'),
-    path('apropos.html', TemplateView.as_view(template_name='apropos.html'), name='apropos'),
-    path('logistique.html', TemplateView.as_view(template_name='logistique.html'), name='logistique'),
-    path('sponsoriser.html', TemplateView.as_view(template_name='sponsoriser.html'), name='sponsoriser'),
+    path('participer', TemplateView.as_view(template_name='participer.html'), name='participer'),
+    path('exposer', TemplateView.as_view(template_name='exposer.html'), name='exposer'),
+    path('apropos', TemplateView.as_view(template_name='apropos.html'), name='apropos'),
+    path('logistique', TemplateView.as_view(template_name='logistique.html'), name='logistique'),
+    path('sponsoriser', TemplateView.as_view(template_name='sponsoriser.html'), name='sponsoriser'),
 ]
 
 # Servir les fichiers statiques et média en développement
