@@ -5,116 +5,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIAB - Tombola</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/logo.png' %}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/top-banner.css' %}">
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/scroll-to-top.css' %}">
     <link rel="stylesheet" href="{% static 'css/tombola.css' %}">
 </head>
 <body>
     <!-- Header -->
-        {% include 'includes/header.html' %}
+    {% include 'includes/header.html' %}
 
-    <!-- Scroll to Top -->
-    <div class="scroll-to-top">↑</div>
-
-    <!-- Tombola Header -->
-    <section class="tombola-header">
-        <h1 class="tombola-title">TOMBOLA</h1>
-    </section>
-
-    <!-- Tombola Content -->
-    <section class="tombola-content">
+    <!-- Hero Section -->
+    <section class="tombola-hero" style="background-image: url('{% static 'images/tombola.jpg' %}');">
+        <div class="hero-overlay"></div>
         <div class="container">
-            <div class="row g-4">
-                <!-- Left Card - Information -->
-                <div class="col-lg-6">
-                    <div class="tombola-info-card">
-                        <div class="info-header">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#d1373a" viewBox="0 0 24 24" class="ticket-icon">
-                                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z"/>
-                                <path d="M7 8h2v2H7zm0 4h2v2H7zm8-4h2v2h-2zm0 4h2v2h-2z"/>
-                            </svg>
-                            <h2 class="info-title">Participez à la Grande Tombola SIAB 2026</h2>
-                        </div>
-                        <h3 class="info-subtitle">Un terrain de 600 m² à gagner !</h3>
-                        <p class="info-description">
-                            La tombola officielle du SIAB 2026 se déroulera les 25, 26 et 27 juin à Bruxelles. Chaque ticket acheté vous donne une chance de remporter ce lot exceptionnel.
-                        </p>
-                        
-                        <ul class="info-features">
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#1AA45A" viewBox="0 0 24 24">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                </svg>
-                                <span>Paiement sécurisé via CinetPay</span>
-                            </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#1AA45A" viewBox="0 0 24 24">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                </svg>
-                                <span>Reçu + QR Code envoyés par email</span>
-                            </li>
-                            <li>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#1AA45A" viewBox="0 0 24 24">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                                </svg>
-                                <span>Retrait des tickets sur place au stand SIAB</span>
-                            </li>
-                        </ul>
-
-                        <div class="info-tip">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#f4d03f" viewBox="0 0 24 24" class="tip-icon">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                            </svg>
-                            <p class="tip-text">Conseil : Plus vous achetez de tickets, plus vos chances augmentent !</p>
-                        </div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    <span>Grande Tombola SIAB 2026</span>
+                </div>
+                <h1 class="hero-title">Tentez votre chance</h1>
+                <h2 class="hero-subtitle">Gagnez un terrain de 600 m²</h2>
+                <div class="hero-prize">
+                    <div class="prize-icon">🏆</div>
+                    <div class="prize-text">
+                        <span class="prize-label">Lot Principal</span>
+                        <span class="prize-value">600 m² de terrain</span>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
 
-                <!-- Right Card - Form -->
-                <div class="col-lg-6">
-                    <div class="tombola-form-card">
-                        <h2 class="form-title">Votre participation</h2>
-                        <div class="price-display">5 € PAR TICKET</div>
-                        
-                        <form class="tombola-form">
+    <!-- Info Section -->
+    <section class="tombola-info-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="info-card-title">Paiement Sécurisé</h3>
+                        <p class="info-card-text">Transaction sécurisée via CinetPay avec protection maximale de vos données.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="info-card-title">Reçu Instantané</h3>
+                        <p class="info-card-text">Reçu et QR Code envoyés immédiatement par email après votre paiement.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                        </div>
+                        <h3 class="info-card-title">Retrait sur Place</h3>
+                        <p class="info-card-text">Récupérez vos tickets physiques au stand SIAB pendant l'événement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="tombola-form-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="form-container">
+                        <div class="form-header">
+                            <h2 class="form-main-title">Participez maintenant</h2>
+                            <div class="price-badge">
+                                <span class="price-amount">5 €</span>
+                                <span class="price-label">par ticket</span>
+                            </div>
+                        </div>
+
+                        <form class="tombola-form" id="tombolaForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="prenom">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        Prénom *
+                                    </label>
+                                    <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Votre prénom" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nom">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        Nom *
+                                    </label>
+                                    <input type="text" id="nom" name="nom" class="form-control" placeholder="Votre nom" required>
+                                </div>
+                            </div>
+
                             <div class="form-group">
-                                <label for="email">Email *</label>
+                                <label for="email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                    </svg>
+                                    Email *
+                                </label>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="votre.email@example.com" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="prenom">Prénom *</label>
-                                <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Jean" required>
+                                <label for="telephone">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                    </svg>
+                                    Téléphone
+                                </label>
+                                <input type="tel" id="telephone" name="telephone" class="form-control" placeholder="+221 77 123 45 67">
                             </div>
 
-                            <div class="form-group">
-                                <label for="nom">Nom *</label>
-                                <input type="text" id="nom" name="nom" class="form-control" placeholder="Dupont" required>
-                            </div>
-
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="telephone">Téléphone</label>
-                                        <input type="tel" id="telephone" name="telephone" class="form-control" placeholder="+221 77 123 45 67">
-                                    </div>
+                            <div class="tickets-selector">
+                                <label for="tickets" class="tickets-label">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12z"/>
+                                        <path d="M7 8h2v2H7zm0 4h2v2H7zm8-4h2v2h-2zm0 4h2v2h-2z"/>
+                                    </svg>
+                                    Nombre de tickets
+                                </label>
+                                <div class="tickets-control">
+                                    <button type="button" class="ticket-btn minus" id="decreaseTickets">-</button>
+                                    <input type="number" id="tickets" name="tickets" class="tickets-input" value="1" min="1" max="100" readonly>
+                                    <button type="button" class="ticket-btn plus" id="increaseTickets">+</button>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="tickets">Nombre de tickets</label>
-                                        <input type="number" id="tickets" name="tickets" class="form-control" value="1" min="1">
-                                    </div>
+                                <div class="total-display">
+                                    <span class="total-label">Total :</span>
+                                    <span class="total-amount" id="totalAmount">5 €</span>
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn-payer">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 24 24" class="check-icon">
-                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            <button type="submit" class="btn-submit">
+                                <span>Payer maintenant</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
                                 </svg>
-                                PAYER MAINTENANT
                             </button>
+
+                            <p class="form-note">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                </svg>
+                                Plus vous achetez de tickets, plus vos chances de gagner augmentent !
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -122,13 +191,20 @@
         </div>
     </section>
 
-        <!-- Footer Section -->
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top" aria-label="Retour en haut de la page">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Footer Section -->
     {% include 'includes/footer.html' %}
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/scroll-to-top.js' %}"></script>
     <script src="{% static 'js/tombola.js' %}"></script>
     <script src="{% static 'js/scroll-animations.js' %}"></script>
 </body>
 </html>
-

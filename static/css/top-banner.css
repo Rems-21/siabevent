@@ -1,0 +1,124 @@
+/* ============================================
+   TOP BANNER - Section en bas de la navbar
+   ============================================ */
+
+.top-banner {
+    background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+    color: #ffffff;
+    padding: 12px 0;
+    font-size: 13px;
+    position: relative;
+    z-index: 5;
+    width: 100%;
+}
+
+.top-banner-scroll-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.top-banner-text {
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    white-space: nowrap;
+    animation: scroll-text 25s linear infinite;
+}
+
+.scroll-text-content {
+    display: inline-block;
+    padding-right: 50px; /* Espace entre les répétitions */
+}
+
+/* Animation de défilement */
+@keyframes scroll-text {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.top-banner-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.top-banner-location,
+.top-banner-date {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+.top-banner-location .info-icon,
+.top-banner-date .info-icon {
+    flex-shrink: 0;
+    fill: #ffffff;
+    stroke: #ffffff;
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .top-banner {
+        padding: 10px 0;
+        font-size: 12px;
+    }
+    
+    .top-banner-scroll-wrapper {
+        margin-bottom: 8px;
+    }
+    
+    .top-banner-text {
+        animation-duration: 18s; /* Plus rapide sur mobile */
+    }
+    
+    .top-banner-info {
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .top-banner-location,
+    .top-banner-date {
+        justify-content: flex-start;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-banner {
+        padding: 8px 0;
+        font-size: 11px;
+    }
+    
+    .top-banner-text {
+        font-size: 11px;
+        line-height: 1.4;
+        animation-duration: 15s; /* Encore plus rapide sur petit écran */
+    }
+    
+    .top-banner-location,
+    .top-banner-date {
+        font-size: 10px;
+    }
+    
+    .top-banner-location .info-icon,
+    .top-banner-date .info-icon {
+        width: 12px;
+        height: 12px;
+    }
+}

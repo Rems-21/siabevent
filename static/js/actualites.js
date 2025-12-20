@@ -98,22 +98,8 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// Scroll to Top functionality is now handled by scroll-to-top.js
 function initScrollToTop() {
-    const scrollButton = document.querySelector('.scroll-to-top');
-    
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            scrollButton.classList.add('show');
-        } else {
-            scrollButton.classList.remove('show');
-        }
-    });
-    
-    scrollButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+    // Function kept for compatibility but functionality moved to scroll-to-top.js
 }
 

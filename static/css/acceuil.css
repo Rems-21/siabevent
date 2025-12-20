@@ -309,50 +309,7 @@ body {
     margin-top: 2px;
 }
 
-.scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(180deg, #1a3a6b 0%, #244F8B 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(36, 79, 139, 0.3);
-    color: transparent;
-    font-size: 0;
-}
-
-.scroll-to-top::before {
-    content: '';
-    width: 45px;
-    height: 45px;
-    background: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-}
-
-.scroll-to-top::after {
-    content: '▲';
-    color: #333333;
-    font-size: 20px;
-    position: absolute;
-    z-index: 1;
-    font-weight: bold;
-}
-
-.scroll-to-top:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(36, 79, 139, 0.4);
-}
+/* Scroll to Top styles are now in scroll-to-top.css */
 
 /* ============================================
    EVENT INFO SECTION
@@ -549,6 +506,79 @@ body {
     border-top: 3px solid;
     border-image: linear-gradient(to right, #244F8B 0%, #1AA45A 50%, #D5373A 100%) 1;
     position: relative;
+}
+
+/* ============================================
+   SIAB VIDEO PRESENTATION SECTION
+   ============================================ */
+
+.siab-video-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 80px 20px;
+    position: relative;
+}
+
+.video-section-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #244F8B;
+    letter-spacing: -0.5px;
+    margin-bottom: 40px;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    background: #000;
+}
+
+.siab-presentation-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+/* Responsive Video Section */
+@media (max-width: 991px) {
+    .siab-video-section {
+        padding: 60px 20px;
+    }
+    
+    .video-section-title {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+    
+    .video-wrapper {
+        max-width: 100%;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .siab-video-section {
+        padding: 40px 15px;
+    }
+    
+    .video-section-title {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+    
+    .video-wrapper {
+        border-radius: 8px;
+        max-width: 100%;
+    }
+    
+    .siab-presentation-video {
+        border-radius: 8px;
+    }
 }
 
 .dots-pattern {
@@ -1303,6 +1333,45 @@ body {
     margin: 0 auto;
 }
 
+.participation-card-link {
+    text-decoration: none !important;
+    color: inherit;
+    display: block;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+.participation-card-link:hover {
+    text-decoration: none !important;
+    color: inherit;
+    border: none;
+}
+
+.participation-card-link:focus {
+    text-decoration: none !important;
+    color: inherit;
+    outline: none;
+    border: none;
+}
+
+.participation-card-link:active {
+    text-decoration: none !important;
+    color: inherit;
+    border: none;
+}
+
+.participation-card-link:visited {
+    text-decoration: none !important;
+    color: inherit;
+    border: none;
+}
+
+.participation-card-link .card-title {
+    text-decoration: none !important;
+    color: inherit;
+}
+
 .participation-card {
     background: #ffffff;
     border-radius: 12px;
@@ -1318,7 +1387,7 @@ body {
     justify-content: center;
 }
 
-.participation-card:hover {
+.participation-card-link:hover .participation-card {
     transform: translateY(-8px);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
 }
@@ -1722,16 +1791,33 @@ body {
     font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
-    text-decoration: none;
+    text-decoration: none !important;
     transition: background 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 15px rgba(36, 79, 139, 0.4);
     letter-spacing: 1px;
+    border: none;
+    outline: none;
 }
 
 .contact-btn:hover {
     background: #1AA45A;
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(26, 164, 90, 0.5);
+    color: #ffffff;
+    text-decoration: none !important;
+}
+
+.contact-btn:focus {
+    text-decoration: none !important;
+    outline: none;
+}
+
+.contact-btn:active {
+    text-decoration: none !important;
+}
+
+.contact-btn:visited {
+    text-decoration: none !important;
     color: #ffffff;
 }
 
@@ -1741,7 +1827,7 @@ body {
 
 .representatives-section {
     background: #ffffff;
-    padding: 80px 40px;
+    padding: 50px 40px 80px 40px;
     position: relative;
 }
 
@@ -2054,7 +2140,7 @@ body {
     }
 
     .representatives-section {
-        padding: 50px 20px;
+        padding: 30px 20px 50px 20px;
     }
 
     .representatives-title {

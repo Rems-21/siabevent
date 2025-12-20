@@ -1,0 +1,101 @@
+/* ============================================
+   FONTS - GLOBAL STYLES
+   Poppins (Bold) pour les titres
+   Montserrat pour les textes
+   ============================================ */
+
+/* Base font for body text */
+body,
+p,
+span,
+div,
+li,
+td,
+th {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+}
+
+/* Headings - Poppins Bold */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+/* All heading classes - Poppins Bold */
+.section-header,
+.section-title,
+.page-title,
+.hero-title,
+.hero-subtitle,
+.card-title,
+.footer-heading,
+.representatives-title,
+.contact-banner-title,
+.participation-title,
+.event-title,
+.article-title,
+.article-detail-title,
+.info-title,
+.form-title,
+.modal-title,
+.alert-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+/* Subheadings and labels - Montserrat */
+.subtitle,
+.label,
+.tag,
+.badge-text,
+.small-text,
+.caption {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Buttons - Montserrat */
+button,
+.btn,
+.button,
+input[type="submit"],
+input[type="button"],
+.contact-btn {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Links - Montserrat */
+a,
+.nav-link,
+.dropdown-item {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Forms - Montserrat */
+input,
+textarea,
+select,
+label,
+.form-control,
+.form-label {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Tables - Montserrat */
+table,
+thead,
+tbody,
+tr,
+td,
+th {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Lists - Montserrat */
+ul,
+ol,
+li {
+    font-family: 'Montserrat', sans-serif;
+}
+

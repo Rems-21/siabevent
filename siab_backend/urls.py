@@ -32,9 +32,10 @@ urlpatterns = [
     # Pitch app
     path('', include('pitch.urls')),
     
+    # Organisations app (partenaires, exposants, représentants)
+    path('', include('organisations.urls')),
+    
     # Pages statiques
-    path('', TemplateView.as_view(template_name='index.html'), name='home'),
-    path('index.html', TemplateView.as_view(template_name='index.html'), name='index'),
     path('participer.html', TemplateView.as_view(template_name='participer.html'), name='participer'),
     path('exposer.html', TemplateView.as_view(template_name='exposer.html'), name='exposer'),
     path('apropos.html', TemplateView.as_view(template_name='apropos.html'), name='apropos'),

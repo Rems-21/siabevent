@@ -17,7 +17,30 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-!_*dc%$gxqxgt5f12etx4dt$*+
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 # ALLOWED_HOSTS - Configurez vos domaines en production
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',') if os.getenv('ALLOWED_HOSTS') else ['*']
+# Pour ngrok, on accepte les domaines ngrok
+allowed_hosts_str = os.getenv('ALLOWED_HOSTS', '')
+if allowed_hosts_str:
+    # Convertir la chaîne en liste en nettoyant les espaces
+    ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(',') if host.strip()]
+
+    # Normaliser quelques formats pratiques :
+    # - '*.domaine.com' -> '.domaine.com' (format supporté par Django pour tous les sous-domaines)
+    # - Si '*' est présent, on autorise tous les hôtes (pour tests uniquement)
+    normalized_hosts = []
+    allow_all = False
+    for host in ALLOWED_HOSTS:
+        if host == '*':
+            allow_all = True
+            break
+        if host.startswith('*.'):
+            normalized_hosts.append('.' + host[2:])
+        else:
+            normalized_hosts.append(host)
+
+    ALLOWED_HOSTS = ['*'] if allow_all else normalized_hosts
+else:
+    # Par défaut, accepter localhost et tous les domaines ngrok pour les tests
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok-free.app', '.ngrok-free.dev', '.ngrok.io', '.ngrok.app']
 
 # Application definition
 INSTALLED_APPS = [
@@ -35,6 +58,7 @@ INSTALLED_APPS = [
     'contacts',
     'tombola',
     'pitch',
+    'organisations',
 ]
 
 MIDDLEWARE = [
@@ -153,8 +177,8 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@siab.com')
-CONTACT_EMAIL = os.getenv('CONTACT_EMAIL', 'contact@siab.com')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'info@siab.events')
+CONTACT_EMAIL = os.getenv('CONTACT_EMAIL', 'siab2025.info@gmail.com')
 
 # Activer/désactiver l'envoi d'emails automatiques depuis les formulaires
 # Par défaut, les données sont toujours sauvegardées dans la base de données

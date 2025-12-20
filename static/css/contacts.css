@@ -126,55 +126,7 @@ body {
 /* ============================================
    SCROLL TO TOP
    ============================================ */
-
-.scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(180deg, #1a3a6b 0%, #244F8B 100%);
-    border-radius: 50%;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 15px rgba(36, 79, 139, 0.3);
-    color: transparent;
-    font-size: 0;
-}
-
-.scroll-to-top::before {
-    content: '';
-    width: 45px;
-    height: 45px;
-    background: #ffffff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-}
-
-.scroll-to-top::after {
-    content: '▲';
-    color: #333333;
-    font-size: 20px;
-    position: absolute;
-    z-index: 1;
-    font-weight: bold;
-}
-
-.scroll-to-top:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(36, 79, 139, 0.4);
-}
-
-.scroll-to-top.show {
-    display: flex;
-}
+/* Scroll to Top styles are now in scroll-to-top.css */
 
 /* ============================================
    CONTACTS HEADER
