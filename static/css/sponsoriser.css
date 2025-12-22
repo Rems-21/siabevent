@@ -16,7 +16,7 @@ body {
 
 /* Hero Section */
 .sponsor-hero {
-    background: linear-gradient(135deg, #1a2f4a 0%, #244F8B 100%);
+    background: linear-gradient(135deg, #000000 0%, #1AA45A 100%);
     padding: 120px 20px 80px;
     position: relative;
     overflow: hidden;
@@ -30,7 +30,7 @@ body {
     height: 100%;
     background: 
         radial-gradient(circle at 20% 50%, rgba(26, 164, 90, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(36, 79, 139, 0.2) 0%, transparent 50%);
+        radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
 }
 
 .hero-content {
@@ -71,7 +71,7 @@ body {
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    border-top: 5px solid #244F8B;
+    border-top: 5px solid #000000;
     height: 100%;
 }
 
@@ -90,7 +90,7 @@ body {
 .preview-header h3 {
     font-size: 18px;
     font-weight: 700;
-    color: #244F8B;
+    color: #000000;
 }
 
 .preview-content {
@@ -101,7 +101,7 @@ body {
 .preview-icon {
     width: 120px;
     height: 120px;
-    background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+    background: linear-gradient(135deg, #000000 0%, #1AA45A 100%);
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -137,7 +137,7 @@ body {
 .section-title {
     font-size: 26px;
     font-weight: 700;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 30px;
     position: relative;
     padding-bottom: 15px;
@@ -176,7 +176,7 @@ body {
 .benefit-icon {
     width: 60px;
     height: 60px;
-    background: #244F8B;
+    background: #000000;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -207,7 +207,7 @@ body {
 .steps-section {
     margin-bottom: 40px;
     padding: 30px;
-    background: linear-gradient(135deg, rgba(36, 79, 139, 0.05) 0%, rgba(26, 164, 90, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(26, 164, 90, 0.05) 100%);
     border-radius: 12px;
 }
 
@@ -254,7 +254,7 @@ body {
     align-items: center;
     gap: 12px;
     padding: 18px 40px;
-    background: #244F8B;
+    background: #000000;
     color: white;
     border: none;
     border-radius: 10px;
@@ -262,7 +262,7 @@ body {
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 20px rgba(36, 79, 139, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -306,7 +306,7 @@ body {
     text-align: center;
     height: 100%;
     transition: all 0.3s ease;
-    border-top: 4px solid #244F8B;
+    border-top: 4px solid #000000;
 }
 
 .contact-card:hover {
@@ -317,7 +317,7 @@ body {
 .contact-icon {
     width: 70px;
     height: 70px;
-    background: #244F8B;
+    background: #1AA45A !important; /* Vert pour le fond des icônes */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -333,25 +333,33 @@ body {
 .contact-card h3 {
     font-size: 20px;
     font-weight: 700;
-    color: #244F8B;
+    color: #1AA45A !important; /* Vert pour tous les titres */
     margin-bottom: 20px;
+    text-shadow: none !important; /* Enlever text-shadow */
 }
 
 .contact-card p {
     font-size: 15px;
-    color: #666;
+    color: #1AA45A !important; /* Vert pour tous les paragraphes */
     margin-bottom: 8px;
+    text-shadow: none !important; /* Enlever text-shadow */
 }
 
 .contact-card a {
-    color: #244F8B;
+    color: #1AA45A !important; /* Vert pour tous les liens */
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
+    text-shadow: none !important; /* Enlever text-shadow */
 }
 
 .contact-card a:hover {
-    color: #1AA45A;
+    color: #158a4f !important; /* Vert foncé au survol */
+}
+
+.contact-card strong {
+    color: #1AA45A !important; /* Vert pour le texte en gras */
+    text-shadow: none !important; /* Enlever text-shadow */
 }
 
 /* Responsive */

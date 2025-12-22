@@ -16,8 +16,13 @@ class ParticipationTombola(models.Model):
     pays = models.CharField(max_length=100)
     
     # Informations de paiement
+    LOT_CHOICES = [
+        ('lot1', 'Lot 1 - Billet d\'avion (5€)'),
+        ('lot2', 'Lot 2 - Terrain 300 m² (10€)'),
+    ]
+    lot = models.CharField(max_length=10, choices=LOT_CHOICES, default='lot1', verbose_name="Lot choisi")
     nombre_tickets = models.IntegerField(default=1, verbose_name="Nombre de tickets")
-    prix_unitaire = models.DecimalField(max_digits=10, decimal_places=2, default=10.00, verbose_name="Prix unitaire (€)")
+    prix_unitaire = models.DecimalField(max_digits=10, decimal_places=2, default=5.00, verbose_name="Prix unitaire (€)")
     montant_total = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Montant total (€)")
     
     # Statut et paiement Stripe
@@ -38,7 +43,8 @@ class ParticipationTombola(models.Model):
         verbose_name_plural = "Participations Tombola"
     
     def __str__(self):
-        return f"{self.nom} {self.prenom} - {self.nombre_tickets} ticket(s) - {self.statut}"
+        lot_display = self.get_lot_display()
+        return f"{self.nom} {self.prenom} - {lot_display} - {self.nombre_tickets} ticket(s) - {self.statut}"
     
     def save(self, *args, **kwargs):
         # Calculer le montant total

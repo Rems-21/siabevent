@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'tombola',
     'pitch',
     'organisations',
+    'custom_admin',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +89,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'organisations.context_processors.pays_footer',
             ],
         },
     },
@@ -165,25 +167,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email backend - Pour le développement, on affiche dans la console
 # En production, utilisez un vrai service SMTP
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# else:
+#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Configuration SMTP (pour la production)
 # Décommentez et configurez ces paramètres en production
-EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
-EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'info@siab.events')
-CONTACT_EMAIL = os.getenv('CONTACT_EMAIL', 'siab2025.info@gmail.com')
+# EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
+# EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
+# EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
+# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+# DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'info@siab.events')
+# CONTACT_EMAIL = os.getenv('CONTACT_EMAIL', 'siab2025.info@gmail.com')
 
 # Activer/désactiver l'envoi d'emails automatiques depuis les formulaires
 # Par défaut, les données sont toujours sauvegardées dans la base de données
 # L'email est optionnel et peut être désactivé en production
-SEND_EMAIL_NOTIFICATIONS = os.getenv('SEND_EMAIL_NOTIFICATIONS', 'False') == 'True'
+# SEND_EMAIL_NOTIFICATIONS = os.getenv('SEND_EMAIL_NOTIFICATIONS', 'False') == 'True'
 
 # Note: Pour Gmail, créez un mot de passe d'application:
 # https://myaccount.google.com/apppasswords

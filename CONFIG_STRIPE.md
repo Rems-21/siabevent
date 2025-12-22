@@ -71,8 +71,7 @@ Les webhooks permettent à Stripe de notifier votre application quand un paiemen
 1. Allez dans **Développeurs** > **Webhooks** dans le Dashboard Stripe
 2. Cliquez sur **Ajouter un endpoint**
 3. Ajoutez vos URLs de webhook :
-   - `https://votresite.com/api/stripe-webhook-tombola/`
-   - `https://votresite.com/api/stripe-webhook-pitch/`
+   - `https://siab.events/api/stripe-webhook-tombola/`
 4. Sélectionnez les événements à écouter :
    - `checkout.session.completed`
    - `payment_intent.succeeded`

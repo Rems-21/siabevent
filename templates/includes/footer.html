@@ -5,19 +5,26 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <div class="d-flex justify-content-center gap-2 flex-wrap">
-                        <img src="https://flagcdn.com/w20/ie.png" alt="Ireland" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/bj.png" alt="Benin" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/ml.png" alt="Mali" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/sn.png" alt="Senegal" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/tg.png" alt="Togo" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/cd.png" alt="DRC" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/ci.png" alt="Ivory Coast" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/cg.png" alt="Congo" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/gn.png" alt="Guinea" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/ma.png" alt="Morocco" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/tn.png" alt="Tunisia" class="flag-icon">
-                        <img src="https://flagcdn.com/w20/bf.png" alt="Burkina Faso" class="flag-icon">
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        {% for pays in pays_footer %}
+                            <img src="{{ pays.get_flag_url }}" alt="{{ pays.nom }}" class="flag-icon" title="{{ pays.nom }}">
+                        {% empty %}
+                            {# Fallback si les pays ne sont pas en base - afficher les 14 pays directement #}
+                            <img src="https://flagcdn.com/w40/cm.png" alt="Cameroun" class="flag-icon" title="Cameroun">
+                            <img src="https://flagcdn.com/w40/ga.png" alt="Gabon" class="flag-icon" title="Gabon">
+                            <img src="https://flagcdn.com/w40/cd.png" alt="République démocratique du Congo" class="flag-icon" title="République démocratique du Congo">
+                            <img src="https://flagcdn.com/w40/ci.png" alt="Côte d'Ivoire" class="flag-icon" title="Côte d'Ivoire">
+                            <img src="https://flagcdn.com/w40/tg.png" alt="Togo" class="flag-icon" title="Togo">
+                            <img src="https://flagcdn.com/w40/rw.png" alt="Rwanda" class="flag-icon" title="Rwanda">
+                            <img src="https://flagcdn.com/w40/cf.png" alt="République centrafricaine" class="flag-icon" title="République centrafricaine">
+                            <img src="https://flagcdn.com/w40/bj.png" alt="Bénin" class="flag-icon" title="Bénin">
+                            <img src="https://flagcdn.com/w40/sn.png" alt="Sénégal" class="flag-icon" title="Sénégal">
+                            <img src="https://flagcdn.com/w40/gn.png" alt="Guinée" class="flag-icon" title="Guinée">
+                            <img src="https://flagcdn.com/w40/bf.png" alt="Burkina Faso" class="flag-icon" title="Burkina Faso">
+                            <img src="https://flagcdn.com/w40/ml.png" alt="Mali" class="flag-icon" title="Mali">
+                            <img src="https://flagcdn.com/w40/bi.png" alt="Burundi" class="flag-icon" title="Burundi">
+                            <img src="https://flagcdn.com/w40/sl.png" alt="Sierra Leone" class="flag-icon" title="Sierra Leone">
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -63,7 +70,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" class="location-icon">
                                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                             </svg>
-                            <span class="location-text">Bruxelles - Belgique</span>
+                            <span class="location-text">Salle java, drève olympique 60, 1070 Bruxelles</span>
                         </div>
                     </div>
                 </div>
@@ -75,7 +82,7 @@
                         <li><a href="{% url 'exposer' %}">Exposer</a></li>
                         <li><a href="{% url 'sponsoriser' %}">Sponsoriser</a></li>
                         <li><a href="{% url 'visiter' %}">Visiter</a></li>
-                        <li><a href="{% url 'paneliste' %}">Panéliste</a></li>
+                        <li><a href="{% url 'paneliste' %}">Conférencier</a></li>
                         <li><a href="{% url 'presse' %}">Presse</a></li>
                     </ul>
                 </div>

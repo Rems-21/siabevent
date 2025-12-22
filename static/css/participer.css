@@ -132,7 +132,7 @@ body {
     width: 100%;
     min-height: 500px;
     padding: 100px 40px;
-    background: #244F8B;
+    background: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -184,7 +184,7 @@ body {
 .shape-blue {
     position: relative;
     z-index: 2;
-    background: #244F8B;
+    background: #000000;
     padding: 50px 80px;
     border-radius: 30px;
     text-align: center;
@@ -365,7 +365,7 @@ body {
 .join-siab-title {
     font-size: 48px;
     font-weight: 300;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 40px;
     text-align: center;
     font-style: italic;
@@ -550,21 +550,42 @@ body {
 }
 
 .sponsor-card {
-    background: #ffffff;
+    background: #ffffff !important;
     border-radius: 16px;
     padding: 50px 40px;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
     max-width: 1100px;
     margin: 0 auto 40px;
+    /* Annuler l'effet glossy */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    position: relative !important;
+    transform: none !important;
+}
+
+/* Annuler les effets glossy ::before et ::after */
+.sponsor-card::before,
+.sponsor-card::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Annuler l'effet hover glossy */
+.sponsor-card:hover {
+    background: #ffffff !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08) !important;
+    transform: none !important;
+    border: none !important;
 }
 
 .sponsor-title {
     font-size: 32px;
-    font-weight: 400;
-    color: #244F8B;
+    font-weight: 700;
+    color: #000000;
     margin-bottom: 18px;
-    font-family: 'Playfair Display', 'Georgia', serif;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 .sponsor-subtitle {
@@ -573,11 +594,12 @@ body {
     line-height: 1.7;
     max-width: 900px;
     margin: 0 auto 30px;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 .sponsor-btn {
     display: inline-block;
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
     padding: 16px 42px;
     border-radius: 999px;
@@ -585,8 +607,9 @@ body {
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 1px;
-    box-shadow: 0 10px 25px rgba(36, 79, 139, 0.35);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 .sponsor-btn:hover {
@@ -768,8 +791,8 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #eef4ff;
-    color: #244F8B;
+    background: #ffffff;
+    color: #000000;
 }
 
 .exhibitor-icon svg {
@@ -778,8 +801,8 @@ body {
 }
 
 .exhibitor-icon-blue {
-    background: #eef4ff;
-    color: #244F8B;
+    background: #ffffff;
+    color: #000000;
 }
 
 .exhibitor-icon-red {
@@ -787,15 +810,19 @@ body {
     color: #d1373a;
 }
 
-.exhibitor-card-title {
+.exhibitor-card-title,
+.exhibitor-card-title.text-blue,
+.exhibitor-card-title.text-red {
     font-size: 28px;
     font-weight: 600;
     margin: 0;
     letter-spacing: 0.5px;
+    color: #D5373A !important;
+    text-shadow: none !important;
 }
 
-.text-blue { color: #244F8B; }
-.text-red { color: #d1373a; }
+.text-blue { color: #D5373A !important; }
+.text-red { color: #D5373A !important; }
 
 .exhibitor-list {
     list-style: disc;
@@ -809,7 +836,7 @@ body {
 }
 
 .exhibitor-list li::marker {
-    color: #244F8B;
+    color: #000000;
 }
 
 @media (max-width: 992px) {
@@ -878,8 +905,8 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #eef4ff;
-    color: #244F8B;
+    background: #ffffff;
+    color: #000000;
 }
 
 .sector-icon svg {
@@ -888,8 +915,8 @@ body {
 }
 
 .sector-icon-blue {
-    background: #eef4ff;
-    color: #244F8B;
+    background: #ffffff;
+    color: #000000;
 }
 
 .sector-icon-red {
@@ -897,11 +924,15 @@ body {
     color: #d1373a;
 }
 
-.sector-card-title {
+.sector-card-title,
+.sector-card-title.text-blue,
+.sector-card-title.text-red {
     margin: 0;
     font-size: 26px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    color: #D5373A !important;
+    text-shadow: none !important;
 }
 
 .sector-list {
@@ -916,7 +947,7 @@ body {
 }
 
 .sector-list li::marker {
-    color: #244F8B;
+    color: #000000;
 }
 
 @media (max-width: 992px) {
@@ -977,22 +1008,28 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #244F8B;
+    color: #000000;
     flex-shrink: 0;
 }
 
 .conseil-icon svg {
     width: 32px;
     height: 32px;
-    stroke: #244F8B;
+    stroke: #000000;
 }
 
-.conseil-title {
+.conseil-title,
+.conseil-card .conseil-title,
+.conseil-card-header .conseil-title,
+h3.conseil-title {
     margin: 0;
     font-size: 28px;
     font-weight: 600;
-    color: #244F8B;
+    color: #D5373A !important;
     letter-spacing: 0.5px;
+    text-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .conseil-list {
@@ -1009,7 +1046,7 @@ body {
 }
 
 .conseil-list li::marker {
-    color: #244F8B;
+    color: #000000;
 }
 
 .conseil-building-graphic {
@@ -1031,7 +1068,7 @@ body {
 .conseil-bottom-bar {
     width: 100%;
     height: 60px;
-    background: #244F8B;
+    background: #000000;
     margin-top: 0;
 }
 
@@ -1099,7 +1136,7 @@ body {
    ============================================ */
 
 .footer-section {
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
     position: relative;
 }

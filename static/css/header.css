@@ -56,7 +56,7 @@
 
 .navbar-toggler {
     background: transparent;
-    border: 2px solid #244F8B;
+    border: 2px solid #000000;
     border-radius: 5px;
     padding: 8px 10px;
     cursor: pointer;
@@ -81,7 +81,7 @@
     display: block;
     height: 3px;
     width: 100%;
-    background: #244F8B;
+    background: #000000;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
@@ -99,7 +99,7 @@
 }
 
 .nav-link {
-    color: #244F8B;
+    color: #000000;
     text-decoration: none;
     font-size: 15px;
     font-weight: 500;
@@ -134,7 +134,7 @@
 }
 
 .dropdown-menu {
-    background: #244F8B;
+    background: #000000;
     border: none;
     z-index: 1003;
     border-radius: 0;

@@ -6,20 +6,22 @@ class Command(BaseCommand):
     help = 'Ajoute les pays affichés dans le footer du site'
 
     def handle(self, *args, **options):
-        # Liste des pays du footer avec leurs codes
+        # Liste des 14 pays du footer avec leurs codes ISO
         pays_data = [
-            {'code': 'ie', 'nom': 'Irlande', 'code_drapeau': 'ie'},
-            {'code': 'bj', 'nom': 'Bénin', 'code_drapeau': 'bj'},
-            {'code': 'ml', 'nom': 'Mali', 'code_drapeau': 'ml'},
-            {'code': 'sn', 'nom': 'Sénégal', 'code_drapeau': 'sn'},
-            {'code': 'tg', 'nom': 'Togo', 'code_drapeau': 'tg'},
+            {'code': 'cm', 'nom': 'Cameroun', 'code_drapeau': 'cm'},
+            {'code': 'ga', 'nom': 'Gabon', 'code_drapeau': 'ga'},
             {'code': 'cd', 'nom': 'République démocratique du Congo', 'code_drapeau': 'cd'},
             {'code': 'ci', 'nom': 'Côte d\'Ivoire', 'code_drapeau': 'ci'},
-            {'code': 'cg', 'nom': 'Congo', 'code_drapeau': 'cg'},
+            {'code': 'tg', 'nom': 'Togo', 'code_drapeau': 'tg'},
+            {'code': 'rw', 'nom': 'Rwanda', 'code_drapeau': 'rw'},
+            {'code': 'cf', 'nom': 'République centrafricaine', 'code_drapeau': 'cf'},
+            {'code': 'bj', 'nom': 'Bénin', 'code_drapeau': 'bj'},
+            {'code': 'sn', 'nom': 'Sénégal', 'code_drapeau': 'sn'},
             {'code': 'gn', 'nom': 'Guinée', 'code_drapeau': 'gn'},
-            {'code': 'ma', 'nom': 'Maroc', 'code_drapeau': 'ma'},
-            {'code': 'tn', 'nom': 'Tunisie', 'code_drapeau': 'tn'},
             {'code': 'bf', 'nom': 'Burkina Faso', 'code_drapeau': 'bf'},
+            {'code': 'ml', 'nom': 'Mali', 'code_drapeau': 'ml'},
+            {'code': 'bi', 'nom': 'Burundi', 'code_drapeau': 'bi'},
+            {'code': 'sl', 'nom': 'Sierra Leone', 'code_drapeau': 'sl'},
         ]
 
         created_count = 0

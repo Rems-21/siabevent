@@ -12,6 +12,7 @@ def index_page(request):
     # Récupérer les représentants actifs avec leurs pays
     representants = Representant.objects.filter(actif=True).prefetch_related('pays')
     
+    # Note: pays_footer est maintenant géré par le context processor
     context = {
         'partenaires': partenaires,
         'exposants': exposants,

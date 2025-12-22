@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erreur - Administration SIAB</title>
+    <link rel="stylesheet" href="{% static 'css/custom_admin.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1>Erreur</h1>
+                <div class="admin-header-actions">
+                    <a href="{% url 'custom_admin:dashboard' %}" class="btn-secondary">Retour au dashboard</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="admin-content">
+                <div class="error-message">
+                    <h2>⚠️ Erreur</h2>
+                    <p>{{ error }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+

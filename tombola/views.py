@@ -26,6 +26,7 @@ def create_tombola_checkout(request):
         email = request.POST.get('email', '').strip()
         telephone = request.POST.get('telephone', '').strip()
         pays = request.POST.get('pays', '').strip()
+        lot = request.POST.get('lot', 'lot1').strip()
         nombre_tickets = int(request.POST.get('nombre_tickets', 1))
         
         # Validation
@@ -35,8 +36,11 @@ def create_tombola_checkout(request):
         if nombre_tickets < 1 or nombre_tickets > 100:
             return JsonResponse({'success': False, 'message': 'Nombre de tickets invalide (1-100).'}, status=400)
         
-        # Prix unitaire (en euros)
-        prix_unitaire = 10.00
+        if lot not in ['lot1', 'lot2']:
+            return JsonResponse({'success': False, 'message': 'Lot invalide.'}, status=400)
+        
+        # Prix unitaire selon le lot (en euros)
+        prix_unitaire = 5.00 if lot == 'lot1' else 10.00
         montant_total = nombre_tickets * prix_unitaire
         
         # Créer la participation dans la base de données
@@ -46,6 +50,7 @@ def create_tombola_checkout(request):
             email=email,
             telephone=telephone,
             pays=pays,
+            lot=lot,
             nombre_tickets=nombre_tickets,
             prix_unitaire=prix_unitaire,
             montant_total=montant_total,

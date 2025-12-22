@@ -7,15 +7,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const decreaseBtn = document.getElementById('decreaseTickets');
     const increaseBtn = document.getElementById('increaseTickets');
     const totalAmount = document.getElementById('totalAmount');
+    const headerPrice = document.getElementById('headerPrice');
+    const lotSelect = document.getElementById('lot');
     const form = document.getElementById('tombolaForm');
     
-    const PRICE_PER_TICKET = 5;
+    let PRICE_PER_TICKET = 5;
+    
+    // Update price based on lot selection
+    function updatePrice() {
+        if (lotSelect) {
+            const selectedOption = lotSelect.options[lotSelect.selectedIndex];
+            PRICE_PER_TICKET = parseFloat(selectedOption.getAttribute('data-price')) || 5;
+            if (headerPrice) {
+                headerPrice.textContent = PRICE_PER_TICKET + ' €';
+            }
+            updateTotal();
+        }
+    }
     
     // Update total amount
     function updateTotal() {
         const tickets = parseInt(ticketsInput.value) || 1;
         const total = tickets * PRICE_PER_TICKET;
-        totalAmount.textContent = total + ' €';
+        if (totalAmount) {
+            totalAmount.textContent = total + ' €';
+        }
+    }
+    
+    // Listen to lot selection change
+    if (lotSelect) {
+        lotSelect.addEventListener('change', updatePrice);
     }
     
     // Decrease tickets
@@ -51,8 +72,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize total
+    // Initialize price and total
+    updatePrice();
     updateTotal();
+    
+    // Helper function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
     
     // Form submission handler
     if (form) {
@@ -64,10 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const prenom = document.getElementById('prenom').value.trim();
             const nom = document.getElementById('nom').value.trim();
             const telephone = document.getElementById('telephone').value.trim();
+            const pays = document.getElementById('pays').value.trim();
+            const lot = lotSelect ? lotSelect.value : 'lot1';
             const tickets = parseInt(document.getElementById('tickets').value) || 1;
             
             // Basic validation
-            if (!email || !prenom || !nom) {
+            if (!email || !prenom || !nom || !telephone || !pays) {
                 alert('Veuillez remplir tous les champs obligatoires (*)');
                 return;
             }
@@ -89,27 +129,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.innerHTML = '<span>Traitement en cours...</span>';
             }
             
-            // Here you would typically send the data to your backend
-            // For now, we'll just log it
-            console.log('Form submitted:', { 
-                email, 
-                prenom, 
-                nom, 
-                telephone, 
-                tickets, 
-                total 
-            });
+            // Send data to backend
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('prenom', prenom);
+            formData.append('nom', nom);
+            formData.append('telephone', telephone);
+            formData.append('pays', pays);
+            formData.append('lot', lot);
+            formData.append('nombre_tickets', tickets);
             
-            // Simulate API call (replace with actual payment processing)
-            setTimeout(() => {
-                alert(`Total à payer: ${total} €\nRedirection vers le paiement...`);
-                
-                // Re-enable button
+            fetch('/api/create-tombola-checkout/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.checkout_url) {
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert(data.message || 'Une erreur est survenue. Veuillez réessayer.');
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<span>Payer maintenant</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>';
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Une erreur est survenue. Veuillez réessayer.');
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<span>Payer maintenant</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>';
                 }
-            }, 1000);
+            });
         });
     }
 });

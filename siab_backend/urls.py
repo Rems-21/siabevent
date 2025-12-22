@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     # Admin Django
-    path('admin/', admin.site.urls),
+    path('siab/2025/admin/', admin.site.urls),
     
     # API Routes (actualites app)
     path('', include('actualites.urls')),
@@ -34,6 +34,9 @@ urlpatterns = [
     
     # Organisations app (partenaires, exposants, représentants)
     path('', include('organisations.urls')),
+    
+    # Custom Admin
+    path('admin-custom/', include('custom_admin.urls')),
     
     # Pages statiques
     path('participer', TemplateView.as_view(template_name='participer.html'), name='participer'),

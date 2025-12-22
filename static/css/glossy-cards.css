@@ -1,0 +1,510 @@
+/* ============================================
+   GLOBAL GLOSSY CARD STYLES
+   Style glossy pour toutes les cartes du site
+   ============================================ */
+
+/* Style de base glossy pour toutes les cartes - Style premium comme l'image */
+.card,
+.participation-card,
+.expert-card,
+.stand-card-new,
+.thematique-card,
+.success-card,
+.contact-card,
+.exhibitor-card,
+.sector-card,
+.conseil-card,
+.avertissement-card,
+.sponsor-info-card,
+.participation-card-link .participation-card {
+    position: relative;
+    background: linear-gradient(135deg, rgba(45, 45, 50, 0.85) 0%, rgba(35, 35, 40, 0.75) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 16px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+/* Annuler l'effet glossy pour representative-card */
+.representative-card {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    /* border géré par acceuil.css - ne pas forcer à none */
+    box-shadow: none !important;
+}
+
+/* Annuler l'effet glossy pour info-card, logistique-card, article-card et avertissement-card */
+.info-card,
+.logistique-card,
+.article-card,
+.avertissement-card {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Effet de brillance glossy - Reflet intense comme l'image */
+.card::before,
+.participation-card::before,
+.expert-card::before,
+.stand-card-new::before,
+.thematique-card::before,
+.success-card::before,
+.contact-card::before,
+.exhibitor-card::before,
+.sector-card::before,
+.conseil-card::before,
+.avertissement-card::before,
+.sponsor-info-card::before,
+.participation-card-link .participation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        transparent 20%,
+        rgba(255, 255, 255, 0.25) 40%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.25) 60%,
+        transparent 80%,
+        transparent 100%
+    );
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    pointer-events: none;
+    transform: skewX(-20deg);
+}
+
+/* Annuler les effets ::before et ::after pour info-card, logistique-card et representative-card */
+.info-card::before,
+.info-card::after,
+.logistique-card::before,
+.logistique-card::after,
+.representative-card::before,
+.representative-card::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Effet de brillance secondaire */
+.card::after,
+.participation-card::after,
+.expert-card::after,
+.stand-card-new::after,
+.thematique-card::after,
+.success-card::after,
+.contact-card::after,
+.exhibitor-card::after,
+.sector-card::after,
+.conseil-card::after,
+.avertissement-card::after,
+.sponsor-info-card::after,
+.participation-card-link .participation-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Animation de brillance au survol */
+.card:hover::before,
+.participation-card:hover::before,
+.expert-card:hover::before,
+.stand-card-new:hover::before,
+.thematique-card:hover::before,
+.success-card:hover::before,
+.contact-card:hover::before,
+.exhibitor-card:hover::before,
+.sector-card:hover::before,
+.conseil-card:hover::before,
+.avertissement-card:hover::before,
+.sponsor-info-card:hover::before,
+.participation-card-link:hover .participation-card::before {
+    left: 100%;
+}
+
+.card:hover::after,
+.participation-card:hover::after,
+.expert-card:hover::after,
+.stand-card-new:hover::after,
+.thematique-card:hover::after,
+.success-card:hover::after,
+.contact-card:hover::after,
+.exhibitor-card:hover::after,
+.sector-card:hover::after,
+.conseil-card:hover::after,
+.avertissement-card:hover::after,
+.sponsor-info-card:hover::after,
+.participation-card-link:hover .participation-card::after {
+    opacity: 1;
+}
+
+/* Effet hover amélioré avec glossy - Style premium */
+.card:hover,
+.participation-card:hover,
+.expert-card:hover,
+.stand-card-new:hover,
+.thematique-card:hover,
+.success-card:hover,
+.contact-card:hover,
+.exhibitor-card:hover,
+.sector-card:hover,
+.conseil-card:hover,
+.avertissement-card:hover,
+.sponsor-info-card:hover,
+.participation-card-link:hover .participation-card {
+    background: linear-gradient(135deg, rgba(50, 50, 55, 0.9) 0%, rgba(40, 40, 45, 0.8) 100%);
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        0 12px 32px rgba(0, 0, 0, 0.4),
+        inset 0 3px 6px rgba(255, 255, 255, 0.2),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 40px rgba(255, 255, 255, 0.1);
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Cartes avec fond sombre - style glossy adapté premium */
+.participation-card .card-content,
+.expert-card-overlay,
+.thematique-card {
+    background: linear-gradient(135deg, rgba(30, 35, 40, 0.9) 0%, rgba(20, 25, 30, 0.85) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Cartes vertes (thematique) avec style glossy premium */
+.thematique-card {
+    background: linear-gradient(135deg, rgba(26, 164, 90, 0.9) 0%, rgba(20, 130, 70, 0.85) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.thematique-card::before {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+}
+
+/* Cartes de succès - style glossy premium */
+.success-card {
+    background: linear-gradient(135deg, rgba(50, 50, 55, 0.9) 0%, rgba(40, 40, 45, 0.85) 100%);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.45),
+        0 10px 30px rgba(0, 0, 0, 0.35),
+        inset 0 3px 6px rgba(255, 255, 255, 0.2),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Cartes d'information - PAS d'effet glossy, fond clair */
+.info-card,
+.logistique-card {
+    /* Pas d'effet glossy - laissé au CSS spécifique de chaque page */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Cartes de contact - style glossy premium */
+.contact-card {
+    background: linear-gradient(135deg, rgba(45, 45, 50, 0.87) 0%, rgba(35, 35, 40, 0.77) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Cartes d'exposition - style glossy premium */
+.stand-card-new {
+    background: linear-gradient(135deg, rgba(45, 45, 50, 0.89) 0%, rgba(35, 35, 40, 0.79) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Cartes d'experts - style glossy premium */
+.expert-card {
+    background: linear-gradient(135deg, rgba(40, 40, 45, 0.85) 0%, rgba(30, 30, 35, 0.75) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.expert-card:hover {
+    background: linear-gradient(135deg, rgba(50, 50, 55, 0.9) 0%, rgba(40, 40, 45, 0.8) 100%);
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        0 12px 32px rgba(0, 0, 0, 0.4),
+        inset 0 3px 6px rgba(255, 255, 255, 0.2),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+/* Cartes d'articles - PAS d'effet glossy */
+.article-card {
+    /* Pas d'effet glossy - laissé au CSS spécifique de actualites.css */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Cartes de sponsors - style glossy premium */
+.sponsor-info-card {
+    background: linear-gradient(135deg, rgba(45, 45, 50, 0.87) 0%, rgba(35, 35, 40, 0.77) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Cartes d'exposants - style glossy premium */
+.exhibitor-card,
+.sector-card,
+.conseil-card {
+    background: linear-gradient(135deg, rgba(45, 45, 50, 0.86) 0%, rgba(35, 35, 40, 0.76) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Carte d'avertissement - PAS d'effet glossy */
+.avertissement-card {
+    /* Pas d'effet glossy - laissé au CSS spécifique de pitch.css */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #ffffff !important;
+}
+
+/* Forcer le texte en noir pour la carte d'avertissement */
+.avertissement-card p,
+.avertissement-card h1,
+.avertissement-card h2,
+.avertissement-card h3,
+.avertissement-card h4,
+.avertissement-card li,
+.avertissement-card .warning-title,
+.avertissement-card .warning-text,
+.avertissement-card .documents-heading,
+.avertissement-card .documents-list li {
+    color: #333333 !important;
+    text-shadow: none !important;
+}
+
+.avertissement-card .warning-title {
+    color: #d1373a !important;
+}
+
+.avertissement-card .warning-text strong {
+    color: #d1373a !important;
+}
+
+/* Cartes de représentants - PAS d'effet glossy (déjà défini plus haut) */
+
+/* Assurer que le contenu est au-dessus de l'effet de brillance */
+.card > *,
+.participation-card > *,
+.expert-card > *,
+.stand-card-new > *,
+.thematique-card > *,
+.info-card > *,
+.logistique-card > *,
+.success-card > *,
+.contact-card > *,
+.exhibitor-card > *,
+.sector-card > *,
+.conseil-card > *,
+.avertissement-card > *,
+.sponsor-info-card > *,
+.participation-card-link .participation-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Transitions fluides */
+.card,
+.participation-card,
+.expert-card,
+.stand-card-new,
+.thematique-card,
+.info-card,
+.logistique-card,
+.success-card,
+.contact-card,
+.exhibitor-card,
+.sector-card,
+.conseil-card,
+.avertissement-card,
+.sponsor-info-card,
+.participation-card-link .participation-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Assurer la lisibilité du texte sur fond sombre glossy - UNIQUEMENT pour les cartes avec fond sombre */
+/* Les cartes avec fond sombre (glossy dark) */
+.exhibitor-card p,
+.exhibitor-card h1,
+.exhibitor-card h2,
+.exhibitor-card h3,
+.sector-card p,
+.sector-card h1,
+.sector-card h2,
+.sector-card h3,
+.conseil-card p,
+.conseil-card h1,
+.conseil-card h2,
+.conseil-card h3:not(.conseil-title) {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact-card - pas de text-shadow, couleur gérée par sponsoriser.css */
+.contact-card p,
+.contact-card h1,
+.contact-card h2,
+.contact-card h3 {
+    text-shadow: none !important;
+}
+
+/* Cartes avec fond clair - texte sombre */
+.info-card p,
+.info-card h1,
+.info-card h2,
+.info-card h3,
+.info-card-title,
+.info-card-text,
+.logistique-card p,
+.logistique-card h1,
+.logistique-card h2,
+.logistique-card .card-title,
+.logistique-card .card-text {
+    color: #000000 !important;
+    text-shadow: none !important;
+}
+
+/* Titres avec contraste renforcé - UNIQUEMENT pour les cartes avec fond sombre */
+/* representative-card n'a plus d'effet glossy - laissé au CSS spécifique */
+
+/* Contact-card h3 - pas de text-shadow, couleur gérée par sponsoriser.css */
+.contact-card h3 {
+    text-shadow: none !important;
+}
+
+/* Titres des cartes avec fond clair - texte sombre */
+.info-card-title,
+.logistique-card .card-title {
+    color: #000000 !important;
+    text-shadow: none !important;
+    font-weight: 600;
+}
+
+/* Exclure exhibitor-card-title et sector-card-title - ils ont leur propre style */
+.exhibitor-card-title,
+.sector-card-title {
+    /* Pas de couleur forcée ici - laissé au CSS spécifique de la page */
+}
+
+/* Cartes avec fond clair/blanc - texte sombre pour lisibilité */
+.article-card p,
+.article-card h1,
+.article-card h2,
+.article-card h3,
+.article-card .article-title,
+.article-card .article-date,
+.article-card .article-content,
+.article-card .article-resume,
+.stand-card-new p,
+.stand-card-new h1,
+.stand-card-new h2,
+.stand-card-new h3,
+.stand-card-new .stand-title-new,
+.stand-card-new .stand-details,
+.stand-card-new .detail-item,
+.sponsor-info-card p,
+.sponsor-info-card h1,
+.sponsor-info-card h2,
+.sponsor-info-card h3,
+.success-card p,
+.success-card h1,
+.success-card h2,
+.success-card h3,
+.success-card .success-title,
+.success-card .success-message {
+    color: #000000 !important;
+    text-shadow: none;
+}
+
+.article-card h3,
+.stand-card-new h3,
+.success-card h2 {
+    color: #000000 !important;
+    text-shadow: none;
+    font-weight: 600;
+}
+

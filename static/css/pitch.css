@@ -284,7 +284,7 @@ body {
 }
 
 .date-box-blue {
-    background: #244F8B;
+    background: #000000;
 }
 
 .date-box-green {
@@ -479,7 +479,7 @@ body {
 
 .content-paragraph strong {
     font-weight: 700;
-    color: #244F8B;
+    color: #000000;
 }
 
 /* Buttons Container */
@@ -512,26 +512,26 @@ body {
 
 .btn-download-light {
     background: #E8F4FD;
-    color: #244F8B;
+    color: #000000;
     border-color: #ffffff;
 }
 
 .btn-download-light:hover {
     background: #d1e9fa;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(36, 79, 139, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn-download-dark {
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
-    border-color: #244F8B;
+    border-color: #000000;
 }
 
 .btn-download-dark:hover {
     background: #1a3d6b;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(36, 79, 139, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Tooltip Box */
@@ -571,7 +571,7 @@ body {
 }
 
 .tooltip-link {
-    color: #244F8B;
+    color: #000000;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
@@ -663,7 +663,7 @@ body {
 
 .avertissement-section {
     padding: 80px 40px;
-    background: #244F8B;
+    background: #000000;
 }
 
 .avertissement-header {
@@ -690,39 +690,48 @@ body {
 }
 
 .avertissement-card {
-    background: #ffffff;
+    background: #ffffff !important;
     border-radius: 16px;
-    padding: 50px 40px;
+    padding: 50px 40px 60px 40px !important; /* Plus de padding en bas */
     max-width: 1000px;
     margin: 0 auto;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+    overflow: visible !important; /* S'assurer que rien n'est coupé */
 }
 
 .warning-title {
     font-size: 28px;
     font-weight: 700;
-    color: #d1373a;
+    color: #d1373a !important;
     margin-bottom: 25px;
     line-height: 1.3;
+    position: relative;
+    z-index: 11;
 }
 
 .warning-text {
     font-size: 18px;
-    color: #333333;
+    color: #333333 !important;
     line-height: 1.8;
     margin-bottom: 35px;
+    position: relative;
+    z-index: 11;
 }
 
 .warning-text strong {
     font-weight: 700;
-    color: #d1373a;
+    color: #d1373a !important;
 }
 
 .documents-heading {
     font-size: 22px;
     font-weight: 700;
-    color: #333333;
+    color: #333333 !important;
     margin-bottom: 20px;
+    position: relative;
+    z-index: 11;
 }
 
 .documents-list {
@@ -733,18 +742,25 @@ body {
 
 .documents-list li {
     font-size: 18px;
-    color: #333333;
+    color: #333333 !important;
     line-height: 1.8;
     margin-bottom: 15px;
     padding-left: 30px;
+    padding-bottom: 5px; /* Espacement supplémentaire */
     position: relative;
+    z-index: 11;
+}
+
+.documents-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .documents-list li::before {
     content: '■';
     position: absolute;
     left: 0;
-    color: #244F8B;
+    color: #000000;
     font-size: 16px;
 }
 
@@ -837,14 +853,14 @@ body {
 .formulaire-title {
     font-size: 36px;
     font-weight: 700;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 40px;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
 .btn-start-form {
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -860,7 +876,7 @@ body {
 .btn-start-form:hover {
     background: #1a3d6b;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(36, 79, 139, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Form Modal */
@@ -913,7 +929,7 @@ body {
 }
 
 .btn-close-form:hover {
-    background: #244F8B;
+    background: #000000;
 }
 
 /* Progress Indicator */
@@ -1009,7 +1025,7 @@ body {
 
 .form-control:focus {
     outline: none;
-    border-color: #244F8B;
+    border-color: #000000;
 }
 
 textarea.form-control {
@@ -1070,7 +1086,7 @@ textarea.form-control {
     height: 20px;
     margin-top: 2px;
     cursor: pointer;
-    accent-color: #244F8B;
+    accent-color: #000000;
 }
 
 .checkbox-group label {
@@ -1222,10 +1238,10 @@ textarea.form-control {
    ============================================ */
 
 .footer-section {
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
     position: relative;
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 .flags-row {

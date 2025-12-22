@@ -78,7 +78,11 @@ class Pays(models.Model):
     def __str__(self):
         return self.nom
     
-    def get_flag_url(self):
-        """Retourne l'URL du drapeau depuis flagcdn"""
+    def get_flag_url(self, size='w40'):
+        """Retourne l'URL du drapeau depuis flagcdn
+        
+        Args:
+            size: Taille du drapeau (w20, w40, w60, w80, etc.)
+        """
         code = self.code_drapeau or self.code.lower()
-        return f"https://flagcdn.com/w20/{code}.png"
+        return f"https://flagcdn.com/{size}/{code}.png"

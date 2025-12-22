@@ -4,7 +4,7 @@
 
 /* Hero Section */
 .reservation-hero {
-    background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+    background: linear-gradient(135deg, #000000 0%, #1AA45A 100%);
     padding: 80px 20px;
     text-align: center;
     color: white;
@@ -74,7 +74,7 @@
 .section-title {
     font-size: 24px;
     font-weight: 700;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 30px;
     display: flex;
     align-items: center;
@@ -107,8 +107,8 @@
 
 .form-control:focus,
 .form-select:focus {
-    border-color: #244F8B;
-    box-shadow: 0 0 0 0.25rem rgba(36, 79, 139, 0.1);
+    border-color: #000000;
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.1);
 }
 
 textarea.form-control {
@@ -146,20 +146,20 @@ textarea.form-control {
 }
 
 .stand-option label:hover {
-    border-color: #244F8B;
+    border-color: #000000;
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .stand-option input[type="radio"]:checked + label {
     border-color: #1AA45A;
-    background: linear-gradient(135deg, rgba(36, 79, 139, 0.05) 0%, rgba(26, 164, 90, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(26, 164, 90, 0.05) 100%);
     box-shadow: 0 5px 20px rgba(26, 164, 90, 0.2);
 }
 
 .stand-badge {
     display: inline-block;
-    background: #244F8B;
+    background: #000000;
     color: white;
     padding: 8px 20px;
     border-radius: 25px;
@@ -180,7 +180,7 @@ textarea.form-control {
 .stand-name {
     font-size: 16px;
     font-weight: 600;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 15px;
 }
 
@@ -220,14 +220,14 @@ textarea.form-control {
 
 .option-item:hover {
     background: #f8f9fa;
-    border-color: #244F8B;
+    border-color: #000000;
 }
 
 .option-item .form-check-input {
     width: 20px;
     height: 20px;
     margin-right: 10px;
-    border-color: #244F8B;
+    border-color: #000000;
 }
 
 .option-item .form-check-input:checked {
@@ -245,7 +245,7 @@ textarea.form-control {
 }
 
 .option-item .form-check-label i {
-    color: #244F8B;
+    color: #000000;
     font-size: 18px;
 }
 
@@ -271,14 +271,14 @@ textarea.form-control {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+    background: linear-gradient(135deg, #000000 0%, #1AA45A 100%);
     border: none;
     color: white;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(36, 79, 139, 0.3);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary {
@@ -292,13 +292,13 @@ textarea.form-control {
 }
 
 .btn-outline-primary {
-    border: 2px solid #244F8B;
-    color: #244F8B;
+    border: 2px solid #000000;
+    color: #000000;
     background: transparent;
 }
 
 .btn-outline-primary:hover {
-    background: #244F8B;
+    background: #000000;
     color: white;
 }
 
@@ -330,7 +330,7 @@ textarea.form-control {
 .success-title {
     font-size: 32px;
     font-weight: 800;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 20px;
 }
 
@@ -347,7 +347,7 @@ textarea.form-control {
     gap: 20px;
     margin-bottom: 40px;
     padding: 30px;
-    background: linear-gradient(135deg, rgba(36, 79, 139, 0.05) 0%, rgba(26, 164, 90, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(26, 164, 90, 0.05) 100%);
     border-radius: 12px;
 }
 

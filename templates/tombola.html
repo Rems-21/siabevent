@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{% static 'css/top-banner.css' %}">
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/glossy-cards.css' %}">
     <link rel="stylesheet" href="{% static 'css/scroll-to-top.css' %}">
     <link rel="stylesheet" href="{% static 'css/tombola.css' %}">
 </head>
@@ -38,12 +39,23 @@
                     <span>Grande Tombola SIAB 2026</span>
                 </div>
                 <h1 class="hero-title">Tentez votre chance</h1>
-                <h2 class="hero-subtitle">Gagnez un terrain de 600 m²</h2>
-                <div class="hero-prize">
-                    <div class="prize-icon">🏆</div>
-                    <div class="prize-text">
-                        <span class="prize-label">Lot Principal</span>
-                        <span class="prize-value">600 m² de terrain</span>
+                <h2 class="hero-subtitle">Gagnez des lots exceptionnels pour la capitale de votre pays d'origine en Afrique</h2>
+                <div class="hero-prizes">
+                    <div class="hero-prize">
+                        <div class="prize-icon">✈️</div>
+                        <div class="prize-text">
+                            <span class="prize-label">Lot 1</span>
+                            <span class="prize-value">Billet d'avion aller/retour</span>
+                            <span class="prize-price">5 €</span>
+                        </div>
+                    </div>
+                    <div class="hero-prize">
+                        <div class="prize-icon">🏞️</div>
+                        <div class="prize-text">
+                            <span class="prize-label">Lot 2</span>
+                            <span class="prize-value">Terrain de 300 m²</span>
+                            <span class="prize-price">10 €</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,12 +117,24 @@
                         <div class="form-header">
                             <h2 class="form-main-title">Participez maintenant</h2>
                             <div class="price-badge">
-                                <span class="price-amount">5 €</span>
+                                <span class="price-amount" id="headerPrice">5 €</span>
                                 <span class="price-label">par ticket</span>
                             </div>
                         </div>
 
                         <form class="tombola-form" id="tombolaForm">
+                            <div class="form-group">
+                                <label for="lot" class="lot-label">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    Choisissez votre lot *
+                                </label>
+                                <select id="lot" name="lot" class="form-control lot-select" required>
+                                    <option value="lot1" data-price="5">Lot 1 : Billet d'avion aller/retour (5 €)</option>
+                                    <option value="lot2" data-price="10">Lot 2 : Terrain de 300 m² (10 €)</option>
+                                </select>
+                            </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="prenom">
@@ -147,9 +171,19 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                                     </svg>
-                                    Téléphone
+                                    Téléphone *
                                 </label>
-                                <input type="tel" id="telephone" name="telephone" class="form-control" placeholder="+221 77 123 45 67">
+                                <input type="tel" id="telephone" name="telephone" class="form-control" placeholder="+221 77 123 45 67" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pays">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    Pays d'origine *
+                                </label>
+                                <input type="text" id="pays" name="pays" class="form-control" placeholder="Votre pays d'origine" required>
                             </div>
 
                             <div class="tickets-selector">

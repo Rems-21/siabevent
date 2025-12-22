@@ -9,7 +9,7 @@
     right: 30px;
     width: 50px;
     height: 50px;
-    background: #244F8B;
+    background: #000000;
     border-radius: 50%;
     display: none;
     align-items: center;
@@ -17,7 +17,7 @@
     cursor: pointer;
     z-index: 9999;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 15px rgba(36, 79, 139, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     border: none;
     padding: 0;
     margin: 0;

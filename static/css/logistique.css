@@ -133,7 +133,7 @@ body {
    ============================================ */
 
 .logistique-header {
-    background: #244F8B;
+    background: #000000;
     padding: 60px 20px;
     text-align: center;
 }
@@ -193,7 +193,7 @@ body {
 }
 
 .title-part-blue {
-    color: #244F8B;
+    color: #000000;
 }
 
 .title-part-green {
@@ -205,7 +205,7 @@ body {
 }
 
 .title-part-blue {
-    color: #244F8B;
+    color: #000000;
 }
 
 .asterisk {
@@ -315,10 +315,10 @@ body {
    ============================================ */
 
 .footer-section {
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
     position: relative;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .flags-row {

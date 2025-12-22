@@ -1,0 +1,112 @@
+{% load static %}
+{% load admin_tags %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ model_display_name }} - Administration SIAB</title>
+    <link rel="stylesheet" href="{% static 'css/custom_admin.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1>{{ model_display_name }}</h1>
+                <div class="admin-header-actions">
+                    <a href="{% url 'custom_admin:dashboard' %}" class="btn-secondary">Retour au dashboard</a>
+                    <a href="/" class="btn-secondary">Retour au site</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="admin-content">
+                <div class="admin-toolbar">
+                    <form method="get" class="search-form">
+                        <input type="text" name="search" value="{{ search_query }}" placeholder="Rechercher..." class="search-input">
+                        <button type="submit" class="btn-search">Rechercher</button>
+                        {% if search_query %}
+                        <a href="{% url 'custom_admin:model_list' model_name %}" class="btn-clear">Effacer</a>
+                        {% endif %}
+                    </form>
+                    <div class="export-actions">
+                        <a href="{% url 'custom_admin:export_pdf' model_name %}?search={{ search_query }}" class="btn-export">
+                            📥 Télécharger en PDF
+                        </a>
+                    </div>
+                </div>
+
+                <div class="admin-stats">
+                    <p><strong>{{ total_count }}</strong> enregistrement(s) trouvé(s)</p>
+                </div>
+
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                {% for field in fields %}
+                                <th>
+                                    {% if field == 'lot' %}Lot choisi
+                                    {% elif field == 'prenom' %}Prénom
+                                    {% elif field == 'telephone' %}Téléphone
+                                    {% elif field == 'nombre_tickets' %}Nombre de tickets
+                                    {% elif field == 'prix_unitaire' %}Prix unitaire (€)
+                                    {% elif field == 'numeros_tickets' %}Numéros de tickets
+                                    {% elif field == 'montant_total' %}Montant total (€)
+                                    {% elif field == 'date_inscription' %}Date d'inscription
+                                    {% elif field == 'date_creation' %}Date de création
+                                    {% elif field == 'date_reservation' %}Date de réservation
+                                    {% elif field == 'date_soumission' %}Date de soumission
+                                    {% elif field == 'date_demande' %}Date de demande
+                                    {% elif field == 'date_candidature' %}Date de candidature
+                                    {% elif field == 'type_stand' %}Type de stand
+                                    {% elif field == 'type_media' %}Type de média
+                                    {% elif field == 'nombre_stands' %}Nombre de stands
+                                    {% else %}{{ field|title }}{% endif %}
+                                </th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if data_list %}
+                                {% for row_data in data_list %}
+                                <tr>
+                                    {% for field in fields %}
+                                    <td>{{ row_data|get_item:field|default:"-" }}</td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="{{ fields|length }}" class="no-data">Aucune donnée trouvée</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% if page_obj.has_other_pages %}
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1&search={{ search_query }}" class="page-link">« Première</a>
+                    <a href="?page={{ page_obj.previous_page_number }}&search={{ search_query }}" class="page-link">‹ Précédente</a>
+                    {% endif %}
+                    
+                    <span class="page-info">
+                        Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+                    </span>
+                    
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}&search={{ search_query }}" class="page-link">Suivante ›</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}&search={{ search_query }}" class="page-link">Dernière »</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+

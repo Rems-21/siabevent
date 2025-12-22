@@ -133,7 +133,7 @@ body {
    ============================================ */
 
 .contacts-header {
-    background: #244F8B;
+    background: #000000;
     padding: 60px 20px;
     text-align: center;
 }
@@ -183,8 +183,8 @@ body {
 
 .contact-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(36, 79, 139, 0.15);
-    border-color: #244F8B;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border-color: #000000;
 }
 
 .contact-icon {
@@ -200,7 +200,7 @@ body {
 }
 
 .contact-card:hover .contact-icon {
-    background: #244F8B;
+    background: #000000;
 }
 
 .contact-card:hover .contact-icon svg {
@@ -219,7 +219,7 @@ body {
 .contact-value {
     font-size: 18px;
     font-weight: 600;
-    color: #244F8B;
+    color: #000000;
     text-decoration: none;
     transition: color 0.3s ease;
     word-break: break-word;
@@ -248,7 +248,7 @@ body {
 .form-section-title {
     font-size: 32px;
     font-weight: 700;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 15px;
     text-align: center;
 }
@@ -289,7 +289,7 @@ body {
 
 .form-control:focus {
     outline: none;
-    border-color: #244F8B;
+    border-color: #000000;
 }
 
 textarea.form-control {
@@ -308,7 +308,7 @@ textarea.form-control {
     height: 20px;
     margin-top: 2px;
     cursor: pointer;
-    accent-color: #244F8B;
+    accent-color: #000000;
     flex-shrink: 0;
 }
 
@@ -321,7 +321,7 @@ textarea.form-control {
 }
 
 .btn-submit-form {
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -404,10 +404,10 @@ textarea.form-control {
    ============================================ */
 
 .footer-section {
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
     position: relative;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .flags-row {

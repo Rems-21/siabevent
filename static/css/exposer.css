@@ -15,7 +15,7 @@ body {
 
 .exposer-hero {
     position: relative;
-    background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+    background: linear-gradient(135deg, #000000 0%, #1AA45A 100%);
     min-height: 500px;
     display: flex;
     align-items: center;
@@ -77,7 +77,7 @@ body {
     gap: 12px;
     padding: 16px 40px;
     background: #ffffff;
-    color: #244F8B;
+    color: #000000;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
@@ -104,7 +104,7 @@ body {
 .section-title {
     font-size: 42px;
     font-weight: 800;
-    color: #244F8B;
+    color: #000000;
     text-align: center;
     margin-bottom: 15px;
     text-transform: uppercase;
@@ -156,7 +156,7 @@ body {
 .stand-title-new {
     font-size: 20px;
     font-weight: 700;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 20px;
     text-transform: uppercase;
     display: flex;
@@ -165,7 +165,7 @@ body {
 }
 
 .stand-size-badge {
-    background: #244F8B;
+    background: #000000;
     color: white;
     padding: 4px 12px;
     border-radius: 4px;
@@ -192,7 +192,7 @@ body {
 .btn-reserve-new {
     align-self: flex-start;
     padding: 12px 35px;
-    background: #244F8B;
+    background: #000000;
     color: white;
     text-decoration: none;
     border-radius: 4px;
@@ -207,7 +207,7 @@ body {
     background: #1AA45A;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(36, 79, 139, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* Section avantages à droite */
@@ -223,7 +223,7 @@ body {
 .advantages-title {
     font-size: 18px;
     font-weight: 700;
-    color: #244F8B;
+    color: #000000;
     margin-bottom: 20px;
     text-transform: uppercase;
 }
@@ -267,7 +267,7 @@ body {
 .stand-price-new {
     margin-top: 30px;
     padding: 20px;
-    background: #244F8B;
+    background: #000000;
     text-align: center;
     border-radius: 4px;
 }
@@ -321,7 +321,7 @@ body {
     flex: 0 0 50px;
     width: 50px;
     height: 50px;
-    background: #244F8B;
+    background: #000000;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -338,7 +338,7 @@ body {
     top: 100%;
     width: 2px;
     height: 30px;
-    background: #244F8B;
+    background: #000000;
     opacity: 0.3;
 }
 
@@ -387,24 +387,33 @@ body {
     width: 100%;
     height: 350px;
     background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
-    border: 2px solid #244F8B;
+    border: 2px solid #000000;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* S'assurer que l'image ne déborde pas */
+    padding: 10px; /* Padding pour que l'image ne touche pas les bords */
 }
 
 .diagram-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #244F8B;
-    line-height: 1.4;
+    display: none; /* Masquer le label A29 Exposant */
 }
 
 .diagram-box img {
+    max-width: calc(100% - 20px); /* Prendre en compte le padding */
+    max-height: calc(100% - 20px);
+    object-fit: contain;
+}
+
+.stand-image {
     max-width: 100%;
     max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
 
 /* ============================================
@@ -413,7 +422,7 @@ body {
 
 .cta-section {
     padding: 80px 20px;
-    background: linear-gradient(135deg, #244F8B 0%, #1AA45A 100%);
+    background: linear-gradient(135deg, #000000 0%, #1AA45A 100%);
     position: relative;
     overflow: hidden;
 }
@@ -457,7 +466,7 @@ body {
     gap: 12px;
     padding: 18px 45px;
     background: white;
-    color: #244F8B;
+    color: #000000;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;

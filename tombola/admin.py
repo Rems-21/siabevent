@@ -3,8 +3,8 @@ from .models import ParticipationTombola
 
 @admin.register(ParticipationTombola)
 class ParticipationTombolaAdmin(admin.ModelAdmin):
-    list_display = ('nom', 'prenom', 'email', 'nombre_tickets', 'montant_total', 'statut', 'date_inscription', 'date_paiement')
-    list_filter = ('statut', 'date_inscription', 'pays')
+    list_display = ('nom', 'prenom', 'email', 'lot', 'nombre_tickets', 'prix_unitaire', 'montant_total', 'statut', 'date_inscription', 'date_paiement')
+    list_filter = ('statut', 'lot', 'date_inscription', 'pays')
     search_fields = ('nom', 'prenom', 'email', 'telephone', 'numeros_tickets')
     readonly_fields = ('date_inscription', 'date_paiement', 'montant_total')
     date_hierarchy = 'date_inscription'
@@ -15,8 +15,8 @@ class ParticipationTombolaAdmin(admin.ModelAdmin):
         ('Informations personnelles', {
             'fields': ('nom', 'prenom', 'email', 'telephone', 'pays')
         }),
-        ('Tickets', {
-            'fields': ('nombre_tickets', 'prix_unitaire', 'montant_total', 'numeros_tickets')
+        ('Lot et Tickets', {
+            'fields': ('lot', 'nombre_tickets', 'prix_unitaire', 'montant_total', 'numeros_tickets')
         }),
         ('Paiement Stripe', {
             'fields': ('statut', 'stripe_payment_intent_id', 'stripe_checkout_session_id'),

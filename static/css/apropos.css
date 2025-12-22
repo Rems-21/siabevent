@@ -128,7 +128,7 @@ body {
    ============================================ */
 
 .apropos-banner {
-    background: #244F8B;
+    background: #000000;
     padding: 80px 20px;
     text-align: center;
 }
@@ -214,98 +214,34 @@ body {
     top: -2px;
 }
 
-/* Thématiques */
-.thematiques-intro {
-    font-size: 18px;
-    color: #333333;
-    line-height: 1.8;
-    margin-bottom: 40px;
-}
-
-.thematiques-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 30px;
-}
-
-.thematique-card {
-    background: #1AA45A;
-    border-radius: 12px;
-    padding: 30px;
-    border: 2px solid #1AA45A;
-    transition: all 0.3s ease;
-}
-
-.thematique-card:hover {
-    border-color: #1AA45A;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(26, 164, 90, 0.3);
-    background: #158a4d;
-}
-
-.thematique-icon {
-    margin-bottom: 20px;
-}
-
-.thematique-title {
-    font-size: 24px;
+/* Cible Section - Style spécifique pour les paragraphes */
+.cible-section .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
     font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 15px;
+    color: #1AA45A;
+    margin-bottom: 30px;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
 }
 
-.thematique-text {
-    font-size: 16px;
-    color: #ffffff;
-    line-height: 1.7;
-    margin: 0;
+.cible-content {
+    max-width: 100%;
 }
 
-.thematiques-acteurs {
-    font-size: 18px;
-    color: #333333;
-    line-height: 1.8;
-    margin-top: 30px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #244F8B;
+.cible-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    color: #2d2d2d;
+    line-height: 1.9;
+    margin-bottom: 25px;
+    text-align: justify;
+    letter-spacing: 0.3px;
 }
 
-/* Cible Section */
-.cible-text {
-    font-size: 18px;
-    color: #333333;
-    line-height: 1.8;
-    margin-bottom: 40px;
-}
-
-.cible-categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.cible-category {
-    background: #1AA45A;
-    border-radius: 12px;
-    padding: 25px;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.cible-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(26, 164, 90, 0.4);
-    background: #158a4d;
-}
-
-.category-title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #ffffff;
-    margin: 0;
+.cible-content p:last-child {
+    margin-bottom: 0;
 }
 
 /* Responsive */
@@ -326,8 +262,13 @@ body {
         font-size: 16px;
     }
 
-    .thematiques-grid {
-        grid-template-columns: 1fr;
+    .cible-section .section-title {
+        font-size: 28px;
+    }
+
+    .cible-content p {
+        font-size: 16px;
+        line-height: 1.8;
     }
 }
 
@@ -350,33 +291,14 @@ body {
         padding-left: 30px;
     }
 
-    .thematique-card {
-        padding: 25px 20px;
+    .cible-section .section-title {
+        font-size: 26px;
     }
 
-    .thematique-title {
-        font-size: 20px;
-    }
-
-    .thematique-text {
-        font-size: 15px;
-    }
-
-    .thematiques-acteurs {
+    .cible-content p {
         font-size: 16px;
-        padding: 15px;
-    }
-
-    .cible-text {
-        font-size: 16px;
-    }
-
-    .cible-categories {
-        grid-template-columns: 1fr;
-    }
-
-    .category-title {
-        font-size: 18px;
+        line-height: 1.8;
+        text-align: left;
     }
 }
 
@@ -385,10 +307,10 @@ body {
    ============================================ */
 
 .footer-section {
-    background: #244F8B;
+    background: #000000;
     color: #ffffff;
     position: relative;
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 .flags-row {
