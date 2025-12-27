@@ -86,29 +86,29 @@ document.addEventListener('DOMContentLoaded', function() {
         representativesCarouselInner.appendChild(slide);
     });
     
-    // Fonction pour mettre à jour le carousel
+    // Fonction pour mettre à jour le carousel avec boucle infinie
     function updateCarousel() {
         const track = representativesCarouselInner;
         const maxIndex = totalRepresentatives - 1;
         
-        // Limiter l'index pour ne pas dépasser (un seul sens)
+        // Boucle infinie : si on dépasse, on revient au début/fin
         if (currentIndex > maxIndex) {
-            currentIndex = maxIndex;
+            currentIndex = 0;
         }
         if (currentIndex < 0) {
-            currentIndex = 0;
+            currentIndex = maxIndex;
         }
         
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
         
-        // Désactiver les boutons aux extrémités
+        // Ne plus désactiver les boutons (boucle infinie)
         if (prevButton) {
-            prevButton.disabled = currentIndex === 0;
-            prevButton.style.opacity = currentIndex === 0 ? '0.3' : '0.8';
+            prevButton.disabled = false;
+            prevButton.style.opacity = '0.8';
         }
         if (nextButton) {
-            nextButton.disabled = currentIndex >= maxIndex;
-            nextButton.style.opacity = currentIndex >= maxIndex ? '0.3' : '0.8';
+            nextButton.disabled = false;
+            nextButton.style.opacity = '0.8';
         }
     }
     
@@ -119,12 +119,10 @@ document.addEventListener('DOMContentLoaded', function() {
         prevButton.removeAttribute('data-bs-target');
         prevButton.removeAttribute('data-bs-slide');
         prevButton.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-                // Réinitialiser l'auto-slide
-                resetAutoSlide();
-            }
+            currentIndex--;
+            updateCarousel();
+            // Réinitialiser l'auto-slide
+            resetAutoSlide();
         });
     }
     
@@ -134,13 +132,10 @@ document.addEventListener('DOMContentLoaded', function() {
         nextButton.removeAttribute('data-bs-target');
         nextButton.removeAttribute('data-bs-slide');
         nextButton.addEventListener('click', () => {
-            const maxIndex = totalRepresentatives - 1;
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateCarousel();
-                // Réinitialiser l'auto-slide
-                resetAutoSlide();
-            }
+            currentIndex++;
+            updateCarousel();
+            // Réinitialiser l'auto-slide
+            resetAutoSlide();
         });
     }
     
@@ -152,17 +147,11 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoSlide();
     }
     
-    // Fonction pour démarrer l'auto-slide
+    // Fonction pour démarrer l'auto-slide avec boucle infinie
     function startAutoSlide() {
         autoSlideInterval = setInterval(() => {
-            const maxIndex = totalRepresentatives - 1;
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateCarousel();
-            } else {
-                // Arrêter à la fin (un seul sens)
-                clearInterval(autoSlideInterval);
-            }
+            currentIndex++;
+            updateCarousel();
         }, 5000);
     }
     

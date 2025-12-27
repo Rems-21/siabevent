@@ -2198,15 +2198,17 @@ body {
         overflow: hidden;
     }
 
-    .representative-email {
-        font-size: 11px;
-        padding: 0 5px;
+    .representative-email-icon {
+        margin-bottom: 12px;
     }
 
-    .representative-email a {
-        word-break: break-all;
-        overflow-wrap: anywhere;
-        hyphens: auto;
+    .email-icon-link {
+        width: 38px;
+        height: 38px;
+    }
+
+    .email-icon-link i {
+        font-size: 15px;
     }
 }
 
@@ -2429,39 +2431,37 @@ body {
     font-weight: 500;
 }
 
-.representative-email {
-    font-size: 13px;
-    color: #1AA45A;
-    margin-bottom: 15px;
-    font-weight: 500;
+.representative-email-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    max-width: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
+    margin-bottom: 15px;
 }
 
-.representative-email i {
-    font-size: 12px;
-    flex-shrink: 0;
-}
-
-.representative-email a {
-    color: #1AA45A;
+.email-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #1AA45A;
+    color: #ffffff;
     text-decoration: none;
-    transition: color 0.3s ease;
-    word-break: break-all;
-    overflow-wrap: break-word;
-    max-width: 100%;
-    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(26, 164, 90, 0.3);
 }
 
-.representative-email a:hover {
-    color: #D5373A;
-    text-decoration: underline;
+.email-icon-link:hover {
+    background: #D5373A;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(213, 55, 58, 0.4);
+    text-decoration: none;
+}
+
+.email-icon-link i {
+    font-size: 18px;
 }
 
 .representative-countries {
@@ -2616,20 +2616,17 @@ body {
         font-size: 13px;
     }
 
-    .representative-email {
-        font-size: 11px;
+    .representative-email-icon {
         margin-bottom: 12px;
-        padding: 0 5px;
     }
 
-    .representative-email i {
-        font-size: 10px;
+    .email-icon-link {
+        width: 40px;
+        height: 40px;
     }
 
-    .representative-email a {
-        font-size: 11px;
-        word-break: break-all;
-        overflow-wrap: anywhere;
+    .email-icon-link i {
+        font-size: 16px;
     }
 
     .representative-prev,

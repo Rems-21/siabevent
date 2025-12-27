@@ -491,10 +491,11 @@
                                         <h3 class="representative-name">{{ representant.nom }}</h3>
                                         <p class="representative-title">{{ representant.titre }}</p>
                                         {% if representant.email %}
-                                        <p class="representative-email">
-                                            <i class="fas fa-envelope"></i>
-                                            <a href="mailto:{{ representant.email }}">{{ representant.email }}</a>
-                                        </p>
+                                        <div class="representative-email-icon">
+                                            <a href="mailto:{{ representant.email }}" class="email-icon-link" title="Envoyer un email à {{ representant.email }}">
+                                                <i class="fas fa-envelope"></i>
+                                            </a>
+                                        </div>
                                         {% endif %}
                                             <div class="representative-countries">
                                             {% for pays in representant.pays.all %}
