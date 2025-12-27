@@ -2159,44 +2159,41 @@ body {
     }
 }
 
+/* Carousel track - structure flex pour le défilement */
+#representativesCarousel .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+    #representativesCarousel .carousel-track {
+        transition: transform 0.4s ease-in-out;
+    }
+}
+
+/* Slide - chaque élément prend 100% de la largeur */
+#representativesCarousel .slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    padding: 20px 0;
+}
+
 #representativesCarousel .carousel-inner {
     overflow: hidden;
     position: relative;
     width: 100%;
 }
 
-#representativesCarousel .carousel-item {
-    min-height: 400px;
-    padding: 20px 0;
-    display: block;
-    width: 100%;
-    margin-right: -100%;
-    float: left;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-/* Transitions fluides pour mobile et desktop */
-#representativesCarousel.carousel-slide .carousel-inner {
-    transition: transform 0.5s ease-in-out;
-}
-
-@media (max-width: 767px) {
-    #representativesCarousel.carousel-slide .carousel-inner {
-        transition: transform 0.4s ease-in-out;
-    }
-}
-
-#representativesCarousel .carousel-item.active {
-    z-index: 1;
-}
-
 /* Boutons de navigation */
 #representativesCarousel .representative-prev,
 #representativesCarousel .representative-next {
+    position: absolute;
     width: 50px;
     height: 50px;
-    background: #000000;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
@@ -2206,6 +2203,15 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+#representativesCarousel .representative-prev:disabled,
+#representativesCarousel .representative-next:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
 }
 
 #representativesCarousel .representative-prev {
@@ -2233,10 +2239,10 @@ body {
     transform: translateY(-50%) scale(1.1);
 }
 
-#representativesCarousel .carousel-control-prev-icon,
-#representativesCarousel .carousel-control-next-icon {
-    width: 20px;
-    height: 20px;
+#representativesCarousel .representative-prev span,
+#representativesCarousel .representative-next span {
+    display: block;
+    font-weight: bold;
 }
 
 /* S'assurer que les carousel-items sont visibles sur tous les écrans */
