@@ -249,29 +249,76 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Statistics Counter Animation
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('[STATS DEBUG] Script de statistiques chargé');
+    
     const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    console.log('[STATS DEBUG] Nombre d\'éléments stat-number trouvés:', statNumbers.length);
     
     if (statNumbers.length === 0) {
+        console.warn('[STATS DEBUG] Aucun élément .stat-number[data-target] trouvé dans le DOM');
+        // Essayer de trouver tous les stat-number sans data-target
+        const allStatNumbers = document.querySelectorAll('.stat-number');
+        console.log('[STATS DEBUG] Nombre total d\'éléments .stat-number:', allStatNumbers.length);
+        allStatNumbers.forEach((el, index) => {
+            console.log(`[STATS DEBUG] Élément ${index}:`, {
+                text: el.textContent,
+                hasDataTarget: el.hasAttribute('data-target'),
+                dataTarget: el.getAttribute('data-target'),
+                classes: el.className
+            });
+        });
         return;
     }
     
+    // Afficher les détails de chaque élément trouvé
+    statNumbers.forEach((statNumber, index) => {
+        const target = statNumber.getAttribute('data-target');
+        console.log(`[STATS DEBUG] Élément ${index}:`, {
+            text: statNumber.textContent,
+            dataTarget: target,
+            parsedTarget: parseInt(target),
+            isVisible: statNumber.offsetParent !== null,
+            rect: statNumber.getBoundingClientRect()
+        });
+    });
+    
     // Observer pour déclencher l'animation quand les stats sont visibles
     const statsObserver = new IntersectionObserver(function(entries) {
+        console.log('[STATS DEBUG] IntersectionObserver déclenché, entrées:', entries.length);
         entries.forEach(entry => {
+            console.log('[STATS DEBUG] Entry:', {
+                isIntersecting: entry.isIntersecting,
+                intersectionRatio: entry.intersectionRatio,
+                target: entry.target,
+                targetText: entry.target.textContent,
+                targetDataTarget: entry.target.getAttribute('data-target')
+            });
+            
             if (entry.isIntersecting) {
                 const statNumber = entry.target;
-                const target = parseInt(statNumber.getAttribute('data-target'));
+                const targetValue = statNumber.getAttribute('data-target');
+                const target = parseInt(targetValue);
+                
+                console.log('[STATS DEBUG] Élément intersecté:', {
+                    element: statNumber,
+                    dataTarget: targetValue,
+                    parsedTarget: target,
+                    isNaN: isNaN(target),
+                    alreadyAnimated: statNumber.dataset.animated === 'true'
+                });
                 
                 if (isNaN(target)) {
-                    console.warn('Valeur data-target invalide pour', statNumber);
+                    console.warn('[STATS DEBUG] Valeur data-target invalide pour', statNumber, 'Valeur:', targetValue);
                     return;
                 }
                 
                 // Vérifier si l'animation n'a pas déjà été déclenchée
                 if (statNumber.dataset.animated === 'true') {
+                    console.log('[STATS DEBUG] Animation déjà déclenchée pour', statNumber);
                     return;
                 }
                 
+                console.log('[STATS DEBUG] Démarrage de l\'animation pour', statNumber, 'avec target:', target);
                 statNumber.dataset.animated = 'true';
                 animateCounter(statNumber, target);
                 statsObserver.unobserve(statNumber);
@@ -282,36 +329,84 @@ document.addEventListener('DOMContentLoaded', function() {
         rootMargin: '0px 0px -100px 0px' // Déclencher 100px avant que l'élément soit visible
     });
     
+    console.log('[STATS DEBUG] Configuration de l\'observer:', {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    });
+    
     // Observer chaque stat-number
-    statNumbers.forEach(statNumber => {
+    statNumbers.forEach((statNumber, index) => {
         // Vérifier si l'élément est déjà visible au chargement
         const rect = statNumber.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
         
+        console.log(`[STATS DEBUG] Vérification élément ${index}:`, {
+            element: statNumber,
+            rect: rect,
+            isVisible: isVisible,
+            windowHeight: window.innerHeight
+        });
+        
         if (isVisible) {
             // Si déjà visible, déclencher l'animation immédiatement
-            const target = parseInt(statNumber.getAttribute('data-target'));
+            const targetValue = statNumber.getAttribute('data-target');
+            const target = parseInt(targetValue);
+            
+            console.log(`[STATS DEBUG] Élément ${index} déjà visible, déclenchement immédiat:`, {
+                targetValue: targetValue,
+                target: target,
+                isNaN: isNaN(target)
+            });
+            
             if (!isNaN(target)) {
                 statNumber.dataset.animated = 'true';
+                console.log(`[STATS DEBUG] Démarrage animation immédiate pour élément ${index}`);
                 animateCounter(statNumber, target);
+            } else {
+                console.warn(`[STATS DEBUG] Target invalide pour élément ${index}:`, targetValue);
             }
         } else {
             // Sinon, observer pour déclencher quand il devient visible
+            console.log(`[STATS DEBUG] Élément ${index} pas encore visible, ajout à l'observer`);
             statsObserver.observe(statNumber);
         }
     });
     
     // Fonction pour animer le compteur
     function animateCounter(element, target) {
+        console.log('[STATS DEBUG] animateCounter appelé:', {
+            element: element,
+            target: target,
+            currentText: element.textContent
+        });
+        
+        if (!element || !target || target <= 0) {
+            console.error('[STATS DEBUG] Paramètres invalides pour animateCounter:', {
+                element: element,
+                target: target
+            });
+            return;
+        }
+        
         const duration = 2000; // 2 secondes
         const start = 0;
         const increment = target / (duration / 16); // ~60fps
         let current = start;
+        let frameCount = 0;
+        
+        console.log('[STATS DEBUG] Paramètres animation:', {
+            duration: duration,
+            increment: increment,
+            target: target
+        });
         
         const timer = setInterval(() => {
+            frameCount++;
             current += increment;
+            
             if (current >= target) {
                 current = target;
+                console.log('[STATS DEBUG] Animation terminée après', frameCount, 'frames');
                 clearInterval(timer);
             }
             
@@ -319,7 +414,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const formatted = target >= 1000 
                 ? `+${Math.floor(current).toLocaleString()}` 
                 : `+${Math.floor(current)}`;
-            element.textContent = formatted;
+            
+            if (element) {
+                element.textContent = formatted;
+                
+                // Log tous les 10 frames pour ne pas surcharger
+                if (frameCount % 10 === 0) {
+                    console.log('[STATS DEBUG] Frame', frameCount, ':', formatted);
+                }
+            } else {
+                console.error('[STATS DEBUG] Élément null pendant l\'animation');
+                clearInterval(timer);
+            }
         }, 16);
+        
+        console.log('[STATS DEBUG] Timer créé, animation démarrée');
     }
 });
