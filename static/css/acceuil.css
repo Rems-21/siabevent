@@ -2155,6 +2155,27 @@ body {
 #representativesCarousel .carousel-item {
     min-height: 400px;
     padding: 20px 0;
+    display: block;
+}
+
+/* S'assurer que les carousel-items sont visibles sur tous les écrans */
+@media (min-width: 1200px) {
+    #representativesCarousel .carousel-item {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    #representativesCarousel .carousel-item.active {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    #representativesCarousel .col-lg-2 {
+        display: block !important;
+        visibility: visible !important;
+        flex: 0 0 auto !important;
+        width: auto !important;
+    }
 }
 
 #representativesCarousel .row {

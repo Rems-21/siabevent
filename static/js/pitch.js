@@ -14,10 +14,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Download file function
 function downloadFile(type) {
-    // Add your download logic here
-    console.log('Downloading file:', type);
-    // Example: window.location.href = 'path/to/file.pdf';
-    alert('Téléchargement du fichier ' + type + '...');
+    // Déterminer le chemin du fichier selon le type
+    // Utiliser le chemin de base des fichiers statiques (défini dans le template)
+    const staticBase = window.STATIC_URL || '/static/';
+    let filePath = '';
+    let fileName = '';
+    
+    switch(type) {
+        case 'reglement':
+            filePath = staticBase + 'documents/reglement.pdf';
+            fileName = 'Reglement_Interieur_Pitch_SIAB_2026.pdf';
+            break;
+        case 'modele-dossier':
+            filePath = staticBase + 'documents/modele-dossier.pdf';
+            fileName = 'Modele_Dossier_Pitch_SIAB_2026.pdf';
+            break;
+        case 'guide':
+            filePath = staticBase + 'documents/guide.pdf';
+            fileName = 'Guide_Pitch_SIAB_2026.pdf';
+            break;
+        default:
+            console.error('Type de fichier non reconnu:', type);
+            alert('Fichier non disponible');
+            return;
+    }
+    
+    // Créer un lien temporaire pour télécharger le fichier
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = fileName;
+    link.target = '_blank';
+    
+    // Ajouter le lien au DOM, cliquer dessus, puis le retirer
+    document.body.appendChild(link);
+    link.click();
+    
+    // Retirer le lien après un court délai
+    setTimeout(() => {
+        if (document.body.contains(link)) {
+            document.body.removeChild(link);
+        }
+    }, 100);
+    
+    console.log('Téléchargement du fichier:', fileName, 'depuis', filePath);
 }
 
 // Form Modal Functions

@@ -237,11 +237,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                 } else if (width < 768) {
                                     representativeItem.classList.add('col-6');
                                 } else if (width < 992) {
-                                    representativeItem.classList.add('col-4');
+                                    representativeItem.classList.add('col-md-4', 'col-6');
                                 } else if (width < 1200) {
-                                    representativeItem.classList.add('col-3');
+                                    representativeItem.classList.add('col-lg-3', 'col-md-4');
                                 } else {
-                                    representativeItem.classList.add('col-lg-2', 'col-md-4');
+                                    // Pour écrans > 1200px, utiliser col-lg-2 avec col-md-4 en fallback
+                                    representativeItem.classList.add('col-lg-2', 'col-md-4', 'col-6');
                                 }
                                 row.appendChild(representativeItem);
                             }
@@ -250,6 +251,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     carouselItem.appendChild(row);
                     representativesCarouselInner.appendChild(carouselItem);
+                    
+                    // Log pour vérifier la création des slides
+                    if (width >= 1200) {
+                        console.log(`Desktop slide ${i + 1} created with ${endIndex - startIndex} items`);
+                    }
                 }
             } else {
                 // Afficher tous les éléments sans carousel
@@ -272,7 +278,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             } else if (width < 1200) {
                                 representativeItem.classList.add('col-3');
                             } else {
-                                representativeItem.classList.add('col-lg-2', 'col-md-4');
+                                // Pour écrans > 1200px, utiliser col-lg-2 avec col-md-4 en fallback
+                                representativeItem.classList.add('col-lg-2', 'col-md-4', 'col-6');
                             }
                             row.appendChild(representativeItem);
                         }
