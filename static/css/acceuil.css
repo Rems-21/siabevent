@@ -2200,15 +2200,18 @@ body {
 
     .representative-email-icon {
         margin-bottom: 12px;
+        display: flex !important;
     }
 
     .email-icon-link {
         width: 38px;
         height: 38px;
+        display: inline-flex !important;
     }
 
     .email-icon-link i {
         font-size: 15px;
+        color: #ffffff !important;
     }
 }
 
@@ -2382,7 +2385,19 @@ body {
     border: 3px solid #1AA45A !important; /* Bordure verte par défaut */
     max-width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
+}
+
+.representative-card .representative-email-icon {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: flex !important;
+}
+
+.representative-card .email-icon-link {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
 }
 
 .representative-card:nth-child(2n) {
@@ -2432,35 +2447,41 @@ body {
 }
 
 .representative-email-icon {
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
 .email-icon-link {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     justify-content: center;
     width: 45px;
     height: 45px;
     border-radius: 50%;
     background: #1AA45A;
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(26, 164, 90, 0.3);
+    position: relative;
+    z-index: 10;
 }
 
 .email-icon-link:hover {
     background: #D5373A;
-    color: #ffffff;
+    color: #ffffff !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(213, 55, 58, 0.4);
 }
 
 .email-icon-link i {
     font-size: 18px;
+    color: #ffffff !important;
 }
 
 .representative-countries {
@@ -2602,6 +2623,13 @@ body {
         box-sizing: border-box;
     }
 
+    .representative-card .representative-email-icon,
+    .representative-card .email-icon-link {
+        max-width: none;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
     .representative-photo {
         width: 100px;
         height: 100px;
@@ -2617,15 +2645,18 @@ body {
 
     .representative-email-icon {
         margin-bottom: 12px;
+        display: flex !important;
     }
 
     .email-icon-link {
         width: 40px;
         height: 40px;
+        display: inline-flex !important;
     }
 
     .email-icon-link i {
         font-size: 16px;
+        color: #ffffff !important;
     }
 
     .representative-prev,

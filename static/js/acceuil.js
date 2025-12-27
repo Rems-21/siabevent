@@ -185,3 +185,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 250);
     });
 });
+
+// Countdown Timer for SIAB 2026 - 25 juin 2026
+document.addEventListener('DOMContentLoaded', function() {
+    const daysElement = document.getElementById('days');
+    const hoursElement = document.getElementById('hours');
+    const minutesElement = document.getElementById('minutes');
+    const secondsElement = document.getElementById('seconds');
+    
+    if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+        return;
+    }
+    
+    const targetDate = new Date('2026-06-25T00:00:00');
+    
+    function updateCountdown() {
+        const now = new Date();
+        let diff = targetDate - now;
+        
+        if (diff < 0) {
+            diff = 0;
+        }
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        
+        daysElement.textContent = String(days).padStart(3, '0');
+        hoursElement.textContent = String(hours).padStart(2, '0');
+        minutesElement.textContent = String(minutes).padStart(2, '0');
+        secondsElement.textContent = String(seconds).padStart(2, '0');
+    }
+    
+    // Mettre à jour immédiatement puis toutes les secondes
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+});
