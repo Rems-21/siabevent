@@ -57,11 +57,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // Skip header and footer elements
             if (el.closest('header') || el.closest('footer')) return;
             
-            // Add base animation class
-            el.classList.add('scroll-animate');
-            
-            // Add specific animation type
-            el.classList.add(`animate-${animationType}`);
+            // Pour stat-box et countdown-box, ne pas ajouter les classes génériques
+            // car ils ont leurs propres animations spécifiques (bounce-in et fade-up-countdown)
+            if (el.classList.contains('stat-box') || el.classList.contains('countdown-box')) {
+                el.classList.add('scroll-animate');
+                // Observer directement sans ajouter animate-scale ou animate-fade-up
+            } else {
+                // Add base animation class
+                el.classList.add('scroll-animate');
+                
+                // Add specific animation type
+                el.classList.add(`animate-${animationType}`);
+            }
             
             // Add staggered delay for children in same container
             const parent = el.parentElement;

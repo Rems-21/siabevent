@@ -127,6 +127,8 @@
 /* Enhanced animations for specific elements */
 .stat-box.animate-in {
     animation: bounce-in 0.8s ease-out forwards;
+    opacity: 1;
+    transform: scale(1);
 }
 
 .exhibitor-logo-box.animate-in {
@@ -958,6 +960,8 @@ body {
 
 .countdown-box.animate-in {
     animation: fade-up-countdown 0.6s ease-out forwards;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @keyframes fade-up-countdown {
