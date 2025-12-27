@@ -154,19 +154,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalRepresentatives = originalItems.length;
 
         // Fonction pour déterminer le nombre d'éléments par slide selon la taille d'écran
+        // Les éléments se déplacent un par un sur tous les écrans
         function getItemsPerSlide() {
-            const width = window.innerWidth;
-            if (width < 576) { // Mobile
-                return 1;
-            } else if (width < 768) { // Tablet small
-                return 2;
-            } else if (width < 992) { // Tablet
-                return 3;
-            } else if (width < 1200) { // Desktop small
-                return 4;
-            } else { // Desktop large
-                return 5;
-            }
+            // Toujours 1 élément par slide pour un défilement un par un
+            return 1;
         }
 
         // Fonction pour réorganiser les slides selon la taille d'écran
@@ -179,21 +170,20 @@ document.addEventListener('DOMContentLoaded', function() {
             // Déterminer si on doit activer le slider
             // Desktop: slider à partir de 5 éléments
             // Mobile: slider à partir de 2 éléments
+            // Avec 1 élément par slide, on a besoin de plus d'un élément pour activer le slider
             let needsSlider = false;
             if (width < 768) {
                 // Mobile/Tablet: slider à partir de 2 éléments
-                // Mais il faut s'assurer qu'on aura plus d'un slide
                 needsSlider = totalRepresentatives >= 2;
             } else {
                 // Desktop: slider à partir de 5 éléments
                 needsSlider = totalRepresentatives >= 5;
             }
             
-            // Calculer le nombre de slides
-            const totalSlides = needsSlider ? Math.ceil(totalRepresentatives / itemsPerSlide) : 1;
+            // Calculer le nombre de slides (1 élément par slide)
+            const totalSlides = needsSlider ? totalRepresentatives : 1;
             
             // Vérifier que le slider est vraiment nécessaire (plus d'un slide)
-            // Si on a besoin du slider mais qu'on n'a qu'un seul slide, désactiver
             if (needsSlider && totalSlides <= 1) {
                 needsSlider = false;
             }
@@ -232,17 +222,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                 // S'assurer que les classes Bootstrap sont correctes
                                 representativeItem.className = representativeItem.className.replace(/col-\w+-\d+/g, '').trim();
                                 // Ajouter les classes appropriées selon la taille d'écran
+                                // Puisqu'on affiche un seul élément par slide, on centre et on utilise une largeur appropriée
                                 if (width < 576) {
                                     representativeItem.classList.add('col-12');
                                 } else if (width < 768) {
-                                    representativeItem.classList.add('col-6');
+                                    representativeItem.classList.add('col-12', 'col-sm-10', 'col-md-8');
                                 } else if (width < 992) {
-                                    representativeItem.classList.add('col-md-4', 'col-6');
+                                    representativeItem.classList.add('col-12', 'col-md-8', 'col-lg-6');
                                 } else if (width < 1200) {
-                                    representativeItem.classList.add('col-lg-3', 'col-md-4');
+                                    representativeItem.classList.add('col-12', 'col-lg-8', 'col-xl-6');
                                 } else {
-                                    // Pour écrans > 1200px, utiliser col-lg-2 avec col-md-4 en fallback
-                                    representativeItem.classList.add('col-lg-2', 'col-md-4', 'col-6');
+                                    // Pour écrans > 1200px, centrer avec une largeur fixe
+                                    representativeItem.classList.add('col-12', 'col-xl-8', 'col-xxl-6');
                                 }
                                 row.appendChild(representativeItem);
                             }
@@ -272,14 +263,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             if (width < 576) {
                                 representativeItem.classList.add('col-12');
                             } else if (width < 768) {
-                                representativeItem.classList.add('col-6');
+                                representativeItem.classList.add('col-12', 'col-sm-10', 'col-md-8');
                             } else if (width < 992) {
-                                representativeItem.classList.add('col-4');
+                                representativeItem.classList.add('col-12', 'col-md-8', 'col-lg-6');
                             } else if (width < 1200) {
-                                representativeItem.classList.add('col-3');
+                                representativeItem.classList.add('col-12', 'col-lg-8', 'col-xl-6');
                             } else {
-                                // Pour écrans > 1200px, utiliser col-lg-2 avec col-md-4 en fallback
-                                representativeItem.classList.add('col-lg-2', 'col-md-4', 'col-6');
+                                representativeItem.classList.add('col-12', 'col-xl-8', 'col-xxl-6');
                             }
                             row.appendChild(representativeItem);
                         }
@@ -378,11 +368,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                     currentSlideIndex = (currentSlideIndex + 1) % actualTotalSlides;
                                     console.log('🔄 Moving to slide', currentSlideIndex + 1, 'of', actualTotalSlides, 'on', width < 768 ? 'mobile' : 'desktop');
                                     
-                                    // Changer manuellement les classes active avec transition
+                                    // Changer manuellement les classes active
                                     currentItems.forEach((item, idx) => {
                                         item.classList.remove('active');
+                                        // S'assurer que l'item est visible
+                                        item.style.display = 'none';
                                         if (idx === currentSlideIndex) {
                                             item.classList.add('active');
+                                            item.style.display = 'block';
                                         }
                                     });
                                     
@@ -405,6 +398,12 @@ document.addEventListener('DOMContentLoaded', function() {
                             
                             // Démarrer l'intervalle immédiatement
                             window.representativesCarouselInterval = setInterval(changeSlide, 4000);
+                            
+                            // S'assurer que le premier slide est visible
+                            const firstItem = representativesCarouselInner.querySelector('.carousel-item.active');
+                            if (firstItem) {
+                                firstItem.style.display = 'block';
+                            }
                             console.log('✅ Carousel interval started, will change slide every 4 seconds');
                             
                             // Démarrer le cycle Bootstrap (peut ne pas fonctionner, d'où le mécanisme de secours)

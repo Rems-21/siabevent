@@ -2148,7 +2148,7 @@ body {
 }
 
 #representativesCarousel .carousel-inner {
-    overflow: visible;
+    overflow: hidden;
     transition: transform 0.6s ease-in-out;
 }
 
@@ -2156,6 +2156,7 @@ body {
     min-height: 400px;
     padding: 20px 0;
     display: block;
+    width: 100%;
 }
 
 /* S'assurer que les carousel-items sont visibles sur tous les écrans */
@@ -2163,18 +2164,24 @@ body {
     #representativesCarousel .carousel-item {
         display: block !important;
         visibility: visible !important;
+        opacity: 1 !important;
     }
     
     #representativesCarousel .carousel-item.active {
         display: block !important;
         visibility: visible !important;
+        opacity: 1 !important;
     }
     
-    #representativesCarousel .col-lg-2 {
+    /* Forcer la visibilité des éléments à l'intérieur */
+    #representativesCarousel .carousel-item .row {
+        display: flex !important;
+        visibility: visible !important;
+    }
+    
+    #representativesCarousel .carousel-item [class*="col-"] {
         display: block !important;
         visibility: visible !important;
-        flex: 0 0 auto !important;
-        width: auto !important;
     }
 }
 
