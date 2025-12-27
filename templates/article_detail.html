@@ -237,7 +237,6 @@
         }
         
         .share-btn.facebook { background: #3b5998; }
-        .share-btn.twitter { background: #1da1f2; }
         .share-btn.linkedin { background: #0077b5; }
         .share-btn.whatsapp { background: #25d366; }
         
@@ -396,9 +395,6 @@
                     <div class="share-buttons">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="share-btn facebook" title="Partager sur Facebook">
                             <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.titre }}" target="_blank" class="share-btn twitter" title="Partager sur Twitter">
-                            <i class="fab fa-twitter"></i>
                         </a>
                         <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ article.titre }}" target="_blank" class="share-btn linkedin" title="Partager sur LinkedIn">
                             <i class="fab fa-linkedin-in"></i>

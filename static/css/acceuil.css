@@ -2175,8 +2175,13 @@ body {
 /* Slide - chaque élément prend 100% de la largeur */
 #representativesCarousel .slide {
     min-width: 100%;
+    width: 100%;
     flex-shrink: 0;
+    flex-grow: 0;
     padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #representativesCarousel .carousel-inner {
