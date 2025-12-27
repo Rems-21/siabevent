@@ -471,7 +471,7 @@
             <div class="row">
                 <div class="col-12">
                     {% if representants %}
-                    <div id="representativesCarousel" class="carousel slide" data-bs-ride="false" data-bs-interval="4000" data-bs-wrap="true">
+                    <div id="representativesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-wrap="true">
                         <div class="carousel-inner" id="representativesCarouselInner">
                             {% for representant in representants %}
                                 {% if forloop.counter0|divisibleby:5 %}

@@ -2149,7 +2149,8 @@ body {
 
 #representativesCarousel .carousel-inner {
     overflow: hidden;
-    transition: transform 0.6s ease-in-out;
+    position: relative;
+    width: 100%;
 }
 
 #representativesCarousel .carousel-item {
@@ -2157,31 +2158,37 @@ body {
     padding: 20px 0;
     display: block;
     width: 100%;
+    margin-right: -100%;
+    float: left;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+#representativesCarousel .carousel-item.active {
+    z-index: 1;
 }
 
 /* S'assurer que les carousel-items sont visibles sur tous les écrans */
 @media (min-width: 1200px) {
     #representativesCarousel .carousel-item {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+        display: block;
+        visibility: visible;
     }
     
     #representativesCarousel .carousel-item.active {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+        display: block;
+        visibility: visible;
     }
     
     /* Forcer la visibilité des éléments à l'intérieur */
     #representativesCarousel .carousel-item .row {
-        display: flex !important;
-        visibility: visible !important;
+        display: flex;
+        visibility: visible;
     }
     
     #representativesCarousel .carousel-item [class*="col-"] {
-        display: block !important;
-        visibility: visible !important;
+        display: block;
+        visibility: visible;
     }
 }
 
