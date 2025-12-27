@@ -87,18 +87,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Fonction pour mettre à jour le carousel avec boucle infinie
-    function updateCarousel() {
+    function updateCarousel(skipTransition = false) {
         const track = representativesCarouselInner;
         const maxIndex = totalRepresentatives - 1;
         
         // Boucle infinie : si on dépasse, on revient au début/fin
         if (currentIndex > maxIndex) {
+            // Désactiver la transition pour le saut instantané
+            track.style.transition = 'none';
             currentIndex = 0;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            // Réactiver la transition après un court délai
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    track.style.transition = '';
+                });
+            });
+            return;
         }
         if (currentIndex < 0) {
+            // Désactiver la transition pour le saut instantané
+            track.style.transition = 'none';
             currentIndex = maxIndex;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            // Réactiver la transition après un court délai
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    track.style.transition = '';
+                });
+            });
+            return;
         }
         
+        // Réactiver la transition pour les animations normales
+        if (!skipTransition) {
+            track.style.transition = '';
+        }
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
         
         // Ne plus désactiver les boutons (boucle infinie)

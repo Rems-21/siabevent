@@ -2453,7 +2453,8 @@ body {
     margin-bottom: 15px;
     width: 100%;
     position: relative;
-    z-index: 10;
+    z-index: 100;
+    min-height: 45px;
 }
 
 .email-icon-link {
@@ -2463,13 +2464,14 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: #1AA45A;
+    background: #1AA45A !important;
     color: #ffffff !important;
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(26, 164, 90, 0.3);
     position: relative;
-    z-index: 10;
+    z-index: 100;
+    flex-shrink: 0;
 }
 
 .email-icon-link:hover {
@@ -2482,6 +2484,8 @@ body {
 .email-icon-link i {
     font-size: 18px;
     color: #ffffff !important;
+    display: block;
+    line-height: 1;
 }
 
 .representative-countries {
@@ -2614,7 +2618,7 @@ body {
         max-width: 100%;
         margin: 0 auto;
         box-sizing: border-box;
-        overflow: hidden;
+        overflow: visible;
         word-wrap: break-word;
     }
 
@@ -2628,6 +2632,7 @@ body {
         max-width: none;
         visibility: visible !important;
         opacity: 1 !important;
+        display: flex !important;
     }
 
     .representative-photo {
