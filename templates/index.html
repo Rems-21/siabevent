@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIAB - Salon de l'Investissement, de l'Immobilier et des Énergies pour l'Afrique</title>
+    <title>SIAB - Salon de l'Immobilier Africain de Bruxelles</title>
     {% load static %}
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
@@ -43,26 +43,6 @@
             <h1 class="hero-title">Le plus grand rendez-vous de l'immobilier Africain dans le BENELUX</h1>
         </div>
 
-        <!-- Bottom Sections -->
-        <div class="hero-bottom">
-            <!-- Sponsor Country -->
-            <div class="sponsor-box">
-                <img src="https://flagcdn.com/w80/bf.png" alt="Burkina Faso" class="sponsor-flag">
-                <div class="sponsor-text">
-                    <p class="sponsor-label">Pays Parrain SIAB 2026</p>
-                    <p class="sponsor-country">BURKINA FASO</p>
-                </div>
-            </div>
-
-            <!-- Partner Logo -->
-            <div class="partner-box">
-                <div class="partner-logo-text">
-                    <span class="fac">FAC</span> IMMOBILIER
-                </div>
-                <p class="partner-label">PARTENAIRE OFFICIEL</p>
-                <p class="partner-region">L'Afrique centrale</p>
-            </div>
-        </div>
 
         <!-- Scroll to Top -->
         <button class="scroll-to-top" aria-label="Retour en haut de la page">
@@ -491,15 +471,15 @@
             <div class="row">
                 <div class="col-12">
                     {% if representants %}
-                    <div id="representativesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000" data-bs-wrap="true">
-                        <div class="carousel-inner">
+                    <div id="representativesCarousel" class="carousel slide" data-bs-ride="false" data-bs-interval="4000" data-bs-wrap="true">
+                        <div class="carousel-inner" id="representativesCarouselInner">
                             {% for representant in representants %}
                                 {% if forloop.counter0|divisibleby:5 %}
-                                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="carousel-item {% if forloop.first %}active{% endif %}" data-items-per-slide="5">
                                 <div class="row justify-content-center align-items-center">
                                 {% endif %}
                                 
-                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
+                                    <div class="col-lg-2 col-md-4 col-6 mb-4 representative-item" data-representant-id="{{ forloop.counter0 }}">
                                         <div class="representative-card">
                                             <div class="representative-photo">
                                             {% if representant.photo %}
@@ -527,16 +507,14 @@
                                 {% endif %}
                             {% endfor %}
                                         </div>
-                        {% if representants|length > 5 %}
-                        <button class="carousel-control-prev representative-prev" type="button" data-bs-target="#representativesCarousel" data-bs-slide="prev">
+                        <button class="carousel-control-prev representative-prev" type="button" data-bs-target="#representativesCarousel" data-bs-slide="prev" style="display: none;">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next representative-next" type="button" data-bs-target="#representativesCarousel" data-bs-slide="next">
+                        <button class="carousel-control-next representative-next" type="button" data-bs-target="#representativesCarousel" data-bs-slide="next" style="display: none;">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
-                        {% endif %}
                     </div>
                     {% else %}
                     <p class="text-center">Aucun représentant pour le moment.</p>

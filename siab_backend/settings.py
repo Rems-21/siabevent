@@ -40,7 +40,7 @@ if allowed_hosts_str:
     ALLOWED_HOSTS = ['*'] if allow_all else normalized_hosts
 else:
     # Par défaut, accepter localhost et tous les domaines ngrok pour les tests
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok-free.app', '.ngrok-free.dev', '.ngrok.io', '.ngrok.app']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -204,6 +204,14 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_...')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_...')
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_...')
 
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://siab.events',
+    'https://www.siab.events'
+]
 # Note: Obtenez vos clés Stripe sur: https://dashboard.stripe.com/test/apikeys
 # Ajoutez ces variables dans un fichier .env:
 # STRIPE_PUBLIC_KEY=pk_test_votre_cle_publique

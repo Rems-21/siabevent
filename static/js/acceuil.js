@@ -142,11 +142,112 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (representativesCarousel) {
-        const representativesCarouselInstance = new bootstrap.Carousel(representativesCarousel, {
-            interval: 4000,
-            wrap: true,
-            ride: 'carousel',
-            pause: 'hover'
+        const representativesCarouselInner = document.querySelector('#representativesCarouselInner');
+        const prevButton = document.querySelector('.representative-prev');
+        const nextButton = document.querySelector('.representative-next');
+        
+        // Stocker les éléments originaux avant toute modification
+        const originalItems = Array.from(document.querySelectorAll('.representative-item')).map(item => ({
+            html: item.outerHTML,
+            dataId: item.getAttribute('data-representant-id')
+        }));
+        const totalRepresentatives = originalItems.length;
+
+        // Fonction pour déterminer le nombre d'éléments par slide selon la taille d'écran
+        function getItemsPerSlide() {
+            const width = window.innerWidth;
+            if (width < 576) { // Mobile
+                return 1;
+            } else if (width < 768) { // Tablet small
+                return 2;
+            } else if (width < 992) { // Tablet
+                return 3;
+            } else if (width < 1200) { // Desktop small
+                return 4;
+            } else { // Desktop large
+                return 5;
+            }
+        }
+
+        // Fonction pour réorganiser les slides selon la taille d'écran
+        function reorganizeCarousel() {
+            if (!representativesCarouselInner || totalRepresentatives === 0) return;
+
+            const itemsPerSlide = getItemsPerSlide();
+            const totalSlides = Math.ceil(totalRepresentatives / itemsPerSlide);
+            
+            // Vider le contenu actuel
+            representativesCarouselInner.innerHTML = '';
+            
+            // Créer de nouveaux slides
+            for (let i = 0; i < totalSlides; i++) {
+                const carouselItem = document.createElement('div');
+                carouselItem.className = `carousel-item ${i === 0 ? 'active' : ''}`;
+                
+                const row = document.createElement('div');
+                row.className = 'row justify-content-center align-items-center';
+                
+                const startIndex = i * itemsPerSlide;
+                const endIndex = Math.min(startIndex + itemsPerSlide, totalRepresentatives);
+                
+                for (let j = startIndex; j < endIndex; j++) {
+                    if (originalItems[j]) {
+                        // Créer un élément temporaire pour parser le HTML
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = originalItems[j].html;
+                        const representativeItem = tempDiv.firstElementChild;
+                        row.appendChild(representativeItem);
+                    }
+                }
+                
+                carouselItem.appendChild(row);
+                representativesCarouselInner.appendChild(carouselItem);
+            }
+
+            // Afficher/masquer les contrôles selon le nombre de slides
+            if (totalSlides > 1) {
+                if (prevButton) {
+                    prevButton.style.display = 'flex';
+                    prevButton.classList.remove('d-none');
+                }
+                if (nextButton) {
+                    nextButton.style.display = 'flex';
+                    nextButton.classList.remove('d-none');
+                }
+            } else {
+                if (prevButton) {
+                    prevButton.style.display = 'none';
+                    prevButton.classList.add('d-none');
+                }
+                if (nextButton) {
+                    nextButton.style.display = 'none';
+                    nextButton.classList.add('d-none');
+                }
+            }
+
+            // Réinitialiser le carousel
+            if (window.representativesCarouselInstance) {
+                window.representativesCarouselInstance.dispose();
+            }
+            
+            window.representativesCarouselInstance = new bootstrap.Carousel(representativesCarousel, {
+                interval: 4000,
+                wrap: true,
+                ride: false,
+                pause: 'hover'
+            });
+        }
+
+        // Initialiser le carousel
+        reorganizeCarousel();
+
+        // Réorganiser lors du redimensionnement de la fenêtre
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(function() {
+                reorganizeCarousel();
+            }, 250);
         });
     }
 });

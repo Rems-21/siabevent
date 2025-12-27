@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.conf import settings
 from reportlab.lib import colors
-from reportlab.lib.pagesizes import letter, A4
+from reportlab.lib.pagesizes import letter, A4, landscape
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, PageBreak, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch, cm
@@ -184,27 +184,27 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
     """Génère un PDF avec les données du modèle"""
     buffer = BytesIO()
     
-    # Créer le document avec marges réduites
+    # Créer le document en mode paysage avec marges optimisées
     doc = SimpleDocTemplate(
         buffer,
-        pagesize=A4,
-        rightMargin=2*cm,
-        leftMargin=2*cm,
+        pagesize=landscape(A4),  # Mode paysage
+        rightMargin=1.5*cm,
+        leftMargin=1.5*cm,
         topMargin=1.5*cm,
-        bottomMargin=2*cm
+        bottomMargin=1.5*cm
     )
     elements = []
     
     # Styles
     styles = getSampleStyleSheet()
     
-    # Style pour le titre principal
+    # Style pour le titre principal (légèrement réduit pour paysage)
     title_style = ParagraphStyle(
         'CustomTitle',
         parent=styles['Heading1'],
-        fontSize=24,
+        fontSize=20,
         textColor=colors.HexColor('#1AA45A'),
-        spaceAfter=15,
+        spaceAfter=10,
         fontName='Helvetica-Bold',
         alignment=1,  # Centré
     )
@@ -213,9 +213,9 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
     subtitle_style = ParagraphStyle(
         'CustomSubtitle',
         parent=styles['Normal'],
-        fontSize=12,
+        fontSize=11,
         textColor=colors.HexColor('#666666'),
-        spaceAfter=20,
+        spaceAfter=15,
         alignment=1,  # Centré
     )
     
@@ -223,9 +223,19 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
     info_style = ParagraphStyle(
         'CustomInfo',
         parent=styles['Normal'],
-        fontSize=10,
+        fontSize=9,
         textColor=colors.HexColor('#333333'),
-        spaceAfter=25,
+        spaceAfter=20,
+    )
+    
+    # Style pour les cellules du tableau (avec wrapping)
+    cell_style = ParagraphStyle(
+        'CellStyle',
+        parent=styles['Normal'],
+        fontSize=8,
+        textColor=colors.HexColor('#333333'),
+        leading=10,
+        wordWrap='CJK',  # Permet le wrapping du texte
     )
     
     # Ajouter le logo
@@ -280,8 +290,8 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
             img_width, img_height = img.size
             
             # Calculer les dimensions en gardant les proportions
-            # Largeur maximale de 3cm, hauteur proportionnelle
-            max_width = 3*cm
+            # Largeur maximale de 2.5cm en paysage
+            max_width = 2.5*cm
             aspect_ratio = img_height / img_width
             logo_width = max_width
             logo_height = max_width * aspect_ratio
@@ -289,7 +299,7 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
             logo = Image(logo_path, width=logo_width, height=logo_height)
             logo.hAlign = 'CENTER'
             elements.append(logo)
-            elements.append(Spacer(1, 0.15*inch))
+            elements.append(Spacer(1, 0.1*inch))
         except Exception as e:
             # Si le logo ne peut pas être chargé, continuer sans logo
             pass
@@ -301,14 +311,14 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
     # Sous-titre
     subtitle = Paragraph("Salon de l'immobilier Africain", subtitle_style)
     elements.append(subtitle)
-    elements.append(Spacer(1, 0.15*inch))
+    elements.append(Spacer(1, 0.1*inch))
     
     # Informations de génération
     date_str = timezone.now().strftime("%d/%m/%Y à %H:%M")
     info_text = f"<b>Généré le:</b> {date_str} | <b>Nombre d'enregistrements:</b> {queryset.count()}"
     info_para = Paragraph(info_text, info_style)
     elements.append(info_para)
-    elements.append(Spacer(1, 0.25*inch))
+    elements.append(Spacer(1, 0.2*inch))
     
     # Tableau des données
     if queryset.exists():
@@ -340,7 +350,7 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
                 'Prix Unitaire': 'Prix unitaire (€)',
             }
             header = translations.get(header, header)
-            headers.append(header)
+            headers.append(Paragraph(header, cell_style))  # Utiliser Paragraph pour les en-têtes
         
         data = [headers]
         
@@ -368,39 +378,48 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
                             value = str(value) if value else '-'
                     else:
                         value = str(value)
-                        # Pour les champs de texte longs, limiter la longueur
-                        if len(value) > 60:
-                            value = value[:57] + '...'
+                        # Ne plus limiter la longueur, le wrapping s'en chargera
                 except Exception as e:
                     # En cas d'erreur, mettre un tiret
                     value = '-'
-                row.append(value)
+                
+                # Utiliser Paragraph pour permettre le wrapping
+                cell_para = Paragraph(str(value), cell_style)
+                row.append(cell_para)
             data.append(row)
         
-        # Créer le tableau avec largeurs adaptatives
-        col_widths = [None] * len(fields)  # Auto-width
+        # Calculer les largeurs de colonnes dynamiquement
+        # Largeur disponible = largeur A4 paysage - marges gauche et droite
+        # A4 paysage: 29.7cm (largeur) x 21cm (hauteur)
+        available_width = landscape(A4)[0] - (1.5*cm * 2)  # Largeur totale - marges
+        num_cols = len(fields)
+        
+        # Calculer la largeur par colonne avec un minimum de 1.5cm
+        col_width = max(available_width / num_cols, 1.5*cm)
+        col_widths = [col_width] * num_cols
         
         table = Table(data, colWidths=col_widths, repeatRows=1)
         
-        # Style amélioré du tableau
+        # Style amélioré du tableau pour paysage
         table_style = TableStyle([
             # En-tête
             ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#1AA45A')),
             ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
             ('ALIGN', (0, 0), (-1, 0), 'CENTER'),
             ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('FONTSIZE', (0, 0), (-1, 0), 11),
-            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-            ('TOPPADDING', (0, 0), (-1, 0), 12),
+            ('FONTSIZE', (0, 0), (-1, 0), 9),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 10),
+            ('TOPPADDING', (0, 0), (-1, 0), 10),
             
             # Corps du tableau
             ('ALIGN', (0, 1), (-1, -1), 'LEFT'),
             ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
-            ('FONTSIZE', (0, 1), (-1, -1), 9),
-            ('TOPPADDING', (0, 1), (-1, -1), 8),
-            ('BOTTOMPADDING', (0, 1), (-1, -1), 8),
-            ('LEFTPADDING', (0, 0), (-1, -1), 8),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+            ('FONTSIZE', (0, 1), (-1, -1), 8),
+            ('TOPPADDING', (0, 1), (-1, -1), 6),
+            ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+            ('LEFTPADDING', (0, 0), (-1, -1), 6),
+            ('RIGHTPADDING', (0, 0), (-1, -1), 6),
+            ('VALIGN', (0, 0), (-1, -1), 'TOP'),  # Alignement vertical en haut
             
             # Bordures
             ('GRID', (0, 0), (-1, -1), 0.5, colors.HexColor('#CCCCCC')),
@@ -426,25 +445,57 @@ def generate_pdf(model_name, queryset, model_display_name, fields):
         no_data = Paragraph("Aucune donnée trouvée", no_data_style)
         elements.append(no_data)
     
-    # Pied de page
-    elements.append(Spacer(1, 0.5*inch))
+    # Pied de page (espacement réduit pour paysage)
+    elements.append(Spacer(1, 0.3*inch))
+    
+    # Style pour le footer principal
     footer_style = ParagraphStyle(
         'Footer',
         parent=styles['Normal'],
-        fontSize=8,
+        fontSize=7,
+        textColor=colors.HexColor('#666666'),
+        alignment=1,  # Centré
+        leading=9,
+    )
+    
+    # Style pour le footer secondaire (informations de génération)
+    footer_info_style = ParagraphStyle(
+        'FooterInfo',
+        parent=styles['Normal'],
+        fontSize=7,
         textColor=colors.HexColor('#999999'),
         alignment=1,  # Centré
+        leading=9,
     )
-    footer_text = f"Document généré par SIAB - {timezone.now().strftime('%Y')} | www.siab.com"
-    footer = Paragraph(footer_text, footer_style)
-    elements.append(footer)
+    
+    # Informations de l'organisateur
+    footer_org_text = """
+    <b>Organisateur</b><br/>
+    CAMSI ASBL<br/>
+    140 Chaussée de Waterloo,<br/>
+    1060 Bruxelles, Belgique<br/>
+    N° d'entreprise : 0739.953.810<br/>
+    Compte bancaire : BE75 8940 0179 5251<br/>
+    BIC : VDSPBE91<br/>
+    PayPal : camsi.asbl@gmail.com
+    """
+    
+    footer_org = Paragraph(footer_org_text, footer_style)
+    elements.append(footer_org)
+    
+    # Ligne de séparation
+    elements.append(Spacer(1, 0.1*inch))
+    
+    # Informations de génération
+    footer_info_text = f"Document généré par SIAB - {timezone.now().strftime('%Y')} | www.siab.events"
+    footer_info = Paragraph(footer_info_text, footer_info_style)
+    elements.append(footer_info)
     
     # Construire le PDF
     doc.build(elements)
     buffer.seek(0)
     return buffer
-
-
+    
 @login_required
 def export_pdf(request, model_name):
     """Exporte les données d'un modèle en PDF"""
