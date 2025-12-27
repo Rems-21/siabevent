@@ -204,8 +204,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 representativesCarouselInner.appendChild(carouselItem);
             }
 
-            // Afficher/masquer les contrôles selon le nombre de slides
-            if (totalSlides > 1) {
+            // Afficher/masquer les contrôles et activer le slider selon le nombre de slides
+            const needsSlider = totalSlides > 1;
+            
+            if (needsSlider) {
+                // Afficher les contrôles
                 if (prevButton) {
                     prevButton.style.display = 'flex';
                     prevButton.classList.remove('d-none');
@@ -214,7 +217,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     nextButton.style.display = 'flex';
                     nextButton.classList.remove('d-none');
                 }
+
+                // Réinitialiser le carousel seulement s'il y a plus d'un slide
+                if (window.representativesCarouselInstance) {
+                    window.representativesCarouselInstance.dispose();
+                }
+                
+                window.representativesCarouselInstance = new bootstrap.Carousel(representativesCarousel, {
+                    interval: 4000,
+                    wrap: true,
+                    ride: 'carousel', // Activer l'auto-slide automatiquement
+                    pause: 'hover',
+                    touch: true // Activer le swipe sur mobile
+                });
             } else {
+                // Masquer les contrôles si un seul slide
                 if (prevButton) {
                     prevButton.style.display = 'none';
                     prevButton.classList.add('d-none');
@@ -223,19 +240,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     nextButton.style.display = 'none';
                     nextButton.classList.add('d-none');
                 }
+                
+                // Désactiver le carousel s'il n'y a qu'un seul slide
+                if (window.representativesCarouselInstance) {
+                    window.representativesCarouselInstance.dispose();
+                    window.representativesCarouselInstance = null;
+                }
             }
-
-            // Réinitialiser le carousel
-            if (window.representativesCarouselInstance) {
-                window.representativesCarouselInstance.dispose();
-            }
-            
-            window.representativesCarouselInstance = new bootstrap.Carousel(representativesCarousel, {
-                interval: 4000,
-                wrap: true,
-                ride: false,
-                pause: 'hover'
-            });
         }
 
         // Initialiser le carousel
