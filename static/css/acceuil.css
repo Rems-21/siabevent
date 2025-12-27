@@ -2371,8 +2371,35 @@ body {
 .representative-title {
     font-size: 14px;
     color: #666666;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: 500;
+}
+
+.representative-email {
+    font-size: 13px;
+    color: #1AA45A;
+    margin-bottom: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.representative-email i {
+    font-size: 12px;
+}
+
+.representative-email a {
+    color: #1AA45A;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    word-break: break-word;
+}
+
+.representative-email a:hover {
+    color: #D5373A;
+    text-decoration: underline;
 }
 
 .representative-countries {
@@ -2500,6 +2527,15 @@ body {
 
     .representative-title {
         font-size: 13px;
+    }
+
+    .representative-email {
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .representative-email i {
+        font-size: 11px;
     }
 
     .representative-prev,
