@@ -2457,7 +2457,6 @@ body {
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(213, 55, 58, 0.4);
-    text-decoration: none;
 }
 
 .email-icon-link i {
