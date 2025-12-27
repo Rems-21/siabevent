@@ -261,17 +261,44 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const statNumber = entry.target;
                 const target = parseInt(statNumber.getAttribute('data-target'));
+                
+                if (isNaN(target)) {
+                    console.warn('Valeur data-target invalide pour', statNumber);
+                    return;
+                }
+                
+                // Vérifier si l'animation n'a pas déjà été déclenchée
+                if (statNumber.dataset.animated === 'true') {
+                    return;
+                }
+                
+                statNumber.dataset.animated = 'true';
                 animateCounter(statNumber, target);
                 statsObserver.unobserve(statNumber);
             }
         });
     }, {
-        threshold: 0.5
+        threshold: 0.1, // Déclencher plus tôt (10% visible)
+        rootMargin: '0px 0px -100px 0px' // Déclencher 100px avant que l'élément soit visible
     });
     
     // Observer chaque stat-number
     statNumbers.forEach(statNumber => {
-        statsObserver.observe(statNumber);
+        // Vérifier si l'élément est déjà visible au chargement
+        const rect = statNumber.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isVisible) {
+            // Si déjà visible, déclencher l'animation immédiatement
+            const target = parseInt(statNumber.getAttribute('data-target'));
+            if (!isNaN(target)) {
+                statNumber.dataset.animated = 'true';
+                animateCounter(statNumber, target);
+            }
+        } else {
+            // Sinon, observer pour déclencher quand il devient visible
+            statsObserver.observe(statNumber);
+        }
     });
     
     // Fonction pour animer le compteur
