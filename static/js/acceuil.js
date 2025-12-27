@@ -174,39 +174,86 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!representativesCarouselInner || totalRepresentatives === 0) return;
 
             const itemsPerSlide = getItemsPerSlide();
-            const totalSlides = Math.ceil(totalRepresentatives / itemsPerSlide);
+            const width = window.innerWidth;
+            
+            // Déterminer si on doit activer le slider
+            // Desktop: slider seulement si > 5 éléments
+            // Mobile: slider seulement si > 2 éléments
+            let needsSlider = false;
+            if (width < 768) {
+                // Mobile/Tablet: slider si plus de 2 éléments
+                needsSlider = totalRepresentatives > 2;
+            } else {
+                // Desktop: slider si plus de 5 éléments
+                needsSlider = totalRepresentatives > 5;
+            }
+            
+            const totalSlides = needsSlider ? Math.ceil(totalRepresentatives / itemsPerSlide) : 1;
             
             console.log('Reorganizing carousel:', {
                 totalRepresentatives,
                 itemsPerSlide,
-                totalSlides
+                totalSlides,
+                needsSlider,
+                width
             });
             
             // Vider le contenu actuel
             representativesCarouselInner.innerHTML = '';
             
-            // Créer de nouveaux slides
-            for (let i = 0; i < totalSlides; i++) {
-                const carouselItem = document.createElement('div');
-                carouselItem.className = `carousel-item ${i === 0 ? 'active' : ''}`;
-                
+            if (needsSlider) {
+                // Créer de nouveaux slides pour le carousel
+                for (let i = 0; i < totalSlides; i++) {
+                    const carouselItem = document.createElement('div');
+                    carouselItem.className = `carousel-item ${i === 0 ? 'active' : ''}`;
+                    
+                    const row = document.createElement('div');
+                    row.className = 'row justify-content-center align-items-center';
+                    
+                    const startIndex = i * itemsPerSlide;
+                    const endIndex = Math.min(startIndex + itemsPerSlide, totalRepresentatives);
+                    
+                    for (let j = startIndex; j < endIndex; j++) {
+                        if (originalItems[j]) {
+                            // Créer un élément temporaire pour parser le HTML
+                            const tempDiv = document.createElement('div');
+                            tempDiv.innerHTML = originalItems[j].html;
+                            const representativeItem = tempDiv.firstElementChild;
+                            if (representativeItem) {
+                                // S'assurer que les classes Bootstrap sont correctes
+                                representativeItem.className = representativeItem.className.replace(/col-\w+-\d+/g, '').trim();
+                                // Ajouter les classes appropriées selon la taille d'écran
+                                if (width < 576) {
+                                    representativeItem.classList.add('col-12');
+                                } else if (width < 768) {
+                                    representativeItem.classList.add('col-6');
+                                } else if (width < 992) {
+                                    representativeItem.classList.add('col-4');
+                                } else if (width < 1200) {
+                                    representativeItem.classList.add('col-3');
+                                } else {
+                                    representativeItem.classList.add('col-lg-2', 'col-md-4');
+                                }
+                                row.appendChild(representativeItem);
+                            }
+                        }
+                    }
+                    
+                    carouselItem.appendChild(row);
+                    representativesCarouselInner.appendChild(carouselItem);
+                }
+            } else {
+                // Afficher tous les éléments sans carousel
                 const row = document.createElement('div');
                 row.className = 'row justify-content-center align-items-center';
                 
-                const startIndex = i * itemsPerSlide;
-                const endIndex = Math.min(startIndex + itemsPerSlide, totalRepresentatives);
-                
-                for (let j = startIndex; j < endIndex; j++) {
+                for (let j = 0; j < totalRepresentatives; j++) {
                     if (originalItems[j]) {
-                        // Créer un élément temporaire pour parser le HTML
                         const tempDiv = document.createElement('div');
                         tempDiv.innerHTML = originalItems[j].html;
                         const representativeItem = tempDiv.firstElementChild;
                         if (representativeItem) {
-                            // S'assurer que les classes Bootstrap sont correctes
                             representativeItem.className = representativeItem.className.replace(/col-\w+-\d+/g, '').trim();
-                            // Ajouter les classes appropriées selon la taille d'écran
-                            const width = window.innerWidth;
                             if (width < 576) {
                                 representativeItem.classList.add('col-12');
                             } else if (width < 768) {
@@ -223,12 +270,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
+                const carouselItem = document.createElement('div');
+                carouselItem.className = 'carousel-item active';
                 carouselItem.appendChild(row);
                 representativesCarouselInner.appendChild(carouselItem);
             }
 
             // Afficher/masquer les contrôles et activer le slider selon le nombre de slides
-            const needsSlider = totalSlides > 1;
             
             if (needsSlider) {
                 // Afficher les contrôles
@@ -259,52 +307,48 @@ document.addEventListener('DOMContentLoaded', function() {
                             return;
                         }
                         
+                        // Arrêter l'ancien intervalle si il existe
+                        if (window.representativesCarouselInterval) {
+                            clearInterval(window.representativesCarouselInterval);
+                            window.representativesCarouselInterval = null;
+                        }
+                        
                         window.representativesCarouselInstance = new bootstrap.Carousel(representativesCarousel, {
                             interval: 4000,
                             wrap: true,
-                            ride: 'carousel', // Activer l'auto-slide automatiquement
+                            ride: false, // On va démarrer manuellement
                             pause: 'hover',
                             touch: true // Activer le swipe sur mobile
                         });
                         
                         // Forcer le démarrage du carousel
-                        if (window.representativesCarouselInstance) {
+                        if (window.representativesCarouselInstance && totalSlides > 1) {
                             // S'assurer que le premier slide est actif
-                            const firstItem = representativesCarouselInner.querySelector('.carousel-item');
-                            if (firstItem) {
-                                firstItem.classList.add('active');
-                            }
+                            const items = representativesCarouselInner.querySelectorAll('.carousel-item');
+                            items.forEach((item, index) => {
+                                item.classList.remove('active');
+                                if (index === 0) {
+                                    item.classList.add('active');
+                                }
+                            });
                             
-                            // Démarrer le cycle
+                            // Démarrer le cycle manuellement
                             window.representativesCarouselInstance.cycle();
                             console.log('Carousel initialized and cycling with', totalSlides, 'slides');
                             
-                            // Mécanisme de secours : forcer le défilement manuellement si nécessaire
-                            let currentSlide = 0;
+                            // Mécanisme de secours : forcer le défilement toutes les 4 secondes
+                            let currentSlideIndex = 0;
                             window.representativesCarouselInterval = setInterval(() => {
-                                if (window.representativesCarouselInstance) {
-                                    const items = representativesCarouselInner.querySelectorAll('.carousel-item');
-                                    if (items.length > 1) {
-                                        // Vérifier si le carousel fonctionne en vérifiant si le slide actif change
-                                        const activeItem = representativesCarouselInner.querySelector('.carousel-item.active');
-                                        if (activeItem) {
-                                            const activeIndex = Array.from(items).indexOf(activeItem);
-                                            // Si le slide actif n'a pas changé après 5 secondes, forcer le changement
-                                            if (activeIndex === currentSlide) {
-                                                currentSlide = (currentSlide + 1) % items.length;
-                                                window.representativesCarouselInstance.to(currentSlide);
-                                            } else {
-                                                currentSlide = activeIndex;
-                                            }
-                                        }
-                                    }
+                                if (window.representativesCarouselInstance && totalSlides > 1) {
+                                    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+                                    window.representativesCarouselInstance.to(currentSlideIndex);
                                 }
-                            }, 5000);
+                            }, 4000);
                         }
                     } catch(error) {
                         console.error('Error initializing carousel:', error);
                     }
-                }, 200);
+                }, 300);
             } else {
                 // Masquer les contrôles si un seul slide
                 if (prevButton) {
