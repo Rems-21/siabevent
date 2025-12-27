@@ -2140,11 +2140,23 @@ body {
     background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0) 100%);
 }
 
-/* Representatives Carousel - Show partial cards on sides */
+/* Representatives Carousel */
 #representativesCarousel {
     overflow: hidden;
-    padding: 40px 120px;
+    padding: 40px 20px;
     position: relative;
+}
+
+@media (min-width: 768px) {
+    #representativesCarousel {
+        padding: 40px 80px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #representativesCarousel {
+        padding: 40px 120px;
+    }
 }
 
 #representativesCarousel .carousel-inner {
@@ -2164,8 +2176,67 @@ body {
     -webkit-backface-visibility: hidden;
 }
 
+/* Transitions fluides pour mobile et desktop */
+#representativesCarousel.carousel-slide .carousel-inner {
+    transition: transform 0.5s ease-in-out;
+}
+
+@media (max-width: 767px) {
+    #representativesCarousel.carousel-slide .carousel-inner {
+        transition: transform 0.4s ease-in-out;
+    }
+}
+
 #representativesCarousel .carousel-item.active {
     z-index: 1;
+}
+
+/* Boutons de navigation */
+#representativesCarousel .representative-prev,
+#representativesCarousel .representative-next {
+    width: 50px;
+    height: 50px;
+    background: #000000;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+#representativesCarousel .representative-prev {
+    left: 10px;
+}
+
+#representativesCarousel .representative-next {
+    right: 10px;
+}
+
+@media (min-width: 768px) {
+    #representativesCarousel .representative-prev {
+        left: 20px;
+    }
+    
+    #representativesCarousel .representative-next {
+        right: 20px;
+    }
+}
+
+#representativesCarousel .representative-prev:hover,
+#representativesCarousel .representative-next:hover {
+    opacity: 1;
+    background: #1AA45A;
+    transform: translateY(-50%) scale(1.1);
+}
+
+#representativesCarousel .carousel-control-prev-icon,
+#representativesCarousel .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
 }
 
 /* S'assurer que les carousel-items sont visibles sur tous les écrans */
@@ -2180,7 +2251,6 @@ body {
         visibility: visible;
     }
     
-    /* Forcer la visibilité des éléments à l'intérieur */
     #representativesCarousel .carousel-item .row {
         display: flex;
         visibility: visible;
