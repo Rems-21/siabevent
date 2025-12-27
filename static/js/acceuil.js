@@ -182,13 +182,21 @@ document.addEventListener('DOMContentLoaded', function() {
             let needsSlider = false;
             if (width < 768) {
                 // Mobile/Tablet: slider à partir de 2 éléments
+                // Mais il faut s'assurer qu'on aura plus d'un slide
                 needsSlider = totalRepresentatives >= 2;
             } else {
                 // Desktop: slider à partir de 5 éléments
                 needsSlider = totalRepresentatives >= 5;
             }
             
+            // Calculer le nombre de slides
             const totalSlides = needsSlider ? Math.ceil(totalRepresentatives / itemsPerSlide) : 1;
+            
+            // Vérifier que le slider est vraiment nécessaire (plus d'un slide)
+            // Si on a besoin du slider mais qu'on n'a qu'un seul slide, désactiver
+            if (needsSlider && totalSlides <= 1) {
+                needsSlider = false;
+            }
             
             console.log('Reorganizing carousel:', {
                 totalRepresentatives,
@@ -322,10 +330,19 @@ document.addEventListener('DOMContentLoaded', function() {
                             touch: true // Activer le swipe sur mobile
                         });
                         
-                        // Forcer le démarrage du carousel
-                        if (window.representativesCarouselInstance && totalSlides > 1) {
+                        // Vérifier qu'on a vraiment plusieurs slides
+                        const items = representativesCarouselInner.querySelectorAll('.carousel-item');
+                        const actualSlides = items.length;
+                        
+                        console.log('Carousel check:', {
+                            totalSlides,
+                            actualSlides,
+                            needsSlider,
+                            isMobile: width < 768
+                        });
+                        
+                        if (actualSlides > 1) {
                             // S'assurer que le premier slide est actif
-                            const items = representativesCarouselInner.querySelectorAll('.carousel-item');
                             items.forEach((item, index) => {
                                 item.classList.remove('active');
                                 if (index === 0) {
@@ -333,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 }
                             });
                             
-                            console.log('Carousel initialized with', totalSlides, 'slides on', width < 768 ? 'mobile' : 'desktop');
+                            console.log('Carousel initialized with', actualSlides, 'slides on', width < 768 ? 'mobile' : 'desktop');
                             
                             // Mécanisme de secours : forcer le défilement toutes les 4 secondes
                             // Ce mécanisme fonctionne sur mobile ET desktop
@@ -342,45 +359,58 @@ document.addEventListener('DOMContentLoaded', function() {
                             // Arrêter l'ancien intervalle s'il existe
                             if (window.representativesCarouselInterval) {
                                 clearInterval(window.representativesCarouselInterval);
+                                window.representativesCarouselInterval = null;
                             }
                             
                             // Fonction pour changer de slide
                             const changeSlide = () => {
-                                if (totalSlides > 1) {
-                                    currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
-                                    console.log('Moving to slide', currentSlideIndex, 'of', totalSlides, 'on', width < 768 ? 'mobile' : 'desktop');
+                                const currentItems = representativesCarouselInner.querySelectorAll('.carousel-item');
+                                const actualTotalSlides = currentItems.length;
+                                
+                                if (actualTotalSlides > 1) {
+                                    currentSlideIndex = (currentSlideIndex + 1) % actualTotalSlides;
+                                    console.log('🔄 Moving to slide', currentSlideIndex + 1, 'of', actualTotalSlides, 'on', width < 768 ? 'mobile' : 'desktop');
                                     
-                                    const allItems = representativesCarouselInner.querySelectorAll('.carousel-item');
-                                    if (allItems.length > 0) {
-                                        // Changer manuellement les classes active
-                                        allItems.forEach((item, idx) => {
-                                            item.classList.remove('active');
-                                            if (idx === currentSlideIndex) {
-                                                item.classList.add('active');
-                                            }
-                                        });
-                                        
-                                        // Essayer aussi avec Bootstrap si disponible
-                                        if (window.representativesCarouselInstance) {
-                                            try {
-                                                window.representativesCarouselInstance.to(currentSlideIndex);
-                                            } catch(e) {
-                                                // Ignorer l'erreur, on a déjà changé manuellement
-                                            }
+                                    // Changer manuellement les classes active avec transition
+                                    currentItems.forEach((item, idx) => {
+                                        item.classList.remove('active');
+                                        if (idx === currentSlideIndex) {
+                                            item.classList.add('active');
                                         }
+                                    });
+                                    
+                                    // Essayer aussi avec Bootstrap si disponible
+                                    if (window.representativesCarouselInstance) {
+                                        try {
+                                            window.representativesCarouselInstance.to(currentSlideIndex);
+                                        } catch(e) {
+                                            console.log('Bootstrap to() failed, using manual class change');
+                                        }
+                                    }
+                                } else {
+                                    console.log('⚠️ Only one slide, stopping interval');
+                                    if (window.representativesCarouselInterval) {
+                                        clearInterval(window.representativesCarouselInterval);
+                                        window.representativesCarouselInterval = null;
                                     }
                                 }
                             };
                             
-                            // Démarrer l'intervalle
+                            // Démarrer l'intervalle immédiatement
                             window.representativesCarouselInterval = setInterval(changeSlide, 4000);
+                            console.log('✅ Carousel interval started, will change slide every 4 seconds');
                             
                             // Démarrer le cycle Bootstrap (peut ne pas fonctionner, d'où le mécanisme de secours)
-                            try {
-                                window.representativesCarouselInstance.cycle();
-                            } catch(e) {
-                                console.log('Bootstrap cycle() not working, using manual interval');
+                            if (window.representativesCarouselInstance) {
+                                try {
+                                    window.representativesCarouselInstance.cycle();
+                                    console.log('✅ Bootstrap cycle() started');
+                                } catch(e) {
+                                    console.log('⚠️ Bootstrap cycle() not working, using manual interval only');
+                                }
                             }
+                        } else {
+                            console.log('❌ Not enough slides for carousel:', actualSlides);
                         }
                     } catch(error) {
                         console.error('Error initializing carousel:', error);
