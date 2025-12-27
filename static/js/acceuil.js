@@ -176,6 +176,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const itemsPerSlide = getItemsPerSlide();
             const totalSlides = Math.ceil(totalRepresentatives / itemsPerSlide);
             
+            console.log('Reorganizing carousel:', {
+                totalRepresentatives,
+                itemsPerSlide,
+                totalSlides
+            });
+            
             // Vider le contenu actuel
             representativesCarouselInner.innerHTML = '';
             
@@ -196,7 +202,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         const tempDiv = document.createElement('div');
                         tempDiv.innerHTML = originalItems[j].html;
                         const representativeItem = tempDiv.firstElementChild;
-                        row.appendChild(representativeItem);
+                        if (representativeItem) {
+                            // S'assurer que les classes Bootstrap sont correctes
+                            representativeItem.className = representativeItem.className.replace(/col-\w+-\d+/g, '').trim();
+                            // Ajouter les classes appropriées selon la taille d'écran
+                            const width = window.innerWidth;
+                            if (width < 576) {
+                                representativeItem.classList.add('col-12');
+                            } else if (width < 768) {
+                                representativeItem.classList.add('col-6');
+                            } else if (width < 992) {
+                                representativeItem.classList.add('col-4');
+                            } else if (width < 1200) {
+                                representativeItem.classList.add('col-3');
+                            } else {
+                                representativeItem.classList.add('col-lg-2', 'col-md-4');
+                            }
+                            row.appendChild(representativeItem);
+                        }
                     }
                 }
                 
@@ -220,16 +243,68 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Réinitialiser le carousel seulement s'il y a plus d'un slide
                 if (window.representativesCarouselInstance) {
-                    window.representativesCarouselInstance.dispose();
+                    try {
+                        window.representativesCarouselInstance.dispose();
+                    } catch(e) {
+                        console.log('Error disposing carousel:', e);
+                    }
                 }
                 
-                window.representativesCarouselInstance = new bootstrap.Carousel(representativesCarousel, {
-                    interval: 4000,
-                    wrap: true,
-                    ride: 'carousel', // Activer l'auto-slide automatiquement
-                    pause: 'hover',
-                    touch: true // Activer le swipe sur mobile
-                });
+                // Attendre un peu pour que le DOM soit mis à jour
+                setTimeout(() => {
+                    try {
+                        // Vérifier que Bootstrap est disponible
+                        if (typeof bootstrap === 'undefined') {
+                            console.error('Bootstrap is not loaded');
+                            return;
+                        }
+                        
+                        window.representativesCarouselInstance = new bootstrap.Carousel(representativesCarousel, {
+                            interval: 4000,
+                            wrap: true,
+                            ride: 'carousel', // Activer l'auto-slide automatiquement
+                            pause: 'hover',
+                            touch: true // Activer le swipe sur mobile
+                        });
+                        
+                        // Forcer le démarrage du carousel
+                        if (window.representativesCarouselInstance) {
+                            // S'assurer que le premier slide est actif
+                            const firstItem = representativesCarouselInner.querySelector('.carousel-item');
+                            if (firstItem) {
+                                firstItem.classList.add('active');
+                            }
+                            
+                            // Démarrer le cycle
+                            window.representativesCarouselInstance.cycle();
+                            console.log('Carousel initialized and cycling with', totalSlides, 'slides');
+                            
+                            // Mécanisme de secours : forcer le défilement manuellement si nécessaire
+                            let currentSlide = 0;
+                            window.representativesCarouselInterval = setInterval(() => {
+                                if (window.representativesCarouselInstance) {
+                                    const items = representativesCarouselInner.querySelectorAll('.carousel-item');
+                                    if (items.length > 1) {
+                                        // Vérifier si le carousel fonctionne en vérifiant si le slide actif change
+                                        const activeItem = representativesCarouselInner.querySelector('.carousel-item.active');
+                                        if (activeItem) {
+                                            const activeIndex = Array.from(items).indexOf(activeItem);
+                                            // Si le slide actif n'a pas changé après 5 secondes, forcer le changement
+                                            if (activeIndex === currentSlide) {
+                                                currentSlide = (currentSlide + 1) % items.length;
+                                                window.representativesCarouselInstance.to(currentSlide);
+                                            } else {
+                                                currentSlide = activeIndex;
+                                            }
+                                        }
+                                    }
+                                }
+                            }, 5000);
+                        }
+                    } catch(error) {
+                        console.error('Error initializing carousel:', error);
+                    }
+                }, 200);
             } else {
                 // Masquer les contrôles si un seul slide
                 if (prevButton) {
@@ -243,8 +318,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Désactiver le carousel s'il n'y a qu'un seul slide
                 if (window.representativesCarouselInstance) {
-                    window.representativesCarouselInstance.dispose();
+                    try {
+                        window.representativesCarouselInstance.pause();
+                        window.representativesCarouselInstance.dispose();
+                    } catch(e) {
+                        console.log('Error disposing carousel:', e);
+                    }
                     window.representativesCarouselInstance = null;
+                }
+                
+                // Arrêter l'intervalle de secours
+                if (window.representativesCarouselInterval) {
+                    clearInterval(window.representativesCarouselInterval);
+                    window.representativesCarouselInterval = null;
                 }
             }
         }
