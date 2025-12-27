@@ -2170,6 +2170,44 @@ body {
     #representativesCarousel .carousel-track {
         transition: transform 0.4s ease-in-out;
     }
+
+    #representativesCarousel {
+        padding: 20px 10px !important;
+    }
+
+    #representativesCarousel .slide {
+        padding: 10px 0;
+    }
+
+    #representativesCarousel .slide .row {
+        margin: 0;
+        justify-content: center !important;
+    }
+
+    #representativesCarousel .slide [class*="col-"] {
+        padding: 0 5px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .representative-card {
+        padding: 20px 12px;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .representative-email {
+        font-size: 11px;
+        padding: 0 5px;
+    }
+
+    .representative-email a {
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+    }
 }
 
 /* Slide - chaque élément prend 100% de la largeur */
@@ -2182,6 +2220,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#representativesCarousel .slide .row {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#representativesCarousel .slide [class*="col-"] {
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 #representativesCarousel .carousel-inner {
@@ -2327,6 +2378,9 @@ body {
     transition: box-shadow 0.3s ease;
     height: 100%;
     border: 3px solid #1AA45A !important; /* Bordure verte par défaut */
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .representative-card:nth-child(2n) {
@@ -2384,17 +2438,25 @@ body {
     align-items: center;
     justify-content: center;
     gap: 6px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
 .representative-email i {
     font-size: 12px;
+    flex-shrink: 0;
 }
 
 .representative-email a {
     color: #1AA45A;
     text-decoration: none;
     transition: color 0.3s ease;
-    word-break: break-word;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    text-align: center;
 }
 
 .representative-email a:hover {
@@ -2509,11 +2571,36 @@ body {
     }
 
     #representativesCarousel {
-        padding: 20px 50px;
+        padding: 20px 15px;
+    }
+
+    #representativesCarousel .slide {
+        padding: 10px 0;
+    }
+
+    #representativesCarousel .slide .row {
+        margin: 0;
+        justify-content: center !important;
+    }
+
+    #representativesCarousel .slide [class*="col-"] {
+        padding: 0 10px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .representative-card {
         padding: 25px 15px;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+        overflow: hidden;
+        word-wrap: break-word;
+    }
+
+    .representative-card * {
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .representative-photo {
@@ -2530,12 +2617,19 @@ body {
     }
 
     .representative-email {
-        font-size: 12px;
+        font-size: 11px;
         margin-bottom: 12px;
+        padding: 0 5px;
     }
 
     .representative-email i {
+        font-size: 10px;
+    }
+
+    .representative-email a {
         font-size: 11px;
+        word-break: break-all;
+        overflow-wrap: anywhere;
     }
 
     .representative-prev,

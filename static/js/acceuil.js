@@ -64,17 +64,20 @@ document.addEventListener('DOMContentLoaded', function() {
             representativeItem.className = representativeItem.className.replace(/col-\w+-\d+/g, '').trim();
             const width = window.innerWidth;
             
-            if (width < 576) {
+            // Sur mobile, toujours col-12 pour un seul élément centré
+            if (width < 768) {
                 representativeItem.classList.add('col-12');
-            } else if (width < 768) {
-                representativeItem.classList.add('col-12', 'col-sm-10', 'col-md-8');
             } else if (width < 992) {
-                representativeItem.classList.add('col-12', 'col-md-8', 'col-lg-6');
+                representativeItem.classList.add('col-12', 'col-md-10', 'offset-md-1');
             } else if (width < 1200) {
-                representativeItem.classList.add('col-12', 'col-lg-8', 'col-xl-6');
+                representativeItem.classList.add('col-12', 'col-lg-10', 'offset-lg-1');
             } else {
-                representativeItem.classList.add('col-12', 'col-xl-8', 'col-xxl-6');
+                representativeItem.classList.add('col-12', 'col-xl-10', 'offset-xl-1');
             }
+            
+            // S'assurer que l'élément est centré et ne déborde pas
+            representativeItem.style.maxWidth = '100%';
+            representativeItem.style.boxSizing = 'border-box';
             
             row.appendChild(representativeItem);
         }
