@@ -168,25 +168,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const width = window.innerWidth;
             
             // Déterminer si on doit activer le slider
-            // Desktop: slider à partir de 5 éléments
-            // Mobile: slider à partir de 2 éléments
-            // Avec 1 élément par slide, on a besoin de plus d'un élément pour activer le slider
+            // Desktop: slider à partir de 5 éléments (inclus)
+            // Mobile: slider à partir de 2 éléments (inclus)
+            // Avec 1 élément par slide, chaque élément = 1 slide
             let needsSlider = false;
             if (width < 768) {
                 // Mobile/Tablet: slider à partir de 2 éléments
                 needsSlider = totalRepresentatives >= 2;
             } else {
-                // Desktop: slider à partir de 5 éléments
+                // Desktop: slider à partir de 5 éléments (5 éléments suffisent pour lancer le slide)
                 needsSlider = totalRepresentatives >= 5;
             }
             
             // Calculer le nombre de slides (1 élément par slide)
+            // Si needsSlider est true, chaque élément devient un slide
             const totalSlides = needsSlider ? totalRepresentatives : 1;
             
-            // Vérifier que le slider est vraiment nécessaire (plus d'un slide)
-            if (needsSlider && totalSlides <= 1) {
-                needsSlider = false;
-            }
+            // Le slider est nécessaire seulement si on a plus d'un slide
+            // Avec 5 éléments sur desktop, on aura 5 slides, donc needsSlider reste true
+            needsSlider = needsSlider && totalSlides > 1;
             
             console.log('Reorganizing carousel:', {
                 totalRepresentatives,
