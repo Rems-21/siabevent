@@ -177,15 +177,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const width = window.innerWidth;
             
             // Déterminer si on doit activer le slider
-            // Desktop: slider seulement si > 5 éléments
-            // Mobile: slider seulement si > 2 éléments
+            // Desktop: slider à partir de 5 éléments
+            // Mobile: slider à partir de 2 éléments
             let needsSlider = false;
             if (width < 768) {
-                // Mobile/Tablet: slider si plus de 2 éléments
-                needsSlider = totalRepresentatives > 2;
+                // Mobile/Tablet: slider à partir de 2 éléments
+                needsSlider = totalRepresentatives >= 2;
             } else {
-                // Desktop: slider si plus de 5 éléments
-                needsSlider = totalRepresentatives > 5;
+                // Desktop: slider à partir de 5 éléments
+                needsSlider = totalRepresentatives >= 5;
             }
             
             const totalSlides = needsSlider ? Math.ceil(totalRepresentatives / itemsPerSlide) : 1;
