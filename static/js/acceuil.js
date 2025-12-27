@@ -246,3 +246,53 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
 });
+
+// Statistics Counter Animation
+document.addEventListener('DOMContentLoaded', function() {
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    
+    if (statNumbers.length === 0) {
+        return;
+    }
+    
+    // Observer pour déclencher l'animation quand les stats sont visibles
+    const statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const statNumber = entry.target;
+                const target = parseInt(statNumber.getAttribute('data-target'));
+                animateCounter(statNumber, target);
+                statsObserver.unobserve(statNumber);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+    
+    // Observer chaque stat-number
+    statNumbers.forEach(statNumber => {
+        statsObserver.observe(statNumber);
+    });
+    
+    // Fonction pour animer le compteur
+    function animateCounter(element, target) {
+        const duration = 2000; // 2 secondes
+        const start = 0;
+        const increment = target / (duration / 16); // ~60fps
+        let current = start;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            
+            // Formater le nombre avec le préfixe "+"
+            const formatted = target >= 1000 
+                ? `+${Math.floor(current).toLocaleString()}` 
+                : `+${Math.floor(current)}`;
+            element.textContent = formatted;
+        }, 16);
+    }
+});

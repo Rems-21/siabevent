@@ -898,6 +898,8 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     grid-column: span 1;
+    opacity: 0;
+    transform: scale(0.8);
 }
 
 .stat-box:nth-child(2) {
@@ -950,6 +952,23 @@ body {
     transition: transform 0.3s ease;
     flex-shrink: 0;
     align-self: stretch;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.countdown-box.animate-in {
+    animation: fade-up-countdown 0.6s ease-out forwards;
+}
+
+@keyframes fade-up-countdown {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .countdown-box:hover {
@@ -2201,16 +2220,17 @@ body {
     .representative-email-icon {
         margin-bottom: 12px;
         display: flex !important;
+        min-height: 50px;
     }
 
     .email-icon-link {
-        width: 38px;
-        height: 38px;
+        width: 50px;
+        height: 50px;
         display: inline-flex !important;
     }
 
     .email-icon-link i {
-        font-size: 15px;
+        font-size: 20px;
         color: #ffffff !important;
     }
 }
@@ -2454,15 +2474,15 @@ body {
     width: 100%;
     position: relative;
     z-index: 100;
-    min-height: 45px;
+    min-height: 60px;
 }
 
 .email-icon-link {
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: #1AA45A !important;
     color: #ffffff !important;
@@ -2482,7 +2502,7 @@ body {
 }
 
 .email-icon-link i {
-    font-size: 18px;
+    font-size: 24px;
     color: #ffffff !important;
     display: block;
     line-height: 1;
@@ -2651,16 +2671,17 @@ body {
     .representative-email-icon {
         margin-bottom: 12px;
         display: flex !important;
+        min-height: 55px;
     }
 
     .email-icon-link {
-        width: 40px;
-        height: 40px;
+        width: 55px;
+        height: 55px;
         display: inline-flex !important;
     }
 
     .email-icon-link i {
-        font-size: 16px;
+        font-size: 22px;
         color: #ffffff !important;
     }
 
