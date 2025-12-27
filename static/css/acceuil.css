@@ -17,6 +17,12 @@
     opacity: 1;
 }
 
+/* Exclure stat-box et countdown-box de la transition générique */
+.stat-box.scroll-animate,
+.countdown-box.scroll-animate {
+    transition: none; /* Pas de transition, on utilise les animations @keyframes */
+}
+
 /* Fade Up Animation */
 .animate-fade-up {
     transform: translateY(50px);
@@ -126,9 +132,15 @@
 
 /* Enhanced animations for specific elements */
 .stat-box.animate-in {
-    animation: bounce-in 0.8s ease-out forwards;
-    opacity: 1;
-    transform: scale(1);
+    animation: bounce-in 0.8s ease-out forwards !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    transition: none !important; /* Désactiver la transition pendant l'animation */
+}
+
+/* Réactiver la transition après l'animation pour le hover */
+.stat-box.animate-in:hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .exhibitor-logo-box.animate-in {
@@ -898,10 +910,14 @@ body {
     padding: 30px 25px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     grid-column: span 1;
     opacity: 0;
     transform: scale(0.8);
+}
+
+/* Transition seulement pour le hover, pas pour l'animation */
+.stat-box:not(.animate-in) {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-box:nth-child(2) {
@@ -951,17 +967,27 @@ body {
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
     flex-shrink: 0;
     align-self: stretch;
     opacity: 0;
     transform: translateY(30px);
 }
 
+/* Transition seulement pour le hover, pas pour l'animation */
+.countdown-box:not(.animate-in) {
+    transition: transform 0.3s ease;
+}
+
 .countdown-box.animate-in {
-    animation: fade-up-countdown 0.6s ease-out forwards;
-    opacity: 1;
-    transform: translateY(0);
+    animation: fade-up-countdown 0.6s ease-out forwards !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important; /* Désactiver la transition pendant l'animation */
+}
+
+/* Réactiver la transition après l'animation pour le hover */
+.countdown-box.animate-in:hover {
+    transition: transform 0.3s ease;
 }
 
 @keyframes fade-up-countdown {

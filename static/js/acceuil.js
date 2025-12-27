@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Countdown Timer for SIAB 2026 - 25 juin 2026
+// Countdown Timer for SIAB 2026 - 25 juin 2026 à 00:00:00 (heure locale de Bruxelles)
 document.addEventListener('DOMContentLoaded', function() {
     const daysElement = document.getElementById('days');
     const hoursElement = document.getElementById('hours');
@@ -218,10 +218,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const secondsElement = document.getElementById('seconds');
     
     if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+        console.warn('Éléments du countdown non trouvés');
         return;
     }
     
-    const targetDate = new Date('2026-06-25T00:00:00');
+    // Date cible : 25 juin 2026 à 00:00:00 heure locale de Bruxelles (UTC+2 en été)
+    // Utiliser une date locale pour éviter les problèmes de timezone
+    const targetDate = new Date(2026, 5, 25, 0, 0, 0, 0); // Mois 5 = juin (0-indexé)
     
     function updateCountdown() {
         const now = new Date();
@@ -236,10 +239,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
         
-        daysElement.textContent = String(days).padStart(3, '0');
-        hoursElement.textContent = String(hours).padStart(2, '0');
-        minutesElement.textContent = String(minutes).padStart(2, '0');
-        secondsElement.textContent = String(seconds).padStart(2, '0');
+        if (daysElement) daysElement.textContent = String(days).padStart(3, '0');
+        if (hoursElement) hoursElement.textContent = String(hours).padStart(2, '0');
+        if (minutesElement) minutesElement.textContent = String(minutes).padStart(2, '0');
+        if (secondsElement) secondsElement.textContent = String(seconds).padStart(2, '0');
     }
     
     // Mettre à jour immédiatement puis toutes les secondes
@@ -252,6 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const statNumbers = document.querySelectorAll('.stat-number[data-target]');
     
     if (statNumbers.length === 0) {
+        console.warn('Aucun élément stat-number avec data-target trouvé');
         return;
     }
     
@@ -260,13 +264,33 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const statNumber = entry.target;
-                const target = parseInt(statNumber.getAttribute('data-target'));
+                const targetValue = statNumber.getAttribute('data-target');
+                
+                if (!targetValue) {
+                    console.warn('data-target manquant pour', statNumber);
+                    return;
+                }
+                
+                const target = parseInt(targetValue);
+                
+                if (isNaN(target)) {
+                    console.warn('Valeur data-target invalide:', targetValue);
+                    return;
+                }
+                
+                // Vérifier si l'animation n'a pas déjà été déclenchée
+                if (statNumber.dataset.animated === 'true') {
+                    return;
+                }
+                
+                statNumber.dataset.animated = 'true';
                 animateCounter(statNumber, target);
                 statsObserver.unobserve(statNumber);
             }
         });
     }, {
-        threshold: 0.5
+        threshold: 0.3, // Déclencher plus tôt
+        rootMargin: '0px 0px -50px 0px'
     });
     
     // Observer chaque stat-number
@@ -276,23 +300,35 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fonction pour animer le compteur
     function animateCounter(element, target) {
+        if (!element || !target) {
+            console.warn('Paramètres invalides pour animateCounter');
+            return;
+        }
+        
         const duration = 2000; // 2 secondes
         const start = 0;
-        const increment = target / (duration / 16); // ~60fps
+        const steps = 60; // Nombre de frames
+        const increment = target / steps;
         let current = start;
+        let frame = 0;
         
         const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
+            frame++;
+            current = (target / steps) * frame;
+            
+            if (current >= target || frame >= steps) {
                 current = target;
                 clearInterval(timer);
             }
             
             // Formater le nombre avec le préfixe "+"
             const formatted = target >= 1000 
-                ? `+${Math.floor(current).toLocaleString()}` 
+                ? `+${Math.floor(current).toLocaleString('fr-FR')}` 
                 : `+${Math.floor(current)}`;
-            element.textContent = formatted;
-        }, 16);
+            
+            if (element) {
+                element.textContent = formatted;
+            }
+        }, duration / steps);
     }
 });
