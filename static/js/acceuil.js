@@ -1,3 +1,87 @@
+// Countdown Timer for SIAB 2026
+document.addEventListener('DOMContentLoaded', function() {
+    // Countdown Timer - SIAB 2026: 25 juin 2026
+    const daysElement = document.getElementById('days');
+    const hoursElement = document.getElementById('hours');
+    const minutesElement = document.getElementById('minutes');
+    const secondsElement = document.getElementById('seconds');
+    
+    if (daysElement && hoursElement && minutesElement && secondsElement) {
+        const targetDate = new Date('2026-06-25T00:00:00');
+        
+        function updateCountdown() {
+            const now = new Date();
+            let diff = targetDate - now;
+            
+            if (diff < 0) {
+                // L'événement est passé
+                daysElement.textContent = '000';
+                hoursElement.textContent = '00';
+                minutesElement.textContent = '00';
+                secondsElement.textContent = '00';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            daysElement.textContent = String(days).padStart(3, '0');
+            hoursElement.textContent = String(hours).padStart(2, '0');
+            minutesElement.textContent = String(minutes).padStart(2, '0');
+            secondsElement.textContent = String(seconds).padStart(2, '0');
+        }
+        
+        // Mettre à jour immédiatement
+        updateCountdown();
+        
+        // Mettre à jour toutes les secondes
+        setInterval(updateCountdown, 1000);
+    }
+    
+    // Statistics Counter Animation
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    
+    function animateCounter(element, target, duration = 2000) {
+        const start = 0;
+        const increment = target / (duration / 16); // 60fps
+        let current = start;
+        const prefix = element.textContent.includes('+') ? '+' : '';
+        
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                element.textContent = prefix + Math.floor(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = prefix + target;
+            }
+        };
+        
+        updateCounter();
+    }
+    
+    // Observer pour déclencher l'animation quand les stats sont visibles
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                const target = parseInt(entry.target.getAttribute('data-target'));
+                if (!isNaN(target)) {
+                    animateCounter(entry.target, target);
+                }
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+    
+    statNumbers.forEach(stat => {
+        statsObserver.observe(stat);
+    });
+});
+
 // Representatives Carousel Management - Simple transform-based carousel
 document.addEventListener('DOMContentLoaded', function() {
     const representativesCarousel = document.getElementById('representativesCarousel');
