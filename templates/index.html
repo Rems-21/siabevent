@@ -498,6 +498,11 @@
                                                 </div>
                                             {% endfor %}
                                                 </div>
+                                            {% if representant.email %}
+                                            <a href="mailto:{{ representant.email }}" class="representative-email" title="Contacter {{ representant.nom }}">
+                                                <i class="fas fa-envelope"></i>
+                                            </a>
+                                            {% endif %}
                                             </div>
                                         </div>
                                 
