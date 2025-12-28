@@ -17,12 +17,6 @@
     opacity: 1;
 }
 
-/* Exclure stat-box et countdown-box de la transition générique */
-.stat-box.scroll-animate,
-.countdown-box.scroll-animate {
-    transition: none; /* Pas de transition, on utilise les animations @keyframes */
-}
-
 /* Fade Up Animation */
 .animate-fade-up {
     transform: translateY(50px);
@@ -132,15 +126,7 @@
 
 /* Enhanced animations for specific elements */
 .stat-box.animate-in {
-    animation: bounce-in 0.8s ease-out forwards !important;
-    opacity: 1 !important;
-    transform: scale(1) !important;
-    transition: none !important; /* Désactiver la transition pendant l'animation */
-}
-
-/* Réactiver la transition après l'animation pour le hover */
-.stat-box.animate-in:hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: bounce-in 0.8s ease-out forwards;
 }
 
 .exhibitor-logo-box.animate-in {
@@ -910,14 +896,8 @@ body {
     padding: 30px 25px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    grid-column: span 1;
-    opacity: 0;
-    transform: scale(0.8);
-}
-
-/* Transition seulement pour le hover, pas pour l'animation */
-.stat-box:not(.animate-in) {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    grid-column: span 1;
 }
 
 .stat-box:nth-child(2) {
@@ -967,38 +947,9 @@ body {
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
     flex-shrink: 0;
     align-self: stretch;
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-/* Transition seulement pour le hover, pas pour l'animation */
-.countdown-box:not(.animate-in) {
-    transition: transform 0.3s ease;
-}
-
-.countdown-box.animate-in {
-    animation: fade-up-countdown 0.6s ease-out forwards !important;
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-    transition: none !important; /* Désactiver la transition pendant l'animation */
-}
-
-/* Réactiver la transition après l'animation pour le hover */
-.countdown-box.animate-in:hover {
-    transition: transform 0.3s ease;
-}
-
-@keyframes fade-up-countdown {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .countdown-box:hover {
@@ -2219,50 +2170,6 @@ body {
     #representativesCarousel .carousel-track {
         transition: transform 0.4s ease-in-out;
     }
-
-    #representativesCarousel {
-        padding: 20px 10px !important;
-    }
-
-    #representativesCarousel .slide {
-        padding: 10px 0;
-    }
-
-    #representativesCarousel .slide .row {
-        margin: 0;
-        justify-content: center !important;
-    }
-
-    #representativesCarousel .slide [class*="col-"] {
-        padding: 0 5px;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .representative-card {
-        padding: 20px 12px;
-        max-width: 100%;
-        margin: 0 auto;
-        box-sizing: border-box;
-        overflow: hidden;
-    }
-
-    .representative-email-icon {
-        margin-bottom: 12px;
-        display: flex !important;
-        min-height: 50px;
-    }
-
-    .email-icon-link {
-        width: 50px;
-        height: 50px;
-        display: inline-flex !important;
-    }
-
-    .email-icon-link i {
-        font-size: 20px;
-        color: #ffffff !important;
-    }
 }
 
 /* Slide - chaque élément prend 100% de la largeur */
@@ -2275,19 +2182,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-#representativesCarousel .slide .row {
-    width: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#representativesCarousel .slide [class*="col-"] {
-    max-width: 100%;
-    box-sizing: border-box;
 }
 
 #representativesCarousel .carousel-inner {
@@ -2433,21 +2327,6 @@ body {
     transition: box-shadow 0.3s ease;
     height: 100%;
     border: 3px solid #1AA45A !important; /* Bordure verte par défaut */
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: visible;
-}
-
-.representative-card .representative-email-icon {
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: flex !important;
-}
-
-.representative-card .email-icon-link {
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: inline-flex !important;
 }
 
 .representative-card:nth-child(2n) {
@@ -2496,46 +2375,31 @@ body {
     font-weight: 500;
 }
 
-.representative-email-icon {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
+.representative-email {
+    font-size: 13px;
+    color: #1AA45A;
     margin-bottom: 15px;
-    width: 100%;
-    position: relative;
-    z-index: 100;
-    min-height: 60px;
-}
-
-.email-icon-link {
-    display: inline-flex !important;
+    font-weight: 500;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #1AA45A !important;
-    color: #ffffff !important;
+    gap: 6px;
+}
+
+.representative-email i {
+    font-size: 12px;
+}
+
+.representative-email a {
+    color: #1AA45A;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(26, 164, 90, 0.3);
-    position: relative;
-    z-index: 100;
-    flex-shrink: 0;
+    transition: color 0.3s ease;
+    word-break: break-word;
 }
 
-.email-icon-link:hover {
-    background: #D5373A;
-    color: #ffffff !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(213, 55, 58, 0.4);
-}
-
-.email-icon-link i {
-    font-size: 24px;
-    color: #ffffff !important;
-    display: block;
-    line-height: 1;
+.representative-email a:hover {
+    color: #D5373A;
+    text-decoration: underline;
 }
 
 .representative-countries {
@@ -2645,44 +2509,11 @@ body {
     }
 
     #representativesCarousel {
-        padding: 20px 15px;
-    }
-
-    #representativesCarousel .slide {
-        padding: 10px 0;
-    }
-
-    #representativesCarousel .slide .row {
-        margin: 0;
-        justify-content: center !important;
-    }
-
-    #representativesCarousel .slide [class*="col-"] {
-        padding: 0 10px;
-        max-width: 100%;
-        box-sizing: border-box;
+        padding: 20px 50px;
     }
 
     .representative-card {
         padding: 25px 15px;
-        max-width: 100%;
-        margin: 0 auto;
-        box-sizing: border-box;
-        overflow: visible;
-        word-wrap: break-word;
-    }
-
-    .representative-card * {
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .representative-card .representative-email-icon,
-    .representative-card .email-icon-link {
-        max-width: none;
-        visibility: visible !important;
-        opacity: 1 !important;
-        display: flex !important;
     }
 
     .representative-photo {
@@ -2698,21 +2529,13 @@ body {
         font-size: 13px;
     }
 
-    .representative-email-icon {
+    .representative-email {
+        font-size: 12px;
         margin-bottom: 12px;
-        display: flex !important;
-        min-height: 55px;
     }
 
-    .email-icon-link {
-        width: 55px;
-        height: 55px;
-        display: inline-flex !important;
-    }
-
-    .email-icon-link i {
-        font-size: 22px;
-        color: #ffffff !important;
+    .representative-email i {
+        font-size: 11px;
     }
 
     .representative-prev,
