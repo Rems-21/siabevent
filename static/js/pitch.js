@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Envoyer les données au backend
-            fetch('/api/submit-pitch/', {
+            fetch('/api/submit-prix/', {
                 method: 'POST',
                 body: formData,
                 headers: {

@@ -113,8 +113,8 @@ def submit_pitch(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=request.build_absolute_uri('/pitch-success') + f'?session_id={{CHECKOUT_SESSION_ID}}&candidature_id={candidature.id}',
-            cancel_url=request.build_absolute_uri('/pitch') + '?cancelled=true',
+            success_url=request.build_absolute_uri('/prix-success') + f'?session_id={{CHECKOUT_SESSION_ID}}&candidature_id={candidature.id}',
+            cancel_url=request.build_absolute_uri('/prix') + '?cancelled=true',
             customer_email=email,
             metadata={
                 'candidature_id': candidature.id,
