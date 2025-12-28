@@ -178,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Toujours activer le slider, peu importe le nombre d'éléments
     let currentIndex = 0;
     let autoSlideInterval = null;
+    let slideDirection = 1; // 1 pour aller vers la droite, -1 pour aller vers la gauche
     
     // Créer la structure du carousel avec track
     representativesCarouselInner.innerHTML = '';
@@ -218,22 +219,24 @@ document.addEventListener('DOMContentLoaded', function() {
         representativesCarouselInner.appendChild(slide);
     });
     
-    // Fonction pour mettre à jour le carousel avec boucle
+    // Fonction pour mettre à jour le carousel avec va-et-vient
     function updateCarousel() {
         const track = representativesCarouselInner;
         const maxIndex = totalRepresentatives - 1;
         
-        // Boucle infinie : si on dépasse, on revient au début/fin
+        // Limiter l'index pour le va-et-vient (pas de boucle brusque)
         if (currentIndex > maxIndex) {
-            currentIndex = 0;
+            currentIndex = maxIndex;
+            slideDirection = -1; // Changer de direction quand on arrive à la fin
         }
         if (currentIndex < 0) {
-            currentIndex = maxIndex;
+            currentIndex = 0;
+            slideDirection = 1; // Changer de direction quand on arrive au début
         }
         
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
         
-        // Les boutons sont toujours actifs car on boucle
+        // Les boutons sont toujours actifs
         if (prevButton) {
             prevButton.disabled = false;
             prevButton.style.opacity = '0.8';
@@ -252,6 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
         prevButton.removeAttribute('data-bs-slide');
         prevButton.addEventListener('click', () => {
             currentIndex--;
+            slideDirection = -1; // Mettre à jour la direction
             updateCarousel();
             // Réinitialiser l'auto-slide
             resetAutoSlide();
@@ -265,6 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
         nextButton.removeAttribute('data-bs-slide');
         nextButton.addEventListener('click', () => {
             currentIndex++;
+            slideDirection = 1; // Mettre à jour la direction
             updateCarousel();
             // Réinitialiser l'auto-slide
             resetAutoSlide();
@@ -279,10 +284,10 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoSlide();
     }
     
-    // Fonction pour démarrer l'auto-slide avec boucle
+    // Fonction pour démarrer l'auto-slide avec va-et-vient
     function startAutoSlide() {
         autoSlideInterval = setInterval(() => {
-            currentIndex++;
+            currentIndex += slideDirection;
             updateCarousel();
         }, 5000);
     }

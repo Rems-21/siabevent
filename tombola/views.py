@@ -8,6 +8,10 @@ from .models import ParticipationTombola
 import stripe
 import random
 import string
+import logging
+
+# Configuration du logger
+logger = logging.getLogger(__name__)
 
 # Configuration Stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -101,23 +105,35 @@ def stripe_webhook_tombola(request):
     payload = request.body
     sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
     
+    logger.info("Webhook reçu pour tombola")
+    
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
         )
-    except ValueError:
+        logger.info(f"Événement Stripe reçu: {event['type']}")
+    except ValueError as e:
+        logger.error(f"Invalid payload: {str(e)}")
         return JsonResponse({'error': 'Invalid payload'}, status=400)
-    except stripe.error.SignatureVerificationError:
+    except stripe.error.SignatureVerificationError as e:
+        logger.error(f"Invalid signature: {str(e)}")
         return JsonResponse({'error': 'Invalid signature'}, status=400)
+    except Exception as e:
+        logger.error(f"Erreur lors de la vérification du webhook: {str(e)}", exc_info=True)
+        return JsonResponse({'error': 'Webhook verification failed'}, status=400)
     
     # Gérer l'événement
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
         participation_id = session['metadata'].get('participation_id')
         
+        logger.info(f"checkout.session.completed - participation_id: {participation_id}")
+        
         if participation_id:
             try:
                 participation = ParticipationTombola.objects.get(id=participation_id)
+                logger.info(f"Participation trouvée: {participation.id} - Statut actuel: {participation.statut}")
+                
                 participation.statut = 'paid'
                 participation.date_paiement = timezone.now()
                 participation.stripe_payment_intent_id = session.get('payment_intent')
@@ -129,8 +145,16 @@ def stripe_webhook_tombola(request):
                 ])
                 
                 participation.save()
+                logger.info(f"Participation {participation.id} mise à jour avec succès - Statut: {participation.statut}")
+                
             except ParticipationTombola.DoesNotExist:
-                pass
+                logger.error(f"Participation {participation_id} non trouvée dans la base de données")
+            except Exception as e:
+                logger.error(f"Erreur lors de la mise à jour de la participation {participation_id}: {str(e)}", exc_info=True)
+        else:
+            logger.warning("Aucun participation_id dans les métadonnées de la session")
+    else:
+        logger.info(f"Événement non géré: {event['type']}")
     
     return JsonResponse({'status': 'success'})
 
@@ -148,7 +172,34 @@ def tombola_success(request):
         if participation_id:
             participation = ParticipationTombola.objects.get(id=participation_id)
             context['participation'] = participation
+            
+            # Vérification manuelle du statut Stripe si le webhook n'a pas fonctionné
+            if participation.statut == 'pending' and session_id:
+                try:
+                    logger.info(f"Vérification manuelle du paiement pour participation {participation_id}")
+                    session = stripe.checkout.Session.retrieve(session_id)
+                    if session.payment_status == 'paid':
+                        logger.info(f"Paiement confirmé manuellement pour participation {participation_id}")
+                        participation.statut = 'paid'
+                        participation.date_paiement = timezone.now()
+                        participation.stripe_payment_intent_id = session.payment_intent
+                        
+                        # Générer les numéros de tickets si pas déjà fait
+                        if not participation.numeros_tickets:
+                            participation.numeros_tickets = ','.join([
+                                ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+                                for _ in range(participation.nombre_tickets)
+                            ])
+                        
+                        participation.save()
+                        logger.info(f"Participation {participation_id} mise à jour manuellement avec succès")
+                        # Recharger l'objet pour avoir les dernières données
+                        participation.refresh_from_db()
+                        context['participation'] = participation
+                except Exception as e:
+                    logger.error(f"Erreur lors de la vérification manuelle: {str(e)}", exc_info=True)
     except ParticipationTombola.DoesNotExist:
+        logger.warning(f"Participation {participation_id} non trouvée")
         pass
     
     return render(request, 'tombola_success.html', context)

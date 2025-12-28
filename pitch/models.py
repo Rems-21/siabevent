@@ -25,13 +25,18 @@ class CandidaturePitch(models.Model):
     domaine_activite = models.CharField(max_length=200, verbose_name="Domaine d'activité")
     resume_executif = models.TextField(max_length=500, verbose_name="Résumé exécutif (pitch)")
     
-    # Financement et documents
-    financement_recherche = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Financement recherché (EUR)")
+    # Projets et documents
+    nombre_projets_realises = models.IntegerField(blank=True, null=True, verbose_name="Nombre de projets réalisés", help_text="De 1 à 25")
     lien_video = models.URLField(blank=True, verbose_name="Lien vidéo de présentation")
     
     # Documents (stockés en tant que fichiers)
-    document_pitch = models.FileField(upload_to='pitch_documents/', verbose_name="Document de Pitch")
-    business_plan = models.FileField(upload_to='pitch_documents/', verbose_name="Business Plan")
+    document_presentation = models.FileField(upload_to='pitch_documents/', blank=True, null=True, verbose_name="Document de présentation de l'entreprise")
+    logo = models.FileField(upload_to='pitch_documents/', blank=True, null=True, verbose_name="Logo de l'entreprise")
+    
+    # Champs de compatibilité (dépréciés, à supprimer après migration)
+    financement_recherche = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True, verbose_name="Financement recherché (EUR) - Déprécié")
+    document_pitch = models.FileField(upload_to='pitch_documents/', blank=True, null=True, verbose_name="Document de Pitch - Déprécié")
+    business_plan = models.FileField(upload_to='pitch_documents/', blank=True, null=True, verbose_name="Business Plan - Déprécié")
     
     # Acceptation
     declaration_acceptee = models.BooleanField(default=False, verbose_name="Déclaration acceptée")

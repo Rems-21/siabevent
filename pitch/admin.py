@@ -18,10 +18,10 @@ class CandidaturePitchAdmin(admin.ModelAdmin):
                       'pays_residence', 'pays_origine', 'pays_impact')
         }),
         ('Projet', {
-            'fields': ('nom_projet', 'domaine_activite', 'resume_executif', 'financement_recherche', 'lien_video')
+            'fields': ('nom_projet', 'domaine_activite', 'resume_executif', 'nombre_projets_realises', 'lien_video', 'financement_recherche')
         }),
         ('Documents', {
-            'fields': ('document_pitch', 'business_plan', 'display_documents', 'declaration_acceptee')
+            'fields': ('document_presentation', 'logo', 'document_pitch', 'business_plan', 'display_documents', 'declaration_acceptee')
         }),
         ('Paiement', {
             'fields': ('frais_dossier', 'statut', 'stripe_payment_intent_id', 'stripe_checkout_session_id'),
@@ -39,10 +39,15 @@ class CandidaturePitchAdmin(admin.ModelAdmin):
     
     def display_documents(self, obj):
         html = ""
+        if obj.document_presentation:
+            html += format_html('<p><strong>Document de présentation:</strong> <a href="{}" target="_blank">Télécharger</a></p>', obj.document_presentation.url)
+        if obj.logo:
+            html += format_html('<p><strong>Logo:</strong> <a href="{}" target="_blank">Télécharger</a></p>', obj.logo.url)
+        # Documents dépréciés (compatibilité)
         if obj.document_pitch:
-            html += format_html('<p><strong>Document Pitch:</strong> <a href="{}" target="_blank">Télécharger</a></p>', obj.document_pitch.url)
+            html += format_html('<p><strong>Document Pitch (ancien):</strong> <a href="{}" target="_blank">Télécharger</a></p>', obj.document_pitch.url)
         if obj.business_plan:
-            html += format_html('<p><strong>Business Plan:</strong> <a href="{}" target="_blank">Télécharger</a></p>', obj.business_plan.url)
+            html += format_html('<p><strong>Business Plan (ancien):</strong> <a href="{}" target="_blank">Télécharger</a></p>', obj.business_plan.url)
         return html if html else "Aucun document"
     display_documents.short_description = "Documents téléchargés"
     

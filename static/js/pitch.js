@@ -138,24 +138,93 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form submission
-    const forms = document.querySelectorAll('.pitch-form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+    const step2Form = document.querySelector('#step2 .pitch-form');
+    if (step2Form) {
+        step2Form.addEventListener('submit', function(e) {
             e.preventDefault();
-            if (currentStep === 2) {
-                alert('Votre candidature a été soumise avec succès !');
-                closeForm();
-                // Reset form
-                this.reset();
-                currentStep = 1;
-                document.getElementById('step1').classList.add('active');
-                document.getElementById('step2').classList.remove('active');
-                document.querySelector('[data-step="1"]').classList.add('active');
-                document.querySelector('[data-step="1"]').classList.remove('completed');
-                document.querySelector('[data-step="2"]').classList.remove('active');
+            
+            // Récupérer les données des deux étapes
+            const step1Form = document.querySelector('#step1 .pitch-form');
+            const formData = new FormData();
+            
+            // Données de l'étape 1
+            if (step1Form) {
+                const step1Inputs = step1Form.querySelectorAll('input, select, textarea');
+                step1Inputs.forEach(input => {
+                    if (input.name && input.value) {
+                        formData.append(input.name, input.value);
+                    }
+                });
             }
+            
+            // Données de l'étape 2
+            const step2Inputs = this.querySelectorAll('input, select, textarea');
+            step2Inputs.forEach(input => {
+                if (input.type === 'file' && input.files.length > 0) {
+                    formData.append(input.name, input.files[0]);
+                } else if (input.type === 'checkbox') {
+                    if (input.checked) {
+                        formData.append(input.name, 'on');
+                    }
+                } else if (input.name && input.value) {
+                    formData.append(input.name, input.value);
+                }
+            });
+            
+            // Désactiver le bouton de soumission
+            const submitBtn = this.querySelector('.btn-submit');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Traitement en cours...</span>';
+            }
+            
+            // Fonction pour récupérer le token CSRF
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            
+            // Envoyer les données au backend
+            fetch('/api/submit-pitch/', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.checkout_url) {
+                    // Rediriger vers Stripe Checkout
+                    window.location.href = data.checkout_url;
+                } else {
+                    alert(data.message || 'Une erreur est survenue. Veuillez réessayer.');
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Envoyer votre Candidature';
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Une erreur est survenue. Veuillez réessayer.');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Envoyer votre Candidature';
+                }
+            });
         });
-    });
+    }
 
     // Close modal on outside click
     const modal = document.getElementById('formModal');
