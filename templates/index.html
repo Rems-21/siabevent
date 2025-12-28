@@ -490,12 +490,6 @@
                                             </div>
                                         <h3 class="representative-name">{{ representant.nom }}</h3>
                                         <p class="representative-title">{{ representant.titre }}</p>
-                                        {% if representant.email %}
-                                        <p class="representative-email">
-                                            <i class="fas fa-envelope"></i>
-                                            <a href="mailto:{{ representant.email }}">{{ representant.email }}</a>
-                                        </p>
-                                        {% endif %}
                                             <div class="representative-countries">
                                             {% for pays in representant.pays.all %}
                                                 <div class="country-item">
