@@ -2327,6 +2327,8 @@ body {
     transition: box-shadow 0.3s ease;
     height: 100%;
     border: 3px solid #1AA45A !important; /* Bordure verte par défaut */
+    position: relative;
+    overflow: visible;
 }
 
 .representative-card:nth-child(2n) {
@@ -2369,33 +2371,37 @@ body {
 }
 
 .representative-email {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: #000000;
-    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    background: #D5373A !important;
+    color: #ffffff !important;
     border-radius: 50%;
     margin-top: 15px;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(213, 55, 58, 0.5);
     position: relative;
-    border: 2px solid #ffffff;
+    z-index: 10;
+    border: 3px solid #ffffff;
+    flex-shrink: 0;
 }
 
 .representative-email:hover {
-    background: #D5373A;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(213, 55, 58, 0.5);
-    color: #ffffff;
+    background: #000000 !important;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    color: #ffffff !important;
     border-color: #ffffff;
 }
 
 .representative-email i {
-    font-size: 18px;
-    color: #ffffff;
+    font-size: 20px !important;
+    color: #ffffff !important;
+    z-index: 11;
+    position: relative;
 }
 
 .representative-title {
