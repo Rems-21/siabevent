@@ -138,11 +138,15 @@ def stripe_webhook_tombola(request):
                 participation.date_paiement = timezone.now()
                 participation.stripe_payment_intent_id = session.get('payment_intent')
                 
-                # Générer les numéros de tickets
-                participation.numeros_tickets = ','.join([
-                    ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
-                    for _ in range(participation.nombre_tickets)
-                ])
+                # Générer les numéros de tickets si pas déjà fait
+                if not participation.numeros_tickets:
+                    participation.numeros_tickets = ','.join([
+                        ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+                        for _ in range(participation.nombre_tickets)
+                    ])
+                    logger.info(f"Numéros de tickets générés pour participation {participation.id}: {participation.numeros_tickets}")
+                else:
+                    logger.info(f"Numéros de tickets déjà existants pour participation {participation.id}, pas de regénération")
                 
                 participation.save()
                 logger.info(f"Participation {participation.id} mise à jour avec succès - Statut: {participation.statut}")
@@ -190,6 +194,9 @@ def tombola_success(request):
                                 ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
                                 for _ in range(participation.nombre_tickets)
                             ])
+                            logger.info(f"Numéros de tickets générés manuellement pour participation {participation.id}: {participation.numeros_tickets}")
+                        else:
+                            logger.info(f"Numéros de tickets déjà existants pour participation {participation.id}, pas de regénération")
                         
                         participation.save()
                         logger.info(f"Participation {participation_id} mise à jour manuellement avec succès")
