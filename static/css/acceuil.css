@@ -249,9 +249,11 @@ body {
 }
 
 .hero-organizer-label {
-    font-size: 11px;
-    font-weight: 600;
-    opacity: 0.85;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    opacity: 1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .hero-organizer-country {
@@ -1267,7 +1269,7 @@ body {
     }
 
     .hero-organizer-label {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .hero-organizer-country {
