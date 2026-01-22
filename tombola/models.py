@@ -1,4 +1,6 @@
 from django.db import models
+import random
+import string
 
 class ParticipationTombola(models.Model):
     """Modèle pour les participations à la tombola"""
@@ -30,7 +32,7 @@ class ParticipationTombola(models.Model):
     stripe_payment_intent_id = models.CharField(max_length=255, blank=True, null=True)
     stripe_checkout_session_id = models.CharField(max_length=255, blank=True, null=True)
     
-    # Numéros de tickets (générés après paiement)
+    # Numéros de tickets (générés à l'inscription)
     numeros_tickets = models.TextField(blank=True, help_text="Numéros de tickets séparés par des virgules")
     
     # Métadonnées
@@ -46,7 +48,19 @@ class ParticipationTombola(models.Model):
         lot_display = self.get_lot_display()
         return f"{self.nom} {self.prenom} - {lot_display} - {self.nombre_tickets} ticket(s) - {self.statut}"
     
+    def generer_numeros_tickets(self):
+        """Générer les numéros de tickets uniques"""
+        if not self.numeros_tickets:
+            self.numeros_tickets = ','.join([
+                ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+                for _ in range(self.nombre_tickets)
+            ])
+    
     def save(self, *args, **kwargs):
         # Calculer le montant total
         self.montant_total = self.nombre_tickets * self.prix_unitaire
+        
+        # Générer les numéros de tickets à l'inscription
+        self.generer_numeros_tickets()
+        
         super().save(*args, **kwargs)

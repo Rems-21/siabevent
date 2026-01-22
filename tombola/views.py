@@ -134,19 +134,13 @@ def stripe_webhook_tombola(request):
                 participation = ParticipationTombola.objects.get(id=participation_id)
                 logger.info(f"Participation trouvée: {participation.id} - Statut actuel: {participation.statut}")
                 
+                # Mettre à jour le statut et la date de paiement
                 participation.statut = 'paid'
                 participation.date_paiement = timezone.now()
                 participation.stripe_payment_intent_id = session.get('payment_intent')
                 
-                # Générer les numéros de tickets si pas déjà fait
-                if not participation.numeros_tickets:
-                    participation.numeros_tickets = ','.join([
-                        ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
-                        for _ in range(participation.nombre_tickets)
-                    ])
-                    logger.info(f"Numéros de tickets générés pour participation {participation.id}: {participation.numeros_tickets}")
-                else:
-                    logger.info(f"Numéros de tickets déjà existants pour participation {participation.id}, pas de regénération")
+                # Les numéros de tickets sont déjà générés à l'inscription
+                logger.info(f"Numéros de tickets pour participation {participation.id}: {participation.numeros_tickets}")
                 
                 participation.save()
                 logger.info(f"Participation {participation.id} mise à jour avec succès - Statut: {participation.statut}")
@@ -188,15 +182,8 @@ def tombola_success(request):
                         participation.date_paiement = timezone.now()
                         participation.stripe_payment_intent_id = session.payment_intent
                         
-                        # Générer les numéros de tickets si pas déjà fait
-                        if not participation.numeros_tickets:
-                            participation.numeros_tickets = ','.join([
-                                ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
-                                for _ in range(participation.nombre_tickets)
-                            ])
-                            logger.info(f"Numéros de tickets générés manuellement pour participation {participation.id}: {participation.numeros_tickets}")
-                        else:
-                            logger.info(f"Numéros de tickets déjà existants pour participation {participation.id}, pas de regénération")
+                        # Les numéros de tickets sont déjà générés à l'inscription
+                        logger.info(f"Numéros de tickets pour participation {participation_id}: {participation.numeros_tickets}")
                         
                         participation.save()
                         logger.info(f"Participation {participation_id} mise à jour manuellement avec succès")
