@@ -5,6 +5,7 @@ class Paneliste(models.Model):
     # Informations personnelles
     nom = models.CharField(max_length=100, verbose_name="Nom")
     prenom = models.CharField(max_length=100, verbose_name="Prénom")
+    photo = models.ImageField(upload_to='panelistes/', blank=True, null=True, verbose_name="Photo")
     pays_origine = models.CharField(max_length=100, verbose_name="Pays d'origine")
     telephone = models.CharField(max_length=50, verbose_name="Téléphone")
     email = models.EmailField(verbose_name="Email")

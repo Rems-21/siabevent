@@ -105,56 +105,50 @@ def stripe_webhook_tombola(request):
     payload = request.body
     sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
     
-    logger.info("Webhook reçu pour tombola")
+    logger.info("🔔 Webhook reçu pour tombola")
     
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
         )
-        logger.info(f"Événement Stripe reçu: {event['type']}")
+        logger.info(f"✅ Signature validée - Event: {event['type']}")
     except ValueError as e:
-        logger.error(f"Invalid payload: {str(e)}")
-        return JsonResponse({'error': 'Invalid payload'}, status=400)
+        logger.error(f"❌ Erreur payload webhook: {str(e)}")
+        return JsonResponse({'status': 'error'}, status=400)
     except stripe.error.SignatureVerificationError as e:
-        logger.error(f"Invalid signature: {str(e)}")
-        return JsonResponse({'error': 'Invalid signature'}, status=400)
-    except Exception as e:
-        logger.error(f"Erreur lors de la vérification du webhook: {str(e)}", exc_info=True)
-        return JsonResponse({'error': 'Webhook verification failed'}, status=400)
+        logger.error(f"❌ Erreur signature webhook: {str(e)}")
+        return JsonResponse({'status': 'error'}, status=400)
     
-    # Gérer l'événement
+    # ✅ GÉRER L'ÉVÉNEMENT CHECKOUT.SESSION.COMPLETED
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
         participation_id = session['metadata'].get('participation_id')
         
-        logger.info(f"checkout.session.completed - participation_id: {participation_id}")
+        logger.info(f"💰 checkout.session.completed reçu - participation_id: {participation_id}")
         
         if participation_id:
             try:
                 participation = ParticipationTombola.objects.get(id=participation_id)
-                logger.info(f"Participation trouvée: {participation.id} - Statut actuel: {participation.statut}")
+                logger.info(f"📝 Participation trouvée: {participation.id}")
                 
-                # Mettre à jour le statut et la date de paiement
+                # ✅ METTRE À JOUR LE STATUT À "PAID"
+                # Cela déclenchera la méthode save() qui génèrera les tickets
                 participation.statut = 'paid'
                 participation.date_paiement = timezone.now()
                 participation.stripe_payment_intent_id = session.get('payment_intent')
+                participation.save()  # ← Les tickets sont générés ICI !
                 
-                # Les numéros de tickets sont déjà générés à l'inscription
-                logger.info(f"Numéros de tickets pour participation {participation.id}: {participation.numeros_tickets}")
-                
-                participation.save()
-                logger.info(f"Participation {participation.id} mise à jour avec succès - Statut: {participation.statut}")
+                logger.info(f"✅ STATUT MISE À JOUR: {participation.id} → 'paid'")
+                logger.info(f"✅ Tickets générés: {participation.numeros_tickets}")
                 
             except ParticipationTombola.DoesNotExist:
-                logger.error(f"Participation {participation_id} non trouvée dans la base de données")
+                logger.error(f"❌ Participation {participation_id} NON TROUVÉE!")
             except Exception as e:
-                logger.error(f"Erreur lors de la mise à jour de la participation {participation_id}: {str(e)}", exc_info=True)
-        else:
-            logger.warning("Aucun participation_id dans les métadonnées de la session")
-    else:
-        logger.info(f"Événement non géré: {event['type']}")
+                logger.error(f"❌ Erreur critique webhook: {str(e)}", exc_info=True)
     
+    # Toujours retourner 200 à Stripe
     return JsonResponse({'status': 'success'})
+
 
 def tombola_success(request):
     """Page de succès après paiement"""
@@ -162,38 +156,49 @@ def tombola_success(request):
     session_id = request.GET.get('session_id')
     
     context = {
+        'participation': None,
         'participation_id': participation_id,
-        'session_id': session_id
+        'session_id': session_id,
+        'statut_paiement': None
     }
     
-    try:
-        if participation_id:
+    if participation_id:
+        try:
             participation = ParticipationTombola.objects.get(id=participation_id)
-            context['participation'] = participation
+            logger.info(f"📄 Page success - Participation: {participation.id}, Statut: {participation.statut}")
             
-            # Vérification manuelle du statut Stripe si le webhook n'a pas fonctionné
+            # ✅ Si statut est pending, vérifier auprès de Stripe
             if participation.statut == 'pending' and session_id:
                 try:
-                    logger.info(f"Vérification manuelle du paiement pour participation {participation_id}")
+                    logger.info(f"🔍 Vérification manuelle du paiement pour session {session_id}")
                     session = stripe.checkout.Session.retrieve(session_id)
+                    
                     if session.payment_status == 'paid':
-                        logger.info(f"Paiement confirmé manuellement pour participation {participation_id}")
+                        logger.info(f"✅ Paiement confirmé par Stripe - Mise à jour...")
                         participation.statut = 'paid'
                         participation.date_paiement = timezone.now()
                         participation.stripe_payment_intent_id = session.payment_intent
+                        participation.save()  # ← Les tickets sont générés ICI aussi !
                         
-                        # Les numéros de tickets sont déjà générés à l'inscription
-                        logger.info(f"Numéros de tickets pour participation {participation_id}: {participation.numeros_tickets}")
-                        
-                        participation.save()
-                        logger.info(f"Participation {participation_id} mise à jour manuellement avec succès")
-                        # Recharger l'objet pour avoir les dernières données
-                        participation.refresh_from_db()
-                        context['participation'] = participation
+                        logger.info(f"✅ STATUT MISE À JOUR (fallback): {participation.id} → 'paid'")
+                        logger.info(f"✅ Tickets générés: {participation.numeros_tickets}")
+                    else:
+                        logger.warning(f"⏳ Paiement en cours - Status: {session.payment_status}")
+                
                 except Exception as e:
-                    logger.error(f"Erreur lors de la vérification manuelle: {str(e)}", exc_info=True)
-    except ParticipationTombola.DoesNotExist:
-        logger.warning(f"Participation {participation_id} non trouvée")
-        pass
+                    logger.error(f"❌ Erreur vérification manuelle: {str(e)}")
+            
+            # ✅ AJOUTER LA PARTICIPATION AU CONTEXTE
+            context['participation'] = participation
+            context['statut_paiement'] = participation.statut
+            
+            logger.info(f"✅ Context mise à jour - Statut: {context['statut_paiement']}")
+            
+        except ParticipationTombola.DoesNotExist:
+            logger.warning(f"⚠️ Participation {participation_id} non trouvée")
+            context['erreur'] = "Participation introuvable"
+        except Exception as e:
+            logger.error(f"❌ Erreur page success: {str(e)}", exc_info=True)
+            context['erreur'] = "Erreur lors du traitement"
     
     return render(request, 'tombola_success.html', context)

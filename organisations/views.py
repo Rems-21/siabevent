@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from panelistes.models import Paneliste
 from .models import Partenaire, Exposant, Representant
 
 def index_page(request):
@@ -20,3 +21,15 @@ def index_page(request):
     }
     
     return render(request, 'index.html', context)
+
+def participant_page(request):
+    """Vue pour la page participant avec données dynamiques."""
+    partenaires = Partenaire.objects.filter(actif=True)
+    exposants = Exposant.objects.filter(actif=True)
+    conferenciers = Paneliste.objects.filter(statut='accepte')
+    context = {
+        'partenaires': partenaires,
+        'exposants': exposants,
+        'conferenciers': conferenciers,
+    }
+    return render(request, 'participant.html', context)

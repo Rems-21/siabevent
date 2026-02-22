@@ -12,7 +12,7 @@ class PanelisteAdmin(admin.ModelAdmin):
     
     fieldsets = (
         ('Informations personnelles', {
-            'fields': ('nom', 'prenom', 'pays_origine', 'telephone', 'email')
+            'fields': ('nom', 'prenom', 'photo', 'pays_origine', 'telephone', 'email')
         }),
         ('CV et Intervention', {
             'fields': ('cv_fichier', 'cv_link', 'theme', 'message')

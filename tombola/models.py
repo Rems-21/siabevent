@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 import random
 import string
 
@@ -55,12 +56,25 @@ class ParticipationTombola(models.Model):
                 ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
                 for _ in range(self.nombre_tickets)
             ])
-    
+
     def save(self, *args, **kwargs):
-        # Calculer le montant total
-        self.montant_total = self.nombre_tickets * self.prix_unitaire
-        
-        # Générer les numéros de tickets à l'inscription
-        self.generer_numeros_tickets()
+        """Générer les numéros de tickets SEULEMENT si le statut passe à 'paid'"""
+        # Vérifier si c'est une mise à jour (l'objet existe déjà)
+        if self.pk:
+            # Récupérer l'instance précédente
+            old_instance = ParticipationTombola.objects.get(pk=self.pk)
+            
+            # Si le statut passe de 'pending' à 'paid', générer les tickets
+            if old_instance.statut == 'pending' and self.statut == 'paid':
+                if not self.numeros_tickets:  # Générer seulement s'ils n'existent pas
+                    self.generer_numeros_tickets()
         
         super().save(*args, **kwargs)
+    
+    def generer_numeros_tickets(self):
+        """Génère les numéros de tickets aléatoires"""
+        tickets = []
+        for _ in range(self.nombre_tickets):
+            ticket = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
+            tickets.append(ticket)
+        self.numeros_tickets = ','.join(tickets)

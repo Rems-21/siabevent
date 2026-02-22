@@ -145,20 +145,41 @@
                     <span class="info-value">{{ participation.email }}</span>
                 </div>
                 <div class="info-row">
+                    <span class="info-label"><i class="fas fa-globe"></i> Pays :</span>
+                    <span class="info-value">{{ participation.pays }}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label"><i class="fas fa-gift"></i> Lot :</span>
+                    <span class="info-value">{{ participation.get_lot_display }}</span>
+                </div>
+                <div class="info-row">
                     <span class="info-label"><i class="fas fa-ticket-alt"></i> Nombre de tickets :</span>
                     <span class="info-value">{{ participation.nombre_tickets }}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label"><i class="fas fa-euro-sign"></i> Montant payé :</span>
-                    <span class="info-value">{{ participation.montant_total }} €</span>
+                    <span class="info-value"><strong style="color: #1AA45A;">{{ participation.montant_total }} €</strong></span>
                 </div>
-                {% if participation.numeros_tickets %}
                 <div class="info-row">
-                    <span class="info-label"><i class="fas fa-hashtag"></i> Vos numéros :</span>
-                    <span class="info-value">{{ participation.numeros_tickets }}</span>
+                    <span class="info-label"><i class="fas fa-check-circle"></i> Statut :</span>
+                    <span class="info-value"><strong style="color: #1AA45A;">✅ Payé</strong></span>
                 </div>
-                {% endif %}
             </div>
+            
+            {% if participation.numeros_tickets %}
+            <div style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 15px; padding: 30px; margin: 30px 0; border-left: 5px solid #1AA45A;">
+                <h3 style="color: #1AA45A; margin-bottom: 20px; text-align: center;">🎟️ Vos numéros de tickets</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    {% for ticket in participation.numeros_tickets|split:"," %}
+                    <div style="background: white; padding: 15px; border-radius: 10px; border: 2px solid #1AA45A; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                        <div style="font-size: 11px; color: #666; margin-bottom: 8px; font-weight: bold;">TICKET</div>
+                        <div style="font-size: 18px; font-weight: bold; color: #e74c3c; letter-spacing: 2px;">{{ ticket }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <p style="color: #d9534f; font-weight: bold; margin-top: 20px; text-align: center;">⚠️ Conservez vos numéros pour la tombola SIAB 2026</p>
+            </div>
+            {% endif %}
             {% endif %}
             
             <div>
