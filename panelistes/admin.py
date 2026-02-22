@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Paneliste
@@ -26,6 +27,12 @@ class PanelisteAdmin(admin.ModelAdmin):
     )
     
     actions = ['marquer_accepte', 'marquer_refuse', 'marquer_en_attente']
+
+    formfield_overrides = {
+        forms.TimeField: {
+            'widget': forms.TimeInput(attrs={'type': 'text', 'placeholder': 'HH:MM'})
+        },
+    }
     
     def cv_link(self, obj):
         if obj.cv_fichier:

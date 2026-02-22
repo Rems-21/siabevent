@@ -159,6 +159,33 @@ body {
     color: inherit;
 }
 
+.speaker-card .speaker-name,
+.speaker-card .speaker-meta,
+.speaker-card .speaker-theme {
+    text-decoration: none;
+}
+
+.speaker-details-btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: #1AA45A;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.speaker-details-btn:hover {
+    background: #158a4f;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
 .speaker-initials {
     width: 64px;
     height: 64px;

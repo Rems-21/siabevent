@@ -119,20 +119,19 @@
                         {% if conferenciers %}
                             {% for conferencier in conferenciers %}
                                 <div class="col-lg-4 col-md-6">
-                                    <a class="speaker-link" href="{% url 'conferencier_detail' conferencier.id %}">
-                                        <div class="speaker-card">
-                                            {% if conferencier.photo %}
-                                                <img src="{{ conferencier.photo.url }}" alt="{{ conferencier.prenom }} {{ conferencier.nom }}" class="speaker-photo">
-                                            {% else %}
-                                                <div class="speaker-initials">
-                                                    {{ conferencier.prenom|first }}{{ conferencier.nom|first }}
-                                                </div>
-                                            {% endif %}
-                                            <h3 class="speaker-name">{{ conferencier.prenom }} {{ conferencier.nom }}</h3>
-                                            <p class="speaker-meta">{{ conferencier.pays_origine }}</p>
-                                            <p class="speaker-theme">{{ conferencier.theme }}</p>
-                                        </div>
-                                    </a>
+                                    <div class="speaker-card">
+                                        {% if conferencier.photo %}
+                                            <img src="{{ conferencier.photo.url }}" alt="{{ conferencier.prenom }} {{ conferencier.nom }}" class="speaker-photo">
+                                        {% else %}
+                                            <div class="speaker-initials">
+                                                {{ conferencier.prenom|first }}{{ conferencier.nom|first }}
+                                            </div>
+                                        {% endif %}
+                                        <h3 class="speaker-name">{{ conferencier.prenom }} {{ conferencier.nom }}</h3>
+                                        <p class="speaker-meta">{{ conferencier.pays_origine }}</p>
+                                        <p class="speaker-theme">{{ conferencier.theme }}</p>
+                                        <a class="speaker-details-btn" href="{% url 'conferencier_detail' conferencier.id %}">Détails</a>
+                                    </div>
                                 </div>
                             {% endfor %}
                         {% else %}
