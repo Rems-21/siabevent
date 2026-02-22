@@ -14,8 +14,11 @@ class PanelisteAdmin(admin.ModelAdmin):
         ('Informations personnelles', {
             'fields': ('nom', 'prenom', 'photo', 'pays_origine', 'telephone', 'email')
         }),
-        ('CV et Intervention', {
-            'fields': ('cv_fichier', 'cv_link', 'theme', 'message')
+        ('CV et Présentation', {
+            'fields': ('cv_fichier', 'cv_link', 'theme', 'resume_presentation', 'bio')
+        }),
+        ('Planification', {
+            'fields': ('date_presentation', 'heure_presentation', 'duree_presentation')
         }),
         ('Administration', {
             'fields': ('statut', 'notes_internes', 'date_candidature')

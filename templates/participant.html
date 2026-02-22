@@ -31,7 +31,7 @@
     <section class="participant-hero">
         <div class="container">
             <div class="participant-hero-card">
-                <h1 class="participant-title">Participant</h1>
+                <h1 class="participant-title">Participants</h1>
                 <p class="participant-subtitle">Sponsors, exposants et conférenciers du SIAB 2026</p>
             </div>
         </div>
@@ -119,18 +119,20 @@
                         {% if conferenciers %}
                             {% for conferencier in conferenciers %}
                                 <div class="col-lg-4 col-md-6">
-                                    <div class="speaker-card">
-                                        {% if conferencier.photo %}
-                                            <img src="{{ conferencier.photo.url }}" alt="{{ conferencier.prenom }} {{ conferencier.nom }}" class="speaker-photo">
-                                        {% else %}
-                                            <div class="speaker-initials">
-                                                {{ conferencier.prenom|first }}{{ conferencier.nom|first }}
-                                            </div>
-                                        {% endif %}
-                                        <h3 class="speaker-name">{{ conferencier.prenom }} {{ conferencier.nom }}</h3>
-                                        <p class="speaker-meta">{{ conferencier.pays_origine }}</p>
-                                        <p class="speaker-theme">{{ conferencier.theme }}</p>
-                                    </div>
+                                    <a class="speaker-link" href="{% url 'conferencier_detail' conferencier.id %}">
+                                        <div class="speaker-card">
+                                            {% if conferencier.photo %}
+                                                <img src="{{ conferencier.photo.url }}" alt="{{ conferencier.prenom }} {{ conferencier.nom }}" class="speaker-photo">
+                                            {% else %}
+                                                <div class="speaker-initials">
+                                                    {{ conferencier.prenom|first }}{{ conferencier.nom|first }}
+                                                </div>
+                                            {% endif %}
+                                            <h3 class="speaker-name">{{ conferencier.prenom }} {{ conferencier.nom }}</h3>
+                                            <p class="speaker-meta">{{ conferencier.pays_origine }}</p>
+                                            <p class="speaker-theme">{{ conferencier.theme }}</p>
+                                        </div>
+                                    </a>
                                 </div>
                             {% endfor %}
                         {% else %}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIAB - {{ conferencier.prenom }} {{ conferencier.nom }}</title>
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logo.png' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/logo.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/top-banner.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/scroll-to-top.css' %}">
+    <link rel="stylesheet" href="{% static 'css/conferencier_detail.css' %}">
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <button class="scroll-to-top" aria-label="Retour en haut de la page">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <section class="speaker-hero">
+        <div class="container">
+            <div class="speaker-hero-card">
+                {% if conferencier.photo %}
+                    <img src="{{ conferencier.photo.url }}" alt="{{ conferencier.prenom }} {{ conferencier.nom }}" class="speaker-photo-large">
+                {% endif %}
+                <div class="speaker-hero-text">
+                    <h1 class="speaker-name">{{ conferencier.prenom }} {{ conferencier.nom }}</h1>
+                    <p class="speaker-country">{{ conferencier.pays_origine }}</p>
+                    <p class="speaker-theme">{{ conferencier.theme }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="speaker-details-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-7">
+                    <div class="detail-card">
+                        <h2 class="detail-title">Résumé de la présentation</h2>
+                        <p class="detail-text">{{ conferencier.resume_presentation }}</p>
+                    </div>
+                    <div class="detail-card">
+                        <h2 class="detail-title">Biographie</h2>
+                        <p class="detail-text">{{ conferencier.bio }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="detail-card highlight-card">
+                        <h2 class="detail-title">Informations de présentation</h2>
+                        <div class="detail-info">
+                            <div class="info-row">
+                                <span class="info-label">Date</span>
+                                <span class="info-value">
+                                    {% if conferencier.date_presentation %}
+                                        {{ conferencier.date_presentation|date:"d/m/Y" }}
+                                    {% else %}
+                                        À confirmer
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Heure</span>
+                                <span class="info-value">
+                                    {% if conferencier.heure_presentation %}
+                                        {{ conferencier.heure_presentation|time:"H:i" }}
+                                    {% else %}
+                                        À confirmer
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Durée</span>
+                                <span class="info-value">
+                                    {% if conferencier.duree_presentation %}
+                                        {{ conferencier.duree_presentation }} min
+                                    {% else %}
+                                        À confirmer
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'participant' %}" class="back-link">← Retour aux conférenciers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'includes/footer.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/scroll-to-top.js' %}"></script>
+</body>
+</html>

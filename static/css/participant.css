@@ -149,6 +149,16 @@ body {
     text-align: center;
 }
 
+.speaker-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.speaker-link:hover {
+    color: inherit;
+}
+
 .speaker-initials {
     width: 64px;
     height: 64px;

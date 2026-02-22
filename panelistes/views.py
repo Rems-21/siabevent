@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
 from .models import Paneliste
@@ -20,12 +20,16 @@ def submit_paneliste(request):
             telephone=request.POST.get('telephone'),
             email=request.POST.get('email'),
             theme=request.POST.get('theme'),
-            message=request.POST.get('message', '')
+            resume_presentation=request.POST.get('resume_presentation', ''),
+            bio=request.POST.get('bio', '')
         )
         
         # Gérer le fichier CV
         if 'cv_fichier' in request.FILES:
             paneliste.cv_fichier = request.FILES['cv_fichier']
+
+        if 'photo' in request.FILES:
+            paneliste.photo = request.FILES['photo']
         
         paneliste.save()
         
@@ -46,4 +50,10 @@ def submit_paneliste(request):
 def paneliste_success(request):
     """Vue pour la page de confirmation panéliste"""
     return render(request, 'paneliste_success.html')
+
+
+def conferencier_detail(request, pk):
+    """Vue détail conférencier"""
+    conferencier = get_object_or_404(Paneliste, pk=pk, statut='accepte')
+    return render(request, 'conferencier_detail.html', {'conferencier': conferencier})
 

@@ -15,7 +15,13 @@ class Paneliste(models.Model):
     
     # Intervention
     theme = models.CharField(max_length=300, verbose_name="Thème à aborder")
-    message = models.TextField(verbose_name="Message complémentaire")
+    resume_presentation = models.TextField(verbose_name="Résumé de la présentation")
+    bio = models.TextField(verbose_name="Biographie")
+
+    # Planification (renseignée par l'admin après validation)
+    date_presentation = models.DateField(blank=True, null=True, verbose_name="Date de la présentation")
+    heure_presentation = models.TimeField(blank=True, null=True, verbose_name="Heure de la présentation")
+    duree_presentation = models.PositiveIntegerField(blank=True, null=True, verbose_name="Durée (minutes)")
     
     # Informations administratives
     date_candidature = models.DateTimeField(auto_now_add=True, verbose_name="Date de candidature")
