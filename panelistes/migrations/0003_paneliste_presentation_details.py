@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='paneliste',
             name='bio',
-            field=models.TextField(verbose_name='Biographie'),
+            field=models.TextField(default='', verbose_name='Biographie'),
         ),
         migrations.AddField(
             model_name='paneliste',
@@ -33,6 +33,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='paneliste',
             name='resume_presentation',
-            field=models.TextField(verbose_name='Résumé de la présentation'),
+            field=models.TextField(default='', verbose_name='Résumé de la présentation'),
         ),
     ]
