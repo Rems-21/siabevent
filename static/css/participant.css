@@ -29,7 +29,7 @@ body {
 }
 
 .participant-tabs-section {
-    padding: 80px 20px;
+    padding: 40px 20px 80px;
     background: #f8f9fa;
 }
 
@@ -37,6 +37,15 @@ body {
     justify-content: center;
     border-bottom: 2px solid #e5e5e5;
     gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #f8f9fa;
+    padding: 15px 0;
+    margin-bottom: 20px;
 }
 
 .participant-tabs .nav-link {
@@ -56,6 +65,10 @@ body {
 
 .participant-tab-content {
     margin-top: 40px;
+}
+
+.participant-tab-content .row {
+    margin-bottom: 24px;
 }
 
 .section-header {
@@ -120,6 +133,10 @@ body {
     padding: 40px 30px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     text-align: center;
+}
+
+.conferencier-card {
+    margin-top: 32px;
 }
 
 .speaker-card {
@@ -215,7 +232,7 @@ body {
     }
 
     .participant-tabs-section {
-        padding: 60px 20px;
+        padding: 30px 16px 60px;
     }
 
     .section-title {
@@ -225,5 +242,28 @@ body {
     .participant-card {
         height: 120px;
         padding: 16px;
+    }
+
+    .participant-tabs {
+        top: 0;
+        padding: 10px 0;
+        gap: 8px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: center;
+    }
+
+    .participant-tabs .nav-link {
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .participant-tab-content {
+        margin-top: 30px;
+    }
+
+    .conferencier-card {
+        margin-top: 24px;
+        padding: 28px 20px;
     }
 }
