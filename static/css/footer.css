@@ -206,14 +206,14 @@
     margin: 0;
 }
 
-.ravvox-link {
+.devvorx-link {
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
-.ravvox-link:hover {
+.devvorx-link:hover {
     color: #1AA45A;
     text-decoration: underline;
 }

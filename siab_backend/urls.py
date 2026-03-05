@@ -5,6 +5,9 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
 urlpatterns = [
+    # Google Site Verification
+    path('google2c82be27c4a4a6e2.html', TemplateView.as_view(template_name='google2c82be27c4a4a6e2.html', content_type='text/plain')),
+    
     # Admin Django
     path('siab/2025/admin/', admin.site.urls),
     
