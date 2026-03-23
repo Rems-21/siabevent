@@ -166,6 +166,12 @@ body {
     background: #f8f9fa;
 }
 
+/* Désactiver l'effet glossy sur la page contacts */
+.contact-card::before,
+.contact-card::after {
+    display: none !important;
+}
+
 .contact-card {
     background: #ffffff;
     border-radius: 12px;

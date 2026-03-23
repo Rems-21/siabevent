@@ -1,0 +1,299 @@
+/* Programme SIAB 2026 - Calendrier officiel */
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f8f9fa;
+}
+
+/* Hero Section */
+.programme-hero {
+    padding: 100px 20px 60px;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.programme-hero-deco {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(26, 164, 90, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.programme-hero-deco::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(26, 164, 90, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.programme-hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+}
+
+.programme-hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.programme-hero-desc {
+    font-size: 16px;
+    color: #000000;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Tabs */
+.programme-tabs-section {
+    padding: 0 20px 30px;
+    background: #ffffff;
+}
+
+.programme-tabs {
+    display: flex;
+    gap: 10px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.programme-tabs .nav-link {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    background: #f0f0f0;
+    color: #000000;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.programme-tabs .nav-link:hover {
+    background: #e5e5e5;
+}
+
+.programme-tabs .nav-link.active {
+    background: #1AA45A;
+    color: #ffffff;
+}
+
+/* Content */
+.programme-content-section {
+    padding: 0 20px 80px;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.schedule-card {
+    display: flex;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e0e0e0;
+}
+
+.schedule-card-image {
+    position: relative;
+    width: 220px;
+    min-width: 220px;
+    overflow: hidden;
+}
+
+.schedule-card-image img {
+    width: 100%;
+    height: 100%;
+    min-height: 140px;
+    object-fit: cover;
+}
+
+.schedule-card-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 40%);
+}
+
+.schedule-time {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.schedule-card-body {
+    flex: 1;
+    padding: 28px 32px;
+    background: #f8f9fa;
+}
+
+.schedule-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 12px;
+    line-height: 1.3;
+}
+
+.schedule-desc {
+    font-size: 15px;
+    color: #333333;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* CTA Section */
+.programme-cta-section {
+    padding: 60px 20px 80px;
+}
+
+.programme-cta-card {
+    background: #000000;
+    border-radius: 16px;
+    padding: 50px 40px;
+    text-align: center;
+    border-top: 4px solid #1AA45A;
+}
+
+.programme-cta-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 15px;
+}
+
+.programme-cta-text {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 30px;
+}
+
+.programme-cta-btn {
+    display: inline-block;
+    background: #1AA45A;
+    color: #ffffff;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.programme-cta-btn:hover {
+    background: #158a4f;
+    transform: translateY(-2px);
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .programme-hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .programme-hero-title {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 768px) {
+    .programme-hero {
+        padding: 80px 20px 50px;
+    }
+
+    .programme-hero-title {
+        font-size: 32px;
+    }
+
+    .programme-hero-desc {
+        font-size: 15px;
+    }
+
+    .programme-tabs {
+        flex-wrap: wrap;
+    }
+
+    .programme-tabs .nav-link {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .schedule-card {
+        flex-direction: column;
+    }
+
+    .schedule-card-image {
+        width: 100%;
+        min-width: 100%;
+        height: 180px;
+    }
+
+    .schedule-card-image img {
+        min-height: 180px;
+    }
+
+    .schedule-card-body {
+        padding: 22px 24px;
+    }
+
+    .schedule-title {
+        font-size: 19px;
+    }
+
+    .schedule-desc {
+        font-size: 14px;
+    }
+
+    .programme-cta-section {
+        padding: 40px 20px 60px;
+    }
+
+    .programme-cta-card {
+        padding: 35px 24px;
+    }
+
+    .programme-cta-title {
+        font-size: 24px;
+    }
+
+    .programme-cta-text {
+        font-size: 16px;
+    }
+
+    .programme-cta-btn {
+        padding: 14px 32px;
+        font-size: 16px;
+    }
+}

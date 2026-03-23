@@ -138,6 +138,101 @@
                             </div>
 
                             <div class="form-group-modern">
+                                <label><i class="fas fa-briefcase"></i> Profession</label>
+                                <select class="form-control-modern" id="profession" name="profession">
+                                    <option value="">Sélectionnez</option>
+                                    <option value="Artisan">Artisan</option>
+                                    <option value="Commerçant">Commerçant</option>
+                                    <option value="Chef d'entreprise">Chef d'entreprise</option>
+                                    <option value="Profession intermédiaire">Profession intermédiaire</option>
+                                    <option value="Profession libérale">Profession libérale</option>
+                                    <option value="Cadre supérieur">Cadre supérieur</option>
+                                    <option value="Femme au foyer">Femme au foyer</option>
+                                    <option value="Employé">Employé</option>
+                                    <option value="Ouvrier">Ouvrier</option>
+                                    <option value="Etudiant">Etudiant</option>
+                                    <option value="Retraité">Retraité</option>
+                                    <option value="Autre">Autre</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-modern" id="profession_autre_group" style="display:none">
+                                <label for="profession_autre">Précisez (Autre)</label>
+                                <input type="text" class="form-control-modern" id="profession_autre" name="profession_autre" placeholder="Précisez votre profession">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label><i class="fas fa-venus-mars"></i> Sexe</label>
+                                        <select class="form-control-modern" name="sexe">
+                                            <option value="">Sélectionnez</option>
+                                            <option value="Homme">Homme</option>
+                                            <option value="Femme">Femme</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group-modern">
+                                        <label><i class="fas fa-birthday-cake"></i> Âge</label>
+                                        <select class="form-control-modern" name="age">
+                                            <option value="">Sélectionnez</option>
+                                            <option value="Moins de 26">Moins de 26</option>
+                                            <option value="Entre 26 – 35">Entre 26 – 35</option>
+                                            <option value="Entre 36 – 49">Entre 36 – 49</option>
+                                            <option value="Entre 50 – 60">Entre 50 – 60</option>
+                                            <option value="Plus de 60">Plus de 60</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label><i class="fas fa-home"></i> Type de biens ou services recherchés</label>
+                                <div class="form-check-group">
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Logement haut standing"> Logement haut standing</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Logement social"> Logement social</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Logement moyen standing"> Logement moyen standing</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Logement balnéaire"> Logement balnéaire</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Terrain pour construire"> Terrain pour construire</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Local commercial"> Local commercial</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Financements"> Financements</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Constructeurs"> Constructeurs</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Gestionnaire de patrimoine immobilier"> Gestionnaire de patrimoine immobilier</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Matériaux de construction"> Matériaux de construction</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Juste m'informer"> Juste m'informer</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Autres services"> Autres services</label>
+                                    <label class="form-check-modern"><input type="checkbox" name="type_biens_services" value="Je ne sais pas encore"> Je ne sais pas encore</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label><i class="fas fa-bullhorn"></i> Comment avez-vous entendu parler du SIAB 2026 ?</label>
+                                <select class="form-control-modern" name="source_info">
+                                    <option value="">Sélectionnez</option>
+                                    <option value="Affichage">Affichage</option>
+                                    <option value="Flyers">Flyers</option>
+                                    <option value="Réseaux sociaux">Réseaux sociaux</option>
+                                    <option value="Internet">Internet</option>
+                                    <option value="Email">Email</option>
+                                    <option value="Bouche à oreille">Bouche à oreille</option>
+                                    <option value="Radio">Radio</option>
+                                    <option value="Presse écrite">Presse écrite</option>
+                                    <option value="Télévision">Télévision</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-modern">
+                                <label><i class="fas fa-university"></i> Est-il important pour vous que les banques africaines soient présentes au SIAB 2026 ?</label>
+                                <select class="form-control-modern" name="banques_africaines">
+                                    <option value="">Sélectionnez</option>
+                                    <option value="Non, ce n'est pas nécessaire">Non, ce n'est pas nécessaire</option>
+                                    <option value="Oui c'est important pour prendre ma décision">Oui c'est important pour prendre ma décision</option>
+                                    <option value="Je n'ai pas de compte dans une banque africaine">Je n'ai pas de compte dans une banque africaine</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-modern">
                                 <label for="message">
                                     <i class="fas fa-comment-dots"></i>
                                     Message (optionnel)
@@ -153,6 +248,11 @@
 
                         <div class="form-footer-modern">
                             <p><i class="fas fa-shield-alt"></i> Vos données sont sécurisées et ne seront jamais partagées</p>
+                        </div>
+
+                        <div class="legal-notice-modern">
+                            <p>Les informations recueillies sur ce formulaire sont enregistrées dans un fichier informatisé par CAMSI ASBL pour permettre de vous adresser des contenus adaptés à vos centres d'intérêts. Elles sont conservées pendant 3 ans et sont destinées au service marketing conformément à la loi « informatique et liberté ». Vous pouvez exercer un droit d'accès aux données vous concernant et les faire rectifier en contactant : <a href="mailto:camsi.asbl@gmail.com">camsi.asbl@gmail.com</a></p>
+                            <p>Nous vous informons de l'existence de la liste d'opposition au démarchage téléphonique sur laquelle vous pouvez vous inscrire : <a href="https://www.dncm.be" target="_blank" rel="noopener noreferrer">www.dncm.be</a></p>
                         </div>
                     </div>
                 </div>
@@ -170,6 +270,9 @@
             duration: 800,
             once: true,
             easing: 'ease-in-out'
+        });
+        document.getElementById('profession').addEventListener('change', function() {
+            document.getElementById('profession_autre_group').style.display = this.value === 'Autre' ? 'block' : 'none';
         });
     </script>
 </body>

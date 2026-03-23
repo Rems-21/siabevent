@@ -389,6 +389,18 @@ body {
     margin-top: 40px;
 }
 
+/* Désactiver l'effet glossy sur la page participer */
+.participation-card::before,
+.participation-card::after,
+.participation-card-link .participation-card::before,
+.participation-card-link .participation-card::after,
+.exhibitor-card::before,
+.exhibitor-card::after,
+.sector-card::before,
+.sector-card::after {
+    display: none !important;
+}
+
 .participation-card-link {
     text-decoration: none !important;
     color: inherit;
@@ -425,12 +437,12 @@ body {
 }
 
 .participation-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .participation-card-link:hover .participation-card {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 

@@ -13,6 +13,9 @@ class BadgeVisiteurAdmin(admin.ModelAdmin):
         ('Informations du visiteur', {
             'fields': ('prenom', 'nom', 'email', 'code_pays', 'telephone', 'message')
         }),
+        ('Profil et préférences', {
+            'fields': ('profession', 'profession_autre', 'sexe', 'age', 'type_biens_services', 'source_info', 'banques_africaines')
+        }),
         ('Administration', {
             'fields': ('badge_envoye', 'date_inscription')
         }),

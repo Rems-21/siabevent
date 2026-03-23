@@ -229,6 +229,57 @@ select.form-control-modern {
     color: #1AA45A;
 }
 
+/* Checkboxes groupe */
+.form-check-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.form-check-modern {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.form-check-modern input {
+    width: auto;
+    cursor: pointer;
+}
+
+/* Notice légale */
+.legal-notice-modern {
+    margin-top: 35px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #1AA45A;
+}
+
+.legal-notice-modern p {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.legal-notice-modern p:last-child {
+    margin-bottom: 0;
+}
+
+.legal-notice-modern a {
+    color: #1AA45A;
+    text-decoration: underline;
+}
+
+.legal-notice-modern a:hover {
+    color: #158a4f;
+}
+
 /* Messages d'alerte */
 .messages-container {
     margin-bottom: 25px;

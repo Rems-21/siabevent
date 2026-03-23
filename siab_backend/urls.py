@@ -47,6 +47,7 @@ urlpatterns = [
     path('apropos', TemplateView.as_view(template_name='apropos.html'), name='apropos'),
     path('logistique', TemplateView.as_view(template_name='logistique.html'), name='logistique'),
     path('sponsoriser', TemplateView.as_view(template_name='sponsoriser.html'), name='sponsoriser'),
+    path('programme', TemplateView.as_view(template_name='programme.html'), name='programme'),
 ]
 
 # Servir les fichiers statiques et média en développement

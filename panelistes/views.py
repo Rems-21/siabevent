@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
 from .models import Paneliste
@@ -50,10 +50,3 @@ def submit_paneliste(request):
 def paneliste_success(request):
     """Vue pour la page de confirmation panéliste"""
     return render(request, 'paneliste_success.html')
-
-
-def conferencier_detail(request, pk):
-    """Vue détail conférencier"""
-    conferencier = get_object_or_404(Paneliste, pk=pk, statut='accepte')
-    return render(request, 'conferencier_detail.html', {'conferencier': conferencier})
-

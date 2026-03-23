@@ -131,7 +131,7 @@
     pointer-events: none;
 }
 
-/* Animation de brillance au survol */
+/* Animation de brillance au survol - DÉSACTIVÉ (effet glossy retiré) */
 .card:hover::before,
 .participation-card:hover::before,
 .expert-card:hover::before,
@@ -145,7 +145,7 @@
 .avertissement-card:hover::before,
 .sponsor-info-card:hover::before,
 .participation-card-link:hover .participation-card::before {
-    left: 100%;
+    display: none;
 }
 
 .card:hover::after,
@@ -161,10 +161,10 @@
 .avertissement-card:hover::after,
 .sponsor-info-card:hover::after,
 .participation-card-link:hover .participation-card::after {
-    opacity: 1;
+    display: none;
 }
 
-/* Effet hover amélioré avec glossy - Style premium */
+/* Effet hover - sans glossy (subltil) */
 .card:hover,
 .participation-card:hover,
 .expert-card:hover,
@@ -179,15 +179,9 @@
 .sponsor-info-card:hover,
 .participation-card-link:hover .participation-card {
     background: linear-gradient(135deg, rgba(50, 50, 55, 0.9) 0%, rgba(40, 40, 45, 0.8) 100%);
-    box-shadow: 
-        0 30px 80px rgba(0, 0, 0, 0.5),
-        0 12px 32px rgba(0, 0, 0, 0.4),
-        inset 0 3px 6px rgba(255, 255, 255, 0.2),
-        inset 0 -3px 6px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.25),
-        0 0 40px rgba(255, 255, 255, 0.1);
-    transform: translateY(-6px) scale(1.02);
-    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.25);
 }
 
 /* Cartes avec fond sombre - style glossy adapté premium */
@@ -288,13 +282,7 @@
 
 .expert-card:hover {
     background: linear-gradient(135deg, rgba(50, 50, 55, 0.9) 0%, rgba(40, 40, 45, 0.8) 100%);
-    box-shadow: 
-        0 30px 80px rgba(0, 0, 0, 0.5),
-        0 12px 32px rgba(0, 0, 0, 0.4),
-        inset 0 3px 6px rgba(255, 255, 255, 0.2),
-        inset 0 -3px 6px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.25),
-        0 0 40px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* Cartes d'articles - PAS d'effet glossy */

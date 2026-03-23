@@ -13,13 +13,21 @@ def visiter_page(request):
 def submit_badge(request):
     """Vue pour traiter la soumission du formulaire badge visiteur"""
     try:
+        type_biens = ', '.join(request.POST.getlist('type_biens_services'))
         badge = BadgeVisiteur(
             prenom=request.POST.get('prenom'),
             nom=request.POST.get('nom'),
             email=request.POST.get('email'),
             code_pays=request.POST.get('code_pays'),
             telephone=request.POST.get('telephone', ''),
-            message=request.POST.get('message', '')
+            message=request.POST.get('message', ''),
+            profession=request.POST.get('profession', ''),
+            profession_autre=request.POST.get('profession_autre', ''),
+            sexe=request.POST.get('sexe', ''),
+            age=request.POST.get('age', ''),
+            type_biens_services=type_biens,
+            source_info=request.POST.get('source_info', ''),
+            banques_africaines=request.POST.get('banques_africaines', ''),
         )
         
         badge.save()
