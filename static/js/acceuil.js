@@ -133,6 +133,116 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
 });
 
+// Partners Carousel Management
+document.addEventListener('DOMContentLoaded', function() {
+    const partnersCarousel = document.getElementById('partnersCarousel');
+    const partnersCarouselInner = document.getElementById('partnersCarouselInner');
+    const partnerPrevButton = document.querySelector('.partner-prev');
+    const partnerNextButton = document.querySelector('.partner-next');
+
+    if (partnersCarousel && partnersCarouselInner) {
+        const originalPartnerItems = Array.from(
+            partnersCarouselInner.querySelectorAll('.partner-item')
+        );
+        const totalPartners = originalPartnerItems.length;
+
+        if (totalPartners > 0) {
+            let partnerIndex = 0;
+            let partnerAutoSlide = null;
+
+            partnersCarouselInner.innerHTML = '';
+            partnersCarouselInner.className = 'carousel-track';
+
+            originalPartnerItems.forEach((item) => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+
+                const row = document.createElement('div');
+                row.className = 'row justify-content-center align-items-center';
+
+                const clone = item.cloneNode(true);
+                clone.className = clone.className.replace(/col-\w+-\d+/g, '').trim();
+                const width = window.innerWidth;
+
+                if (width < 576) {
+                    clone.classList.add('col-10');
+                } else if (width < 768) {
+                    clone.classList.add('col-8', 'col-sm-6');
+                } else {
+                    clone.classList.add('col-6', 'col-md-4', 'col-lg-3');
+                }
+
+                row.appendChild(clone);
+                slide.appendChild(row);
+                partnersCarouselInner.appendChild(slide);
+            });
+
+            function updatePartnersCarousel() {
+                if (partnerIndex < 0) {
+                    partnerIndex = totalPartners - 1;
+                }
+                if (partnerIndex >= totalPartners) {
+                    partnerIndex = 0;
+                }
+                partnersCarouselInner.style.transform = `translateX(-${partnerIndex * 100}%)`;
+            }
+
+            function resetPartnerAutoSlide() {
+                if (partnerAutoSlide) {
+                    clearInterval(partnerAutoSlide);
+                }
+                if (totalPartners > 1) {
+                    partnerAutoSlide = setInterval(() => {
+                        partnerIndex++;
+                        updatePartnersCarousel();
+                    }, 4000);
+                }
+            }
+
+            if (partnerPrevButton) {
+                partnerPrevButton.style.display = 'flex';
+                partnerPrevButton.removeAttribute('data-bs-target');
+                partnerPrevButton.removeAttribute('data-bs-slide');
+                partnerPrevButton.addEventListener('click', () => {
+                    partnerIndex--;
+                    updatePartnersCarousel();
+                    resetPartnerAutoSlide();
+                });
+            }
+
+            if (partnerNextButton) {
+                partnerNextButton.style.display = 'flex';
+                partnerNextButton.removeAttribute('data-bs-target');
+                partnerNextButton.removeAttribute('data-bs-slide');
+                partnerNextButton.addEventListener('click', () => {
+                    partnerIndex++;
+                    updatePartnersCarousel();
+                    resetPartnerAutoSlide();
+                });
+            }
+
+            updatePartnersCarousel();
+            resetPartnerAutoSlide();
+
+            partnersCarousel.addEventListener('mouseenter', () => {
+                if (partnerAutoSlide) {
+                    clearInterval(partnerAutoSlide);
+                }
+            });
+
+            partnersCarousel.addEventListener('mouseleave', () => {
+                resetPartnerAutoSlide();
+            });
+
+            let partnerResizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(partnerResizeTimeout);
+                partnerResizeTimeout = setTimeout(updatePartnersCarousel, 250);
+            });
+        }
+    }
+});
+
 // Representatives Carousel Management - Simple transform-based carousel
 document.addEventListener('DOMContentLoaded', function() {
     const representativesCarousel = document.getElementById('representativesCarousel');

@@ -381,43 +381,31 @@
             <div class="row">
                 <div class="col-12">
                     {% if partenaires %}
-                    <div id="partnersCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-wrap="true">
-                        <div class="carousel-inner partners-carousel-inner">
+                    <div id="partnersCarousel" class="carousel slide carousel-slide" data-bs-ride="false">
+                        <div class="carousel-inner" id="partnersCarouselInner">
                             {% for partenaire in partenaires %}
-                                {% if forloop.counter0|divisibleby:5 %}
-                                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                <div class="row justify-content-center align-items-center">
-                                {% endif %}
-                                
-                                    <div class="col-lg-2 col-md-4 col-6 mb-4">
-                                        <div class="partner-logo-box">
-                                        {% if partenaire.logo %}
-                                            <a href="{% if partenaire.site_web %}{{ partenaire.site_web }}{% else %}#{% endif %}" target="_blank" rel="noopener noreferrer">
-                                                <img src="{{ partenaire.logo.url }}" alt="{{ partenaire.nom }}" style="max-width: 100%; max-height: 100px; object-fit: contain;">
-                                            </a>
-                                        {% else %}
-                                            <div class="partner-logo-placeholder">{{ partenaire.nom }}</div>
-                                        {% endif %}
-                                        </div>
-                                    </div>
-                                
-                                {% if forloop.counter|divisibleby:5 or forloop.last %}
-                                        </div>
-                                    </div>
-                                {% endif %}
+                            <div class="col-lg-2 col-md-4 col-6 mb-4 partner-item" data-partner-id="{{ forloop.counter0 }}">
+                                <div class="partner-logo-box">
+                                    {% if partenaire.logo %}
+                                    <a href="{% if partenaire.site_web %}{{ partenaire.site_web }}{% else %}#{% endif %}" target="_blank" rel="noopener noreferrer">
+                                        <img src="{{ partenaire.logo.url }}" alt="{{ partenaire.nom }}" style="max-width: 100%; max-height: 100px; object-fit: contain;">
+                                    </a>
+                                    {% else %}
+                                    <div class="partner-logo-placeholder">{{ partenaire.nom }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
                             {% endfor %}
-                                        </div>
-                        {% if partenaires|length > 5 %}
-                        <button class="carousel-control-prev" type="button" data-bs-target="#partnersCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                        </div>
+                        {% if partenaires|length > 1 %}
+                        <button class="carousel-control-prev partner-prev" type="button" aria-label="Partenaire précédent">
+                            <span aria-hidden="true">‹</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#partnersCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                        <button class="carousel-control-next partner-next" type="button" aria-label="Partenaire suivant">
+                            <span aria-hidden="true">›</span>
                         </button>
                         {% endif %}
-                        </div>
+                    </div>
                     {% else %}
                     <p class="text-center">Aucun partenaire pour le moment.</p>
                     {% endif %}
