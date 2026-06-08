@@ -381,9 +381,9 @@
             <div class="row">
                 <div class="col-12">
                     {% if partenaires %}
-                    <div class="row justify-content-center partners-grid">
+                    <div class="d-flex flex-wrap justify-content-center gap-4 partners-grid">
                         {% for partenaire in partenaires %}
-                        <div class="col-lg-2 col-md-4 col-6 mb-4">
+                        <div class="partner-item" style="width: 200px;">
                             <div class="partner-logo-box">
                                 {% if partenaire.logo %}
                                 <a href="{% if partenaire.site_web %}{{ partenaire.site_web }}{% else %}#{% endif %}" target="_blank" rel="noopener noreferrer">
@@ -409,10 +409,10 @@
                 </div>
             </div>
             
-            <div class="row justify-content-center exhibitors-grid">
+            <div class="d-flex flex-wrap justify-content-center gap-4 exhibitors-grid">
                 {% if exposants %}
                     {% for exposant in exposants %}
-                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                <div class="exhibitor-item" style="width: 220px;">
                     <div class="exhibitor-logo-box">
                             {% if exposant.logo %}
                                 <a href="{% if exposant.site_web %}{{ exposant.site_web }}{% else %}#{% endif %}" target="_blank" rel="noopener noreferrer">
